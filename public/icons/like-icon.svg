@@ -1,0 +1,44 @@
+<!-- Like notification icon (192x192) -->
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="192" height="192" rx="32" fill="#FF6B6B"/>
+  
+  <!-- Main heart -->
+  <g transform="translate(96, 96)">
+    <!-- Heart shape -->
+    <path d="M0 10 C0 10, -26 -14, -26 -26 C-26 -38, -14 -50, 0 -38 C14 -50, 26 -38, 26 -26 C26 -14, 0 10, 0 10 Z" 
+          fill="white"/>
+    
+    <!-- Inner heart highlight -->
+    <path d="M0 0 C0 0, -18 -18, -18 -26 C-18 -32, -12 -38, -6 -34 C0 -38, 6 -32, 6 -26 C6 -18, 0 0, 0 0 Z" 
+          fill="rgba(255,107,107,0.3)"/>
+  </g>
+  
+  <!-- Small floating hearts -->
+  <g transform="translate(60, 60)">
+    <path d="M0 5 C0 5, -8 -4, -8 -8 C-8 -12, -4 -16, 0 -12 C4 -16, 8 -12, 8 -8 C8 -4, 0 5, 0 5 Z" 
+          fill="rgba(255,255,255,0.8)"/>
+  </g>
+  
+  <g transform="translate(140, 70)">
+    <path d="M0 4 C0 4, -6 -3, -6 -6 C-6 -9, -3 -12, 0 -9 C3 -12, 6 -9, 6 -6 C6 -3, 0 4, 0 4 Z" 
+          fill="rgba(255,255,255,0.8)"/>
+  </g>
+  
+  <g transform="translate(130, 130)">
+    <path d="M0 6 C0 6, -10 -5, -10 -10 C-10 -15, -5 -20, 0 -15 C5 -20, 10 -15, 10 -10 C10 -5, 0 6, 0 6 Z" 
+          fill="rgba(255,255,255,0.6)"/>
+  </g>
+  
+  <!-- Sparkle effects -->
+  <g transform="translate(45, 120)">
+    <path d="M0,-6 L1.5,1.5 L6,0 L1.5,1.5 L0,6 L-1.5,1.5 L-6,0 L-1.5,1.5 Z" fill="rgba(255,255,255,0.9)"/>
+  </g>
+  
+  <g transform="translate(150, 50)">
+    <path d="M0,-4 L1,1 L4,0 L1,1 L0,4 L-1,1 L-4,0 L-1,1 Z" fill="rgba(255,255,255,0.9)"/>
+  </g>
+  
+  <!-- Optional text -->
+  <text x="96" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">LIKE</text>
+</svg>

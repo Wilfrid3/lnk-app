@@ -1,0 +1,35 @@
+<!-- Simple welcome icon with party celebration theme -->
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="192" height="192" rx="32" fill="#FF6B6B"/>
+  
+  <!-- Party hat -->
+  <g transform="translate(96, 96)">
+    <!-- Hat triangle -->
+    <path d="M0 -40 L-25 20 L25 20 Z" fill="#FFD93D"/>
+    <!-- Hat brim -->
+    <ellipse cx="0" cy="20" rx="25" ry="5" fill="#FFA500"/>
+    <!-- Hat decorations -->
+    <circle cx="-10" cy="-10" r="3" fill="#FF6B6B"/>
+    <circle cx="8" cy="-15" r="2.5" fill="#4ECDC4"/>
+    <circle cx="-5" cy="-25" r="2" fill="#45B7D1"/>
+    <!-- Pom pom on top -->
+    <circle cx="0" cy="-40" r="4" fill="#FFF"/>
+  </g>
+  
+  <!-- Confetti -->
+  <rect x="40" y="40" width="8" height="3" rx="1" fill="#FFD93D" transform="rotate(25 44 41.5)"/>
+  <rect x="140" y="50" width="6" height="3" rx="1" fill="#4ECDC4" transform="rotate(-15 143 51.5)"/>
+  <rect x="150" y="120" width="8" height="3" rx="1" fill="#FFA500" transform="rotate(45 154 121.5)"/>
+  <rect x="30" y="130" width="6" height="3" rx="1" fill="#45B7D1" transform="rotate(-30 33 131.5)"/>
+  <rect x="160" y="80" width="7" height="3" rx="1" fill="#FF6B6B" transform="rotate(60 163.5 81.5)"/>
+  
+  <!-- More confetti circles -->
+  <circle cx="60" cy="60" r="3" fill="#FFD93D"/>
+  <circle cx="130" cy="70" r="2.5" fill="#4ECDC4"/>
+  <circle cx="45" cy="120" r="2" fill="#FFA500"/>
+  <circle cx="150" cy="140" r="3" fill="#45B7D1"/>
+  
+  <!-- Welcome text -->
+  <text x="96" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">BIENVENUE!</text>
+</svg>

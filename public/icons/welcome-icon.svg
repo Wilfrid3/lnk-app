@@ -1,0 +1,49 @@
+<!-- Welcome notification icon (192x192) -->
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="welcomeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8E8E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD93D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main background -->
+  <rect width="192" height="192" rx="32" fill="url(#welcomeGradient)"/>
+  
+  <!-- Welcome hand wave icon -->
+  <g transform="translate(96, 96)">
+    <!-- Hand -->
+    <path d="M-20 -10 C-25 -15, -15 -25, -10 -20 L-5 -15 C0 -20, 10 -10, 5 -5 L10 0 C15 -5, 25 5, 20 10 L15 15 C20 20, 10 30, 5 25 L-5 15 C-10 20, -20 10, -15 5 L-20 0 Z" 
+          fill="#FFF" 
+          transform="rotate(-15)"/>
+    <!-- Thumb -->
+    <path d="M-15 5 C-20 0, -10 -10, -5 -5 L0 0" 
+          fill="#FFF" 
+          transform="rotate(-15)"/>
+  </g>
+  
+  <!-- Sparkles around the icon -->
+  <circle cx="50" cy="50" r="4" fill="url(#sparkleGradient)"/>
+  <circle cx="142" cy="60" r="3" fill="url(#sparkleGradient)"/>
+  <circle cx="160" cy="130" r="5" fill="url(#sparkleGradient)"/>
+  <circle cx="40" cy="140" r="3" fill="url(#sparkleGradient)"/>
+  
+  <!-- Star sparkles -->
+  <g transform="translate(65, 45)">
+    <path d="M0,-8 L2,2 L8,0 L2,2 L0,8 L-2,2 L-8,0 L-2,2 Z" fill="url(#sparkleGradient)"/>
+  </g>
+  <g transform="translate(130, 40)">
+    <path d="M0,-6 L1.5,1.5 L6,0 L1.5,1.5 L0,6 L-1.5,1.5 L-6,0 L-1.5,1.5 Z" fill="url(#sparkleGradient)"/>
+  </g>
+  <g transform="translate(150, 110)">
+    <path d="M0,-5 L1.2,1.2 L5,0 L1.2,1.2 L0,5 L-1.2,1.2 L-5,0 L-1.2,1.2 Z" fill="url(#sparkleGradient)"/>
+  </g>
+  
+  <!-- YamoZone text (optional, can be removed for cleaner look) -->
+  <text x="96" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">YamoZone</text>
+</svg>

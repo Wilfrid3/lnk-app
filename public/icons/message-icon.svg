@@ -1,0 +1,30 @@
+<!-- Message notification icon (192x192) -->
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="192" height="192" rx="32" fill="#4ECDC4"/>
+  
+  <!-- Main message bubble -->
+  <g transform="translate(96, 86)">
+    <!-- Message bubble -->
+    <path d="M-40 -30 C-40 -38, -32 -46, -24 -46 L24 -46 C32 -46, 40 -38, 40 -30 L40 0 C40 8, 32 16, 24 16 L-12 16 L-28 28 L-24 16 C-32 16, -40 8, -40 0 Z" 
+          fill="white"/>
+    
+    <!-- Message dots -->
+    <circle cx="-16" cy="-15" r="4" fill="#4ECDC4"/>
+    <circle cx="0" cy="-15" r="4" fill="#4ECDC4"/>
+    <circle cx="16" cy="-15" r="4" fill="#4ECDC4"/>
+  </g>
+  
+  <!-- Secondary message bubble (background) -->
+  <g transform="translate(120, 60)">
+    <path d="M-20 -15 C-20 -19, -16 -23, -12 -23 L12 -23 C16 -23, 20 -19, 20 -15 L20 0 C20 4, 16 8, 12 8 L-6 8 L-14 14 L-12 8 C-16 8, -20 4, -20 0 Z" 
+          fill="rgba(255,255,255,0.7)"/>
+  </g>
+  
+  <!-- Notification indicator -->
+  <circle cx="140" cy="52" r="12" fill="#FF6B6B"/>
+  <text x="140" y="57" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">1</text>
+  
+  <!-- Optional text -->
+  <text x="96" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">MESSAGE</text>
+</svg>

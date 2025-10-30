@@ -1,0 +1,367 @@
+@import "tailwindcss";
+
+/* Define custom dark variant according to Tailwind docs */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Scrollbar utilities */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile touch scrolling improvements */
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Define theme using the new @theme directive for v4 */
+@theme inline {
+  /* Default theme colors */
+  --color-primary: rgb(255 75 121);
+  --color-primary-50: rgb(255 236 241);
+  --color-primary-100: rgb(255 217 226);
+  --color-primary-200: rgb(255 198 212);
+  --color-primary-300: rgb(255 160 183);
+  --color-primary-400: rgb(255 117 152);
+  --color-primary-500: rgb(255 75 121);
+  --color-primary-600: rgb(230 68 109);
+  --color-primary-700: rgb(204 60 97);
+  --color-primary-800: rgb(179 53 85);
+  --color-primary-900: rgb(153 45 73);
+  --color-primary-950: rgb(102 30 49);
+  
+  --color-success: rgb(34 197 94);
+  --color-warning: rgb(234 179 8);
+  --color-error: rgb(239 68 68);
+  --color-info: rgb(59 130 246);
+
+  /* Base theme variables */
+  --color-bg: rgb(249 250 251); /* bg-gray-50 */
+  --color-text: rgb(17 24 39); /* text-gray-900 */
+  --color-card-bg: rgb(255 255 255); /* white */
+  --color-card-border: rgb(243 244 246); /* border-gray-100 */
+
+  --spacing-base: 0.25rem;
+  --breakpoint-xs: 480px;
+}
+
+/* Dark theme variables */
+.dark {
+  --color-primary: rgb(255 105 151);
+  --color-primary-50: rgb(31 31 31);
+  --color-primary-100: rgb(43 43 43);
+  --color-primary-200: rgb(55 55 55);
+  --color-primary-300: rgb(75 75 75);
+  --color-primary-400: rgb(115 115 115);
+  --color-primary-500: rgb(255 105 151);
+  --color-primary-600: rgb(255 125 171);
+  --color-primary-700: rgb(255 145 191);
+  --color-primary-800: rgb(255 175 211);
+  --color-primary-900: rgb(255 205 231);
+  --color-primary-950: rgb(255 225 241);
+  
+  --color-success: rgb(74 222 128);
+  --color-warning: rgb(250 204 21);
+  --color-error: rgb(248 113 113);
+  --color-info: rgb(96 165 250);
+  
+  /* Dark theme background and text colors */
+  --color-bg: rgb(24 24 27); /* bg-zinc-900 */
+  --color-text: rgb(243 244 246); /* text-gray-100 */
+  --color-card-bg: rgb(39 39 42); /* bg-zinc-800 */
+  --color-card-border: rgb(63 63 70); /* border-zinc-700 */
+}
+
+/* Apply theme variables to elements */
+body {
+  background-color: var(--color-bg) !important; /* Force override */
+  color: var(--color-text);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme-aware utility styles */
+.bg-themed-card {
+  background-color: var(--color-card-bg);
+  border-color: var(--color-card-border);
+}
+
+/* Additional theme-aware component styles */
+.bg-themed-card {
+  background-color: white;
+}
+
+.theme-dark .bg-themed-card {
+  background-color: rgb(39 39 42); /* bg-zinc-800 */
+  color: rgb(229 231 235); /* text-gray-200 */
+}
+
+.theme-dark .card {
+  background-color: rgb(39 39 42); /* bg-zinc-800 */
+  border-color: rgb(63 63 70); /* border-zinc-700 */
+  color: rgb(229 231 235); /* text-gray-200 */
+}
+
+.theme-dark .shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Add transitions for smoother theme changes */
+body, input, textarea, button, .card, .bg-themed-card, .shadow-sm, .text-gray-500, .text-gray-400, .border {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Add utility components */
+@layer components {
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition-property: background-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-600);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.5;
+  }
+
+  .input-primary {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+  }
+
+  .input-primary:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 1px var(--color-primary) / 0.1;
+  }
+
+  .card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    border: 1px solid rgb(243 244 246);
+  }
+  
+  .section-title {
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .section-link {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+  }
+}
+
+/* Mobile viewport fixes */
+@supports (-webkit-touch-callout: none) {
+  /* iOS specific - fix for input field getting hidden behind keyboard */
+  .chat-container {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Hide scrollbar for chrome, safari and opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for firefox, IE and Edge */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Fix for inputs and virtual keyboard */
+@media (max-width: 768px) {
+  input, textarea {
+    font-size: 16px !important; /* Prevents iOS zooming on input */
+  }
+}
+
+/* Theme-aware component styles */
+.dark .card,
+.dark .bg-white {
+  background-color: var(--color-card-bg);
+  border-color: var(--color-card-border);
+}
+
+.dark input,
+.dark textarea {
+  background-color: rgb(63 63 70); /* bg-zinc-700 */
+  border-color: rgb(82 82 91); /* border-zinc-600 */
+  color: rgb(243 244 246); /* text-gray-100 */
+}
+
+.dark .text-gray-500 {
+  color: rgb(161 161 170); /* text-zinc-400 */
+}
+
+.dark .text-gray-400 {
+  color: rgb(113 113 122); /* text-zinc-500 */
+}
+
+.dark .hover\:bg-pink-50:hover {
+  background-color: rgb(39 39 42); /* bg-zinc-800 */
+}
+
+/* Additional message styling fixes for better light/dark mode contrast */
+.dark .message-received {
+  background-color: var(--color-card-bg);
+  border-color: var(--color-card-border);
+  color: var(--color-text);
+}
+
+.message-received {
+  background-color: white;
+  border: 1px solid #f3f4f6;
+  color: #1f2937;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.message-sent {
+  background-color: var(--color-primary-500);
+  color: white;
+}
+
+.message-time-received {
+  color: #6b7280;
+}
+
+.message-time-sent {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Add these specific dark mode overrides at the bottom of your file */
+
+/* Ensure form elements have proper dark mode styling */
+.dark .form-checkbox {
+  color: var(--color-primary-500);
+  background-color: transparent;
+}
+
+/* Ensure service category cards look good in dark mode */
+.dark .category-card {
+  background-color: var(--color-card-bg);
+  color: var(--color-text);
+}
+
+/* Fix drawer menu items in dark mode */
+.dark .drawer-menu-item {
+  color: var(--color-text);
+}
+
+/* Fix search filter sections */
+.dark .filter-section-heading {
+  color: var(--color-text);
+}
+
+.dark .filter-option-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Add a subtle border to cards in dark mode for better contrast */
+.dark .card, 
+.dark .category-box,
+.dark .location-box {
+  border: 1px solid var(--color-card-border);
+}
+
+/* Fix checkbox appearance in dark mode */
+.dark input[type="checkbox"] {
+  border-color: var(--color-card-border);
+}
+
+/* Fix top sheet and bottom sheet styles in dark mode */
+.dark .sheet-title {
+  color: var(--color-text);
+}
+
+/* Fix buttons in dark mode */
+.dark .btn-outline {
+  border-color: var(--color-card-border);
+  color: var(--color-text);
+}
+
+.dark .btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Add some transition delays for smoother theme changes */
+.bg-themed-card, 
+.border,
+input, 
+select, 
+button,
+.text-gray-500,
+.text-gray-900,
+.bg-white,
+.bg-gray-800,
+.border-gray-200,
+.border-gray-700 {
+  transition-duration: 200ms;
+  transition-property: color, background-color, border-color;
+}
+
+/* Text shadow utility for better text readability on images */
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.text-shadow-md {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Animated hover effects for cards */
+.hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-3px);
+}
+
+/* Fade-in animation for video controls */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}
