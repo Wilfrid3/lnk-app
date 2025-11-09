@@ -26,6 +26,7 @@ const nextConfig = {
       'yamohub.com',
       'v1.yamohub.com',
       'www.yamohub.com',
+      'yamohubapi.work.gd'
     ],
     remotePatterns: [
       {
@@ -62,6 +63,11 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: '**.yamohub.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'yamohubapi.work.gd',
         pathname: '/**',
       },
     ],
