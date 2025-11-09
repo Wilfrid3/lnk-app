@@ -46,7 +46,7 @@ export default function TermsView() {
           <h2 className="text-xl mt-8 mb-4">1. Acceptation des conditions</h2>
           <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm mb-6 border border-gray-100 dark:border-gray-700">
             <p>
-              En accédant ou en utilisant l&apos;application mobile et le site web YamoZone (ci-après &quot;l&apos;Application&quot;),
+              En accédant ou en utilisant l&apos;application mobile et le site web yamohub (ci-après &quot;l&apos;Application&quot;),
               vous acceptez d&apos;être lié par ces Conditions Générales d&apos;Utilisation. Si vous n&apos;acceptez pas ces conditions,
               veuillez ne pas utiliser l&apos;Application.
             </p>

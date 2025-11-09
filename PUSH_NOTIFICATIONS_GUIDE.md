@@ -1,6 +1,6 @@
 # Push Notifications Implementation Guide
 
-Ce guide explique comment configurer et utiliser le système de notifications push dans YamoZone.
+Ce guide explique comment configurer et utiliser le système de notifications push dans yamohub.
 
 ## 📋 Prérequis
 
@@ -208,7 +208,7 @@ await NotificationService.sendReEngagementNotification(
 // Campagnes marketing ciblées
 await NotificationService.sendPromotionalNotification(
   'Nouvelles fonctionnalités ! 🚀',
-  'Découvrez les dernières améliorations de YamoZone',
+  'Découvrez les dernières améliorations de yamohub',
   '/features',
   targetUserIds // optionnel, sinon tous les utilisateurs
 )
@@ -254,7 +254,7 @@ const handleEnableNotifications = async () => {
 const strategies = [
   { days: 1, message: "N'oubliez pas de checker vos nouveaux matchs ! 💕" },
   { days: 3, message: "Des profils intéressants vous attendent ! ✨" },
-  { days: 7, message: "Votre communauté YamoZone vous manque ! 🏠" },
+  { days: 7, message: "Votre communauté yamohub vous manque ! 🏠" },
   { days: 14, message: "Nouvelles fonctionnalités disponibles ! 🚀" },
   { days: 30, message: "Offre spéciale pour votre retour ! 🎁" }
 ]

@@ -1,6 +1,6 @@
 {
-  "name": "YamoZone - Services d'Accompagnement Premium",
-  "short_name": "YamoZone",
+  "name": "yamohub - Services d'Accompagnement Premium",
+  "short_name": "yamohub",
   "description": "Plateforme leader de services d'accompagnement premium au Cameroun",
   "start_url": "/",
   "display": "standalone",

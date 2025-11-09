@@ -11,6 +11,6 @@ export default function FavorisPage() {
 }
 
 export const metadata = {
-  title: 'Favoris | YamoZone',
-  description: 'Retrouvez toutes vos annonces favorites sur YamoZone'
+  title: 'Favoris | yamohub',
+  description: 'Retrouvez toutes vos annonces favorites sur yamohub'
 }

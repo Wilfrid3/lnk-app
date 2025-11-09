@@ -89,9 +89,9 @@ export default function HomePageClient() {
   const homepageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'YamoZone - Accueil',
+    name: 'YamoHub - Accueil',
     description: 'Découvrez les meilleurs profils d\'accompagnement premium au Cameroun. Services vérifiés à Yaoundé, Douala et dans tout le pays.',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com',
     mainEntity: {
       '@type': 'ItemList',
       name: 'Services d\'accompagnement premium',
@@ -117,7 +117,7 @@ export default function HomePageClient() {
         '@type': 'ListItem',
         position: 1,
         name: 'Accueil',
-        item: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com',
+        item: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com',
       }],
     },
   }

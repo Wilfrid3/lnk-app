@@ -95,7 +95,7 @@ const handlePostLike = async (postOwnerId: string, likerName: string, postTitle:
 // Send promotional campaign
 const result = await notificationApi.sendPromotionalNotification(
   'Nouvelle fonctionnalité ! 🚀',
-  'Découvrez les nouveautés de YamoZone',
+  'Découvrez les nouveautés de yamohub',
   '/features'
 )
 

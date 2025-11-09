@@ -5,11 +5,11 @@ import { generateMetadata as generateSEOMetadata } from '@/utils/seo'
 import HomePageClient from './HomePageClient'
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'YamoZone - Plateforme de Services d\'Accompagnement Premium au Cameroun',
-  description: 'Découvrez YamoZone, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité à Yaoundé, Douala et dans tout le pays.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com',
+  title: 'yamohub - Plateforme de Services d\'Accompagnement Premium au Cameroun',
+  description: 'Découvrez yamohub, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité à Yaoundé, Douala et dans tout le pays.',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com',
   type: 'website',
-  image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com'}/images/full_logo.png`,
+  image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/images/full_logo.png`,
 })
 
 export default function HomePage() {

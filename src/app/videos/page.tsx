@@ -5,6 +5,6 @@ export default function VideosPage() {
 }
 
 export const metadata = {
-  title: 'Vidéos | YamoZone',
-  description: 'Découvrez les vidéos les plus populaires sur YamoZone'
+  title: 'Vidéos | yamohub',
+  description: 'Découvrez les vidéos les plus populaires sur yamohub'
 }

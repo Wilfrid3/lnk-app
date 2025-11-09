@@ -152,7 +152,7 @@ export default function InviteCodeView() {
   const shareOnWhatsApp = () => {
     if (user?.inviteCode) {
       const inviteLink = `${window.location.origin}/auth/signup?ref=${user.inviteCode}`
-      const message = `Rejoins-moi sur YamoZone avec mon code d'invitation: ${user.inviteCode}\n\nOu utilise ce lien: ${inviteLink}`
+      const message = `Rejoins-moi sur yamohub avec mon code d'invitation: ${user.inviteCode}\n\nOu utilise ce lien: ${inviteLink}`
       const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`
       window.open(whatsappUrl, '_blank')
     }
@@ -162,8 +162,8 @@ export default function InviteCodeView() {
     if (user?.inviteCode) {
       const inviteLink = `${window.location.origin}/auth/signup?ref=${user.inviteCode}`
       const shareData = {
-        title: 'Rejoignez YamoZone',
-        text: `Rejoins-moi sur YamoZone avec mon code d'invitation: ${user.inviteCode} et nous recevrons tous les deux des récompenses !`,
+        title: 'Rejoignez yamohub',
+        text: `Rejoins-moi sur yamohub avec mon code d'invitation: ${user.inviteCode} et nous recevrons tous les deux des récompenses !`,
         url: inviteLink
       }
 
@@ -192,7 +192,7 @@ export default function InviteCodeView() {
     if (!user?.inviteCode) return
 
     const inviteLink = `${window.location.origin}/auth/signup?ref=${user.inviteCode}`
-    const message = `Rejoins-moi sur YamoZone avec mon code d'invitation: ${user.inviteCode}`
+    const message = `Rejoins-moi sur yamohub avec mon code d'invitation: ${user.inviteCode}`
     
     const urls = {
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(inviteLink)}&quote=${encodeURIComponent(message)}`,
@@ -411,7 +411,7 @@ export default function InviteCodeView() {
               </div>
               <h4 className="font-medium text-gray-900 dark:text-white mb-2">2. {"Ils s'inscrivent"}</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Vos amis utilisent votre code lors de leur inscription sur YamoZone
+                Vos amis utilisent votre code lors de leur inscription sur yamohub
               </p>
             </div>
 

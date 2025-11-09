@@ -18,17 +18,17 @@ export interface SEOData {
 }
 
 export const DEFAULT_SEO: SEOData = {
-  title: 'YamoZone - Plateforme de Services d\'Accompagnement Premium au Cameroun',
-  description: 'Découvrez YamoZone, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité à Yaoundé, Douala et dans tout le pays.',
+  title: 'yamohub - Plateforme de Services d\'Accompagnement Premium au Cameroun',
+  description: 'Découvrez yamohub, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité à Yaoundé, Douala et dans tout le pays.',
   image: '/images/full_logo.png',
   type: 'website',
-  siteName: 'YamoZone',
+  siteName: 'yamohub',
   locale: 'fr_FR',
 }
 
 export function generateMetadata(seoData: Partial<SEOData> = {}): Metadata {
   const data = { ...DEFAULT_SEO, ...seoData }
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'
   
   // Generate dynamic Open Graph image if no specific image provided
   let ogImage = data.image
@@ -136,14 +136,14 @@ export function generateStructuredData(
   type: 'Organization' | 'WebSite' | 'Person' | 'Article', 
   data: StructuredDataInput
 ) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'
   
   switch (type) {
     case 'Organization':
       return {
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        name: 'YamoZone',
+        name: 'yamohub',
         description: 'Plateforme de services d\'accompagnement premium au Cameroun',
         url: baseUrl,
         logo: `${baseUrl}/images/full_logo.png`,
@@ -166,7 +166,7 @@ export function generateStructuredData(
       return {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        name: 'YamoZone',
+        name: 'yamohub',
         description: 'Plateforme de services d\'accompagnement premium au Cameroun',
         url: baseUrl,
         potentialAction: {
@@ -214,7 +214,7 @@ export function generateStructuredData(
         },
         publisher: {
           '@type': 'Organization',
-          name: 'YamoZone',
+          name: 'yamohub',
           logo: {
             '@type': 'ImageObject',
             url: `${baseUrl}/images/full_logo.png`,

@@ -310,7 +310,7 @@ export class NotificationsService {
   // Méthodes spécifiques pour différents types de notifications
   async sendWelcomeNotification(userId: string) {
     return this.sendNotification({
-      title: '🎉 Bienvenue sur YamoZone !',
+      title: '🎉 Bienvenue sur yamohub !',
       body: 'Votre profil est maintenant actif. Commencez à explorer !',
       url: '/trending',
       userIds: [userId],

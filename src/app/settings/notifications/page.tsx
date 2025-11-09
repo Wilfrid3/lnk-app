@@ -530,7 +530,7 @@ export default function NotificationsPage() {
                   <p>• Les notifications push fonctionnent même quand l&apos;app est fermée</p>
                   <p>• Vous pouvez les désactiver à tout moment</p>
                   <p>• Les notifications sont envoyées pour les messages, likes, commentaires, etc.</p>
-                  <p>• Idéal pour rester connecté avec la communauté YamoZone</p>
+                  <p>• Idéal pour rester connecté avec la communauté yamohub</p>
                 </div>
               </div>
             </div>

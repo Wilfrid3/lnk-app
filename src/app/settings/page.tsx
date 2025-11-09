@@ -161,8 +161,8 @@ export default function SettingsPage() {
         {/* App Info */}
         <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
           <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-            <p>YamoZone v1.0.0</p>
-            <p className="mt-1">© 2024 YamoZone. Tous droits réservés.</p>
+            <p>yamohub v1.0.0</p>
+            <p className="mt-1">© 2024 yamohub. Tous droits réservés.</p>
           </div>
         </div>
       </div>

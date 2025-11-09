@@ -11,7 +11,7 @@ export const getFullImageUrl = (url: string | undefined): string | undefined => 
     if (process.env.NODE_ENV === 'production' && 
        (url.includes('localhost:3000') || url.includes('localhost:3001'))) {
       // Replace with production URL
-      const prodApiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://v1.yamozone.com/api';
+      const prodApiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://v1.yamohub.com/api';
       const baseUrl = prodApiUrl.replace(/\/api$/, '');
       const newUrl = url.replace(/http:\/\/localhost:(3000|3001)/g, baseUrl);
       // console.log('🖼️ Image URL converted:', url, '->', newUrl);

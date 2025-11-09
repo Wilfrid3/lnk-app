@@ -67,20 +67,20 @@ const nunito = Nunito({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'),
   title: {
-    default: 'YamoZone - Plateforme de Services d\'Accompagnement Premium au Cameroun',
-    template: '%s | YamoZone'
+    default: 'yamohub - Plateforme de Services d\'Accompagnement Premium au Cameroun',
+    template: '%s | yamohub'
   },
-  description: 'Découvrez YamoZone, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité à Yaoundé, Douala et dans tout le pays.',
+  description: 'Découvrez yamohub, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité à Yaoundé, Douala et dans tout le pays.',
   keywords: [
     'escort Cameroun', 'accompagnement Yaoundé', 'services premium Douala',
     'escort vérifiée', 'accompagnatrice professionnelle', 'services discrets',
     'escort Bafoussam', 'accompagnement Kribi', 'plateforme premium'
   ],
-  authors: [{ name: 'YamoZone' }],
-  creator: 'YamoZone',
-  publisher: 'YamoZone',
+  authors: [{ name: 'yamohub' }],
+  creator: 'yamohub',
+  publisher: 'yamohub',
   robots: {
     index: true,
     follow: true,
@@ -95,24 +95,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com',
-    siteName: 'YamoZone',
-    title: 'YamoZone - Plateforme de Services d\'Accompagnement Premium au Cameroun',
-    description: 'Découvrez YamoZone, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité.',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com',
+    siteName: 'yamohub',
+    title: 'yamohub - Plateforme de Services d\'Accompagnement Premium au Cameroun',
+    description: 'Découvrez yamohub, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité.',
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com'}/images/full_logo.png`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/images/full_logo.png`,
         width: 1200,
         height: 630,
-        alt: 'YamoZone - Plateforme Premium',
+        alt: 'yamohub - Plateforme Premium',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'YamoZone - Services Premium au Cameroun',
+    title: 'yamohub - Services Premium au Cameroun',
     description: 'Plateforme leader de services d\'accompagnement premium. Profils vérifiés, qualité garantie.',
-    images: [`${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com'}/images/full_logo.png`],
+    images: [`${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/images/full_logo.png`],
   },
   verification: {
     // Add verification codes if you have them
@@ -138,10 +138,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'YamoZone',
+    name: 'yamohub',
     description: 'Plateforme de services d\'accompagnement premium au Cameroun',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com',
-    logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com'}/images/full_logo.png`,
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com',
+    logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/images/full_logo.png`,
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
@@ -157,12 +157,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'YamoZone',
+    name: 'yamohub',
     description: 'Plateforme de services d\'accompagnement premium au Cameroun',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com',
     potentialAction: {
       '@type': 'SearchAction',
-      target: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com'}/search?q={search_term_string}`,
+      target: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/search?q={search_term_string}`,
       'query-input': 'required name=search_term_string',
     },
   }
@@ -188,7 +188,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="msapplication-TileColor" content="#d97706" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="YamoZone" />
+        <meta name="apple-mobile-web-app-title" content="yamohub" />
         
         {/* Age Verification and Content Rating */}
         <meta name="rating" content="RTA-5042-1996-1400-1577-RTA" />

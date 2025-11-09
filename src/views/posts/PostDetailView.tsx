@@ -201,8 +201,8 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
   const handleShare = () => {
     if (navigator.share && typeof navigator.share === 'function') {
       navigator.share({
-        title: post?.title || 'Annonce sur YamoZone',
-        text: post?.description?.substring(0, 100) || 'Découvrez cette annonce sur YamoZone',
+        title: post?.title || 'Annonce sur yamohub',
+        text: post?.description?.substring(0, 100) || 'Découvrez cette annonce sur yamohub',
         url: window.location.href
       })
     } else {
@@ -224,7 +224,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
       let whatsappNumber = post.whatsappNumber.startsWith('+') 
         ? post.whatsappNumber.substring(1) 
         : post.whatsappNumber
-      const message = `Salut 😊. Je viens de voir votre annonce sur https://yamozone.com et je suis intéressé par vos services`
+      const message = `Salut 😊. Je viens de voir votre annonce sur https://yamohub.com et je suis intéressé par vos services`
       whatsappNumber = whatsappNumber.replace(/\s+/g, '') // Remove spaces if any
       window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank')
     } else if (post?.phoneNumber) {
@@ -232,7 +232,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
       let phoneNumber = post.phoneNumber.startsWith('+')
         ? post.phoneNumber.substring(1)
         : post.phoneNumber
-      const message = `Salut 😊. Je viens de voir votre annonce sur www.yamozone.com et je suis intéressé par vos services`
+      const message = `Salut 😊. Je viens de voir votre annonce sur www.yamohub.com et je suis intéressé par vos services`
       phoneNumber = phoneNumber.replace(/\s+/g, '') // Remove spaces if any
       window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank')
     }
@@ -266,8 +266,8 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
 
     if (post?.user?.email) {
       // If the user has an email, open the mail app with their email address
-      const subject = encodeURIComponent(`Message à propos de votre annonce sur YamoZone`);
-      const body = encodeURIComponent(`Bonjour ${post.user.name},\n\nJ'ai vu votre annonce sur YamoZone et je suis intéressé(e).\n\nCordialement.`);
+      const subject = encodeURIComponent(`Message à propos de votre annonce sur yamohub`);
+      const body = encodeURIComponent(`Bonjour ${post.user.name},\n\nJ'ai vu votre annonce sur yamohub et je suis intéressé(e).\n\nCordialement.`);
       window.location.href = `mailto:${post.user.email}?subject=${subject}&body=${body}`;
     } else {
       // If no email is available, redirect to the contact form

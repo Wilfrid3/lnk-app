@@ -53,7 +53,7 @@ Update your notification service to use the PNG version:
 ```typescript
 // In your Nest.js notification service:
 const payload = JSON.stringify({
-  title: '🎉 Bienvenue sur YamoZone !',
+  title: '🎉 Bienvenue sur yamohub !',
   body: 'Votre profil est maintenant actif. Commencez à explorer !',
   icon: '/icons/welcome-icon.png', // Use PNG version
   badge: '/icons/badge-72x72.svg',

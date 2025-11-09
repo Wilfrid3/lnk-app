@@ -18,6 +18,6 @@ export default async function ChatPage({ params }: ChatPageProps) {
 }
 
 export const metadata = {
-  title: 'Chat | YamoZone',
+  title: 'Chat | yamohub',
   description: 'Messagerie privée avec les prestataires de services'
 }

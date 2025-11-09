@@ -55,7 +55,7 @@ export default function AuthLayout({
 
       {/* Footer */}
       <footer className="p-4 text-center text-sm text-gray-500 dark:text-gray-400">
-        © {new Date().getFullYear()} YamoZone. Tous droits réservés.
+        © {new Date().getFullYear()} yamohub. Tous droits réservés.
       </footer>
     </div>
   )

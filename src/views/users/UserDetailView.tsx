@@ -223,7 +223,7 @@ const UserDetailView: React.FC<UserDetailProps> = ({ userId }) => {
     const phoneNumber = user?.phoneNumber
     if (phoneNumber) {
       const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\D/g, '')}`
-      const message = `Bonjour ${user.name}, je viens de voir votre profil sur YamoZone`
+      const message = `Bonjour ${user.name}, je viens de voir votre profil sur yamohub`
       window.open(`${whatsappUrl}?text=${encodeURIComponent(message)}`, '_blank')
     }
   }
@@ -241,8 +241,8 @@ const UserDetailView: React.FC<UserDetailProps> = ({ userId }) => {
       return
     }
     if (user?.email) {
-      const subject = encodeURIComponent(`Contact depuis YamoZone`)
-      const body = encodeURIComponent(`Bonjour ${user.name},\n\nJ'ai vu votre profil sur YamoZone et j'aimerais vous contacter.\n\nCordialement.`)
+      const subject = encodeURIComponent(`Contact depuis yamohub`)
+      const body = encodeURIComponent(`Bonjour ${user.name},\n\nJ'ai vu votre profil sur yamohub et j'aimerais vous contacter.\n\nCordialement.`)
       window.location.href = `mailto:${user.email}?subject=${subject}&body=${body}`
     }
   }

@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     
     // Get parameters from URL
-    const title = searchParams.get('title') || 'YamoZone'
+    const title = searchParams.get('title') || 'yamohub'
     const description = searchParams.get('description') || 'Services d\'accompagnement premium au Cameroun'
     const type = searchParams.get('type') || 'default' // default, profile, post, category
     const city = searchParams.get('city') || ''
@@ -93,7 +93,7 @@ export async function GET(request: NextRequest) {
                   color: '#d97706',
                 }}
               >
-                YamoZone
+                yamohub
               </div>
             </div>
 
@@ -283,7 +283,7 @@ export async function GET(request: NextRequest) {
               color: '#9ca3af',
             }}
           >
-            yamozone.com
+            yamohub.com
           </div>
         </div>
       ),

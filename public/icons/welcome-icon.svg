@@ -44,6 +44,6 @@
     <path d="M0,-5 L1.2,1.2 L5,0 L1.2,1.2 L0,5 L-1.2,1.2 L-5,0 L-1.2,1.2 Z" fill="url(#sparkleGradient)"/>
   </g>
   
-  <!-- YamoZone text (optional, can be removed for cleaner look) -->
-  <text x="96" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">YamoZone</text>
+  <!-- yamohub text (optional, can be removed for cleaner look) -->
+  <text x="96" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">yamohub</text>
 </svg>

@@ -1,7 +1,7 @@
-# SEO Optimization Guide for YamoZone
+# SEO Optimization Guide for yamohub
 
 ## Overview
-This guide outlines the comprehensive SEO optimizations implemented for the YamoZone adult services platform, ensuring maximum visibility while maintaining compliance with search engine guidelines for adult content.
+This guide outlines the comprehensive SEO optimizations implemented for the yamohub adult services platform, ensuring maximum visibility while maintaining compliance with search engine guidelines for adult content.
 
 ## Key SEO Improvements
 
@@ -25,7 +25,7 @@ This guide outlines the comprehensive SEO optimizations implemented for the Yamo
 ```json
 {
   "@type": "Organization",
-  "name": "YamoZone",
+  "name": "yamohub",
   "description": "Plateforme de services d'accompagnement premium au Cameroun",
   "contactPoint": {...},
   "address": {...}
@@ -170,8 +170,8 @@ The platform is optimized for major Cameroon cities:
 ### Environment Variables
 Copy `.env.example.seo` to `.env.local` and configure:
 ```bash
-NEXT_PUBLIC_SITE_URL=https://yamozone.com
-NEXT_PUBLIC_SITE_NAME=YamoZone
+NEXT_PUBLIC_SITE_URL=https://yamohub.com
+NEXT_PUBLIC_SITE_NAME=yamohub
 NEXT_PUBLIC_DEFAULT_LOCALE=fr_FR
 ```
 
@@ -202,7 +202,7 @@ export async function generateMetadata({ params }) {
   const data = await fetchData(params.id)
   
   return generateMetadata({
-    title: `${data.title} | YamoZone`,
+    title: `${data.title} | yamohub`,
     description: truncateDescription(data.description),
     image: data.image,
     tags: generateLocationKeywords(data.city)

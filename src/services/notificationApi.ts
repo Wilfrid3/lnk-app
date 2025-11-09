@@ -89,7 +89,7 @@ class NotificationApiService {
    */
   async sendWelcomeNotification(userId?: string) {
     return this.sendNotification({
-      title: '🎉 Bienvenue sur YamoZone !',
+      title: '🎉 Bienvenue sur yamohub !',
       body: 'Votre profil est maintenant actif. Commencez à explorer !',
       icon: '/icons/welcome-icon.png', // Use welcome-specific icon
       url: '/trending',

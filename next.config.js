@@ -23,9 +23,9 @@ const nextConfig = {
       's3.amazonaws.com',
       'localhost:3000',
       'localhost:3001',
-      'yamozone.com',
-      'v1.yamozone.com',
-      'www.yamozone.com',
+      'yamohub.com',
+      'v1.yamohub.com',
+      'www.yamohub.com',
     ],
     remotePatterns: [
       {
@@ -51,17 +51,17 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'yamozone.com',
+        hostname: 'yamohub.com',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'v1.yamozone.com',
+        hostname: 'v1.yamohub.com',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: '**.yamozone.com',
+        hostname: '**.yamohub.com',
         pathname: '/**',
       },
     ],

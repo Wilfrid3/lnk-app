@@ -252,7 +252,7 @@ const SignUpView: React.FC = () => {
 
     return (
         <AuthLayout
-            title="Inscription sur YamoZone"
+            title="Inscription sur yamohub"
             subtitle="Créez votre compte pour commencer"
             showBackButton={true}
         >

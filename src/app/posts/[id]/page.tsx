@@ -17,7 +17,7 @@ export async function generateMetadata({
   params: Promise<PostParams>
 }): Promise<Metadata> {
   const { id } = await params
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'
 
   try {
     // Fetch the actual post data
@@ -64,7 +64,7 @@ export async function generateMetadata({
     const seoTitle = `${title} | ${userName} à ${city} | Services Premium Cameroun`
     
     // Enhanced description with location and service info
-    const seoDescription = `${description} Profil ${post.user.isVerified ? 'vérifié' : 'professionnel'} à ${city}. ${offerings.slice(0, 3).join(', ')}. ${post.isVip ? 'Service VIP.' : ''} Contactez maintenant sur YamoZone.`
+    const seoDescription = `${description} Profil ${post.user.isVerified ? 'vérifié' : 'professionnel'} à ${city}. ${offerings.slice(0, 3).join(', ')}. ${post.isVip ? 'Service VIP.' : ''} Contactez maintenant sur yamohub.`
 
     return generateSEOMetadata({
       title: seoTitle,

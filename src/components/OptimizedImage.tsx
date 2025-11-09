@@ -71,7 +71,7 @@ export default function OptimizedImage({
       <div className={`bg-gray-200 flex items-center justify-center ${className}`}>
         <Image
           src={fallbackSrc}
-          alt="YamoZone Logo"
+          alt="yamohub Logo"
           width={width}
           height={height}
           className="opacity-50"

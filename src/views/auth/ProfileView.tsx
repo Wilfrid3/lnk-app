@@ -40,11 +40,11 @@ export default function ProfileView() {
   const handleQuickShare = () => {
     if (user?.inviteCode) {
       const inviteLink = `${window.location.origin}/auth/signup?ref=${user.inviteCode}`;
-      const message = `Rejoins-moi sur YamoZone avec mon code d'invitation: ${user.inviteCode}\n\nOu utilise ce lien: ${inviteLink}`;
+      const message = `Rejoins-moi sur yamohub avec mon code d'invitation: ${user.inviteCode}\n\nOu utilise ce lien: ${inviteLink}`;
       
       if (navigator.share) {
         navigator.share({
-          title: 'Rejoignez YamoZone',
+          title: 'Rejoignez yamohub',
           text: message,
           url: inviteLink
         }).catch(console.error);

@@ -278,7 +278,7 @@ const ProfileVideosView: React.FC<ProfileVideosViewProps> = ({
     if (!video) return
 
     const shareUrl = `${window.location.origin}/videos/${videoId}`
-    const shareText = `Regardez cette vidéo de ${video.user.name} sur YamoZone`
+    const shareText = `Regardez cette vidéo de ${video.user.name} sur yamohub`
 
     if (navigator.share) {
       try {

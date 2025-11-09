@@ -11,6 +11,6 @@ export default function ComingSoonPage() {
 }
 
 export const metadata = {
-  title: 'Bientôt disponible | YamoZone',
-  description: 'Cette fonctionnalité sera bientôt disponible sur YamoZone'
+  title: 'Bientôt disponible | yamohub',
+  description: 'Cette fonctionnalité sera bientôt disponible sur yamohub'
 }

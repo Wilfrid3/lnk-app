@@ -5,6 +5,6 @@ export default function ResetPasswordPage() {
 }
 
 export const metadata = {
-  title: 'Réinitialiser le mot de passe | YamoZone',
-  description: 'Réinitialisez votre mot de passe YamoZone'
+  title: 'Réinitialiser le mot de passe | yamohub',
+  description: 'Réinitialisez votre mot de passe yamohub'
 }

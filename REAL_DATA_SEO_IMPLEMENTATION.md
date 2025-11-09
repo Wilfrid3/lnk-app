@@ -15,7 +15,7 @@ Previously, the SEO metadata was using generic placeholders instead of actual po
 
 ### 2. **User Profile Pages (`/users/[id]`)**
 - ✅ **Fetches real user data** using `getUserById()` from the users service
-- ✅ **Dynamic titles** like: `"Marie, 25 ans | Massage, Accompagnement à Yaoundé | YamoZone"`
+- ✅ **Dynamic titles** like: `"Marie, 25 ans | Massage, Accompagnement à Yaoundé | yamohub"`
 - ✅ **Bio-based descriptions** or generated professional descriptions
 - ✅ **Real profile images** or dynamic Open Graph with user badges
 - ✅ **Verification badges** (Vérifié, VIP, Premium) in metadata
@@ -42,7 +42,7 @@ Image: Generic logo
 ### **After (Real Data)**
 ```
 Title: "Massage Relaxant Premium | Marie, 25 ans à Yaoundé | Services Premium Cameroun"
-Description: "Massage professionnel et relaxant par Marie, profil vérifié à Yaoundé. Massage, accompagnement, services VIP. 245 abonnés. Contactez maintenant sur YamoZone."
+Description: "Massage professionnel et relaxant par Marie, profil vérifié à Yaoundé. Massage, accompagnement, services VIP. 245 abonnés. Contactez maintenant sur yamohub."
 Image: Real profile photo or dynamic image with verification badges
 Keywords: "massage Yaoundé", "accompagnement Yaoundé", "escort vérifiée", "VIP premium"
 ```

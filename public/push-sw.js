@@ -21,7 +21,7 @@ self.addEventListener('push', function(event) {
 //   console.log('Push received:', event);
   
   let notificationData = {
-    title: 'YamoZone',
+    title: 'yamohub',
     body: 'Vous avez une nouvelle notification!',
     icon: '/icons/icon-192x192.svg',
     badge: '/icons/badge-72x72.svg',

@@ -11,6 +11,6 @@ export default function TrendingPage() {
 }
 
 export const metadata = {
-  title: 'Tendances | YamoZone',
-  description: 'Découvrez les annonces les plus populaires et les tendances du moment sur YamoZone'
+  title: 'Tendances | yamohub',
+  description: 'Découvrez les annonces les plus populaires et les tendances du moment sur yamohub'
 }

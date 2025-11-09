@@ -59,7 +59,7 @@ async sendNotification(notificationDto: SendNotificationDto) {
 #### Welcome Notification:
 ```typescript
 const welcomePayload = JSON.stringify({
-  title: '🎉 Bienvenue sur YamoZone !',
+  title: '🎉 Bienvenue sur yamohub !',
   body: 'Votre profil est maintenant actif. Commencez à explorer !',
   icon: '/icons/welcome-icon.png',
   badge: '/icons/badge-72x72.svg',

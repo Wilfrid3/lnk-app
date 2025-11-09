@@ -29,14 +29,14 @@ export default function SEOHead({
   canonicalUrl,
 }: SEOHeadProps) {
   const pathname = usePathname()
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'
   const fullUrl = canonicalUrl || `${baseUrl}${pathname}`
   
   // Default values
-  const seoTitle = title || 'YamoZone - Services d\'Accompagnement Premium au Cameroun'
-  const seoDescription = description || 'Découvrez YamoZone, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité.'
+  const seoTitle = title || 'yamohub - Services d\'Accompagnement Premium au Cameroun'
+  const seoDescription = description || 'Découvrez yamohub, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité.'
   const seoImage = image || `${baseUrl}/images/full_logo.png`
-  const seoImageAlt = imageAlt || 'YamoZone - Plateforme Premium'
+  const seoImageAlt = imageAlt || 'yamohub - Plateforme Premium'
 
   return (
     <Head>
@@ -59,7 +59,7 @@ export default function SEOHead({
       <meta property="og:image:alt" content={seoImageAlt} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="YamoZone" />
+      <meta property="og:site_name" content="yamohub" />
       <meta property="og:locale" content="fr_FR" />
       
       {/* Article specific tags */}
@@ -94,7 +94,7 @@ export default function SEOHead({
       <meta name="format-detection" content="telephone=no" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-      <meta name="apple-mobile-web-app-title" content="YamoZone" />
+      <meta name="apple-mobile-web-app-title" content="yamohub" />
       
       {/* Theme Colors */}
       <meta name="theme-color" content="#d97706" />

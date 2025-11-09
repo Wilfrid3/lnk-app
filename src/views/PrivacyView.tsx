@@ -44,7 +44,7 @@ export default function PrivacyView() {
           <p className="text-lg mb-6">
             La protection de vos données personnelles est importante pour nous. Cette Politique de Confidentialité 
             explique comment nous collectons, utilisons, divulguons et prot e9geons vos informations lorsque vous
-            utilisez notre application mobile et site web YamoZone (ci-apr e8s &quot;l&apos;Application&quot;).
+            utilisez notre application mobile et site web yamohub (ci-apr e8s &quot;l&apos;Application&quot;).
           </p>
 
           <h2 className="text-xl mt-8 mb-4">1. Informations que nous collectons</h2>

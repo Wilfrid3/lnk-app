@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 import { CAMEROON_CITIES } from '@/utils/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'
   
   // Static pages
   const staticPages = [

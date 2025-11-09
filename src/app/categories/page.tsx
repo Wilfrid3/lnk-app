@@ -11,6 +11,6 @@ export default function CategoriesPage() {
 }
 
 export const metadata = {
-  title: 'Catégories | YamoZone',
-  description: 'Explorez toutes les catégories de services disponibles sur YamoZone'
+  title: 'Catégories | yamohub',
+  description: 'Explorez toutes les catégories de services disponibles sur yamohub'
 }

@@ -16,7 +16,7 @@ export async function generateMetadata({
   params: Promise<UserParams>
 }): Promise<Metadata> {
   const { id } = await params
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yamozone.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'
 
   try {
     // Fetch the actual user data
@@ -61,10 +61,10 @@ export async function generateMetadata({
           }).toString()}`
 
     // Enhanced title for better SEO
-    const seoTitle = `${userName}${age ? `, ${age} ans` : ''} | ${offerings.slice(0, 2).join(', ')} à ${city} | YamoZone`
+    const seoTitle = `${userName}${age ? `, ${age} ans` : ''} | ${offerings.slice(0, 2).join(', ')} à ${city} | yamohub`
     
     // Enhanced description with location and service info
-    const seoDescription = bio || `Découvrez le profil ${user.isVerified ? 'vérifié' : 'professionnel'} de ${userName} à ${city}. ${offerings.slice(0, 3).join(', ')}. ${user.isVip ? 'Service VIP premium.' : 'Services de qualité.'} ${user.followersCount ? `${user.followersCount} abonnés.` : ''} Contactez maintenant sur YamoZone.`
+    const seoDescription = bio || `Découvrez le profil ${user.isVerified ? 'vérifié' : 'professionnel'} de ${userName} à ${city}. ${offerings.slice(0, 3).join(', ')}. ${user.isVip ? 'Service VIP premium.' : 'Services de qualité.'} ${user.followersCount ? `${user.followersCount} abonnés.` : ''} Contactez maintenant sur yamohub.`
 
     return generateSEOMetadata({
       title: seoTitle,

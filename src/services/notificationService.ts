@@ -13,7 +13,7 @@ export class NotificationService {
    */
   static async sendWelcomeNotification(userId: string) {
     return this.sendNotification({
-      title: 'Bienvenue sur YamoZone ! 🎉',
+      title: 'Bienvenue sur yamohub ! 🎉',
       body: 'Découvrez des profils incroyables près de chez vous',
       icon: '/icons/welcome.png',
       url: '/',
