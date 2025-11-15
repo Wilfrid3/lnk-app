@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface AuthLayoutProps {
   children: React.ReactNode
@@ -11,9 +12,9 @@ interface AuthLayoutProps {
   backUrl?: string
 }
 
-export default function AuthLayout({ 
-  children, 
-  title, 
+export default function AuthLayout({
+  children,
+  title,
   subtitle,
   showBackButton = false,
   backUrl = '/'
@@ -27,13 +28,21 @@ export default function AuthLayout({
             <span className="material-icons text-gray-600 dark:text-gray-400">arrow_back</span>
           </Link>
         )}
-        
+
         <div className="flex items-center justify-center">
           <div className="text-xl sm:text-3xl font-semibold flex items-center text-gray-900 dark:text-white">
-            <span className="bg-primary-500 text-white px-2 sm:px-3 py-0.5 sm:py-1 mx-1">
-              Yamo
-            </span>
-            {' '}Zone
+            <Image
+              src="/images/Vector.png"
+              alt="Le Yamo Logo"
+              width={40}
+              height={60}
+              style={{ width: '160px', height: '40px' }}
+              priority
+              unoptimized
+              quality={100}
+              loading="eager"
+              className="mr-2"
+            />
           </div>
         </div>
       </header>

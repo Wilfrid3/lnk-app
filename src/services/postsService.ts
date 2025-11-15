@@ -106,3 +106,9 @@ export const searchPosts = async (
   
   return response.data;
 };
+
+// Fetch top cities with post counts
+export const getTopCities = async (): Promise<Array<{ count: number; city: string }>> => {
+  const response = await apiClient.get<Array<{ count: number; city: string }>>('/posts/cities/top-cities');
+  return response.data;
+};

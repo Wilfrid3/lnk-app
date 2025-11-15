@@ -21,18 +21,18 @@
 /* Define theme using the new @theme directive for v4 */
 @theme inline {
   /* Default theme colors */
-  --color-primary: rgb(255 75 121);
-  --color-primary-50: rgb(255 236 241);
-  --color-primary-100: rgb(255 217 226);
-  --color-primary-200: rgb(255 198 212);
-  --color-primary-300: rgb(255 160 183);
-  --color-primary-400: rgb(255 117 152);
-  --color-primary-500: rgb(255 75 121);
-  --color-primary-600: rgb(230 68 109);
-  --color-primary-700: rgb(204 60 97);
-  --color-primary-800: rgb(179 53 85);
-  --color-primary-900: rgb(153 45 73);
-  --color-primary-950: rgb(102 30 49);
+  --color-primary: rgb(255 163 26);
+  --color-primary-50: rgb(255 247 230);
+  --color-primary-100: rgb(255 237 204);
+  --color-primary-200: rgb(255 214 153);
+  --color-primary-300: rgb(255 191 102);
+  --color-primary-400: rgb(255 169 51);
+  --color-primary-500: rgb(255 163 26);
+  --color-primary-600: rgb(230 143 0);
+  --color-primary-700: rgb(179 113 0);
+  --color-primary-800: rgb(128 82 0);
+  --color-primary-900: rgb(77 50 0);
+  --color-primary-950: rgb(38 25 0);
   
   --color-success: rgb(34 197 94);
   --color-warning: rgb(234 179 8);
@@ -51,18 +51,18 @@
 
 /* Dark theme variables */
 .dark {
-  --color-primary: rgb(255 105 151);
-  --color-primary-50: rgb(31 31 31);
-  --color-primary-100: rgb(43 43 43);
-  --color-primary-200: rgb(55 55 55);
-  --color-primary-300: rgb(75 75 75);
-  --color-primary-400: rgb(115 115 115);
-  --color-primary-500: rgb(255 105 151);
-  --color-primary-600: rgb(255 125 171);
-  --color-primary-700: rgb(255 145 191);
-  --color-primary-800: rgb(255 175 211);
-  --color-primary-900: rgb(255 205 231);
-  --color-primary-950: rgb(255 225 241);
+  --color-primary: rgb(255 163 26);
+  --color-primary-50: rgb(38 25 0);
+  --color-primary-100: rgb(77 50 0);
+  --color-primary-200: rgb(128 82 0);
+  --color-primary-300: rgb(179 113 0);
+  --color-primary-400: rgb(230 143 0);
+  --color-primary-500: rgb(255 163 26);
+  --color-primary-600: rgb(255 169 51);
+  --color-primary-700: rgb(255 191 102);
+  --color-primary-800: rgb(255 214 153);
+  --color-primary-900: rgb(255 237 204);
+  --color-primary-950: rgb(255 247 230);
   
   --color-success: rgb(74 222 128);
   --color-warning: rgb(250 204 21);

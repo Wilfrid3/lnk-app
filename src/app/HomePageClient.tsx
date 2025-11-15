@@ -1,7 +1,7 @@
 // src/app/HomePageClient.tsx
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import DefaultLayout from '@/components/layouts/DefaultLayout'
 import FeaturedUserCarousel from '@/components/FeaturedUserCarousel'
 import LocationList from '@/components/LocationList'
@@ -11,6 +11,7 @@ import Head from 'next/head'
 
 import type { User } from '@/services/usersService'
 import type { Location } from '@/components/LocationList'
+import { getTopCities } from '@/services/postsService'
 
 // — static stubs for now; replace with your Zustand-powered hooks later
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -85,7 +86,30 @@ const popularLocations: Location[] = [
 ]
 
 export default function HomePageClient() {
-  // Structured data for the homepage
+  const [locations, setLocations] = useState<Location[]>(popularLocations)
+  const [loadingLocations, setLoadingLocations] = useState(false)
+
+  useEffect(() => {
+    const fetchTopCities = async () => {
+      try {
+        setLoadingLocations(true)
+        const cities = await getTopCities()
+        // Transform API response to Location format
+        const transformedLocations = cities.map(city => ({
+          name: city.city,
+          count: city.count,
+        }))
+        setLocations(transformedLocations)
+      } catch (error) {
+        console.error('Failed to load top cities:', error)
+        // Keep the fallback locations if API fails
+      } finally {
+        setLoadingLocations(false)
+      }
+    }
+
+    fetchTopCities()
+  }, [])
   const homepageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -96,8 +120,8 @@ export default function HomePageClient() {
       '@type': 'ItemList',
       name: 'Services d\'accompagnement premium',
       description: 'Liste des profils et services d\'accompagnement disponibles',
-      numberOfItems: popularLocations.reduce((sum, loc) => sum + loc.count, 0),
-      itemListElement: popularLocations.map((location, index) => ({
+      numberOfItems: locations.reduce((sum, loc) => sum + loc.count, 0),
+      itemListElement: locations.map((location, index) => ({
         '@type': 'ListItem',
         position: index + 1,
         item: {
@@ -120,6 +144,14 @@ export default function HomePageClient() {
         item: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com',
       }],
     },
+  }
+
+   if (loadingLocations && locations.length === 0) {
+    return (
+      <div className="flex justify-center items-center py-8">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary-500"></div>
+      </div>
+    );
   }
 
   return (
@@ -157,7 +189,7 @@ export default function HomePageClient() {
                 Voir plus →
               </Link>
             </div>
-            <LocationList items={popularLocations} />
+            <LocationList items={locations} />
           </section>
 
           {/* We've removed the redundant "Annonces mises en avant" section */}

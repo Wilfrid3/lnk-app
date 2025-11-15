@@ -34,11 +34,11 @@ const Header: React.FC = () => {
             <Link href="/">
             {/* <img src={"/images/full_logo.png"} style={""} alt="Le Yamo Logo" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full mr-2" /> */}
             <Image 
-              src="/images/full_logo.png"
+              src="/images/Vector.png"
               alt="Le Yamo Logo"
               width={40}
-              height={40}
-              style={{ width:'140px', height: '40px' }}
+              height={60}
+              style={{ width:'160px', height: '40px' }}
               priority
               unoptimized
               quality={100}

@@ -95,9 +95,9 @@ const FeaturedUserCarousel: React.FC<FeaturedUserCarouselProps> = ({ users: defa
           <Link 
             key={user._id} 
             href={`/users/${user._id}`}
-            className="w-[140px] sm:w-[160px] flex-shrink-0"
+            className="w-[80px] sm:w-[80px] flex-shrink-0"
           >
-            <FeaturedUserCard user={user} className="h-[180px]" />
+            <FeaturedUserCard user={user} className="h-[100px]" />
           </Link>
         ))}
       </div>

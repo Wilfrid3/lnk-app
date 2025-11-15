@@ -15,13 +15,13 @@ const FeaturedUserCard: React.FC<FeaturedUserCardProps> = ({ user, className }) 
     <div className={`relative overflow-hidden transition-shadow ${className || ''}`}>
       {/* Cover Image or Gradient Background - Full Card */}
       <div className="flex justify-center items-center w-full h-full">
-        <div className="relative w-30 h-30 rounded-full overflow-hidden border-2 border-white shadow-lg mx-auto">
+        <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-white shadow-lg mx-auto">
           <Image
             src={getFullImageUrl(user.avatar) || '/images/avatars/avatar.png'}
             alt={`${user.name}'s avatar`}
             fill
             className="object-cover"
-            sizes="148px"
+            sizes="100px"
             priority
           />
         </div>
