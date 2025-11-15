@@ -422,11 +422,6 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
     )
   }
 
-  // Format location
-  const location = post.neighborhood 
-    ? `${post.city}, ${post.neighborhood}` 
-    : post.city
-
   // Get user age
   const age = extractAge(post.appearance) || 25 // Default to 25 if not found
 
@@ -448,39 +443,23 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
   return (
     <PostDetailLayout>
       <div className="pb-32 pt-16">
-        {/* Header */}
+        {/* Header with User Info */}
         <header className="bg-white dark:bg-gray-800 shadow-sm px-4 py-3">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center">
               <button
                 onClick={() => router.back()}
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white flex items-center"
+                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white flex items-center flex-shrink-0"
               >
                 <span className="material-icons text-gray-500 dark:text-gray-400">
                   arrow_back_ios
                 </span>
               </button>
               
-              
-              <div className="ml-auto">
-                <button 
-                  onClick={() => router.push(`/report/${post.id}`)}
-                  className="text-red-500 hover:text-red-600"
-                >
-                  {"Signaler l'annonce"}
-                </button>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        {/* User Info Section */}
-        <section className="px-4 py-4 bg-white dark:bg-gray-800">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center">
-              <Link href={`/users/${post.user.id}`} className="flex items-center">
-                <div className="relative">
-                  <div className="h-16 w-16 rounded-full overflow-hidden border border-gray-200 dark:border-gray-700">
+              {/* User Info in Header */}
+              <Link href={`/users/${post.user.id}`} className="flex items-center ml-4 flex-1">
+                <div className="relative flex-shrink-0">
+                  <div className="h-12 w-12 rounded-full overflow-hidden border border-gray-200 dark:border-gray-700">
                     <Image
                       src={post.user.avatar ? (getFullImageUrl(post.user.avatar) ?? `/images/avatars/default_${post.clientType}.png`): `/images/avatars/default_${post.clientType}.png`}
                       alt={post.user.name}
@@ -489,51 +468,60 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                     />
                   </div>
                   {post.isVip && (
-                    <div className="absolute -top-1 -right-1 bg-yellow-500 rounded-full w-6 h-6 flex items-center justify-center shadow-sm">
+                    <div className="absolute -top-1 -right-1 bg-yellow-500 rounded-full w-5 h-5 flex items-center justify-center shadow-sm">
                       <span className="material-icons text-xs text-white">
                         star
                       </span>
                     </div>
                   )}
                 </div>
-              </Link>
-              
-              <div className="ml-4 flex-1">
-                <div className="flex items-center">
-                  <Link href={`/users/${post.user.id}`} className="flex items-center">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                
+                <div className="ml-3 flex-1 min-w-0">
+                  <div className="flex items-center gap-1">
+                    <h2 className="text-sm font-bold text-gray-900 dark:text-white truncate">
                       {post.user.name}
                     </h2>
-                  </Link>
-                  {post.user.isVerified && (
-                    <span className="material-icons text-blue-500 ml-1">
-                      verified
-                    </span>
-                  )}
-                  <span className="text-lg ml-2">
-                    {age} ans
-                  </span>
-                  <span className="ml-auto text-gray-500 dark:text-gray-400">
-                    {getRelativeTime(post.createdAt)}
-                  </span>
+                    {post.user.isVerified && (
+                      <span className="material-icons text-blue-500 text-sm flex-shrink-0">
+                        verified
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-300">
+                    <span>{age} ans</span>
+                    <span className="text-gray-400">•</span>
+                    <span>{getRelativeTime(post.createdAt)}</span>
+                  </div>
                 </div>
-                
-                <div className="flex items-center mt-1 text-gray-600 dark:text-gray-300">
-                  <span className="material-icons text-gray-500 mr-1 text-sm">
-                    location_on
-                  </span>
-                  <span className="text-sm">
-                    {location}
-                  </span>
-                </div>
-              </div>
+              </Link>
+              
+              {/* Subscribe Button */}
+              <button 
+                onClick={() => handleChatNavigation(post.user.id)}
+                className="ml-4 flex-shrink-0 px-4 py-1.5 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium rounded-full transition-colors"
+              >
+                S&apos;abonner
+              </button>
             </div>
+          </div>
+        </header>
+
+        {/* Title and Location Section */}
+        <section className="px-4 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+          <div className="max-w-4xl mx-auto">
+            {/* Post Title */}
+            <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+              {post.title || post.description}
+            </h1>
             
-            {/* Post description - just a short excerpt */}
-            <div className="mt-4 text-gray-700 dark:text-gray-200">
-              <p className="line-clamp-2">
-                {post.title || post.description}
-              </p>
+            {/* Location and Details */}
+            <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+              <span className="material-icons text-gray-500 mr-1 text-base">
+                location_on
+              </span>
+              <span>
+                {post.neighborhood ? `${post.city}, ${post.neighborhood}` : post.city}
+              </span>
             </div>
           </div>
         </section>
@@ -783,6 +771,17 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                     Aucune photo ou vidéo disponible
                   </div>
                 )}
+                
+                {/* Report Button */}
+                <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <button 
+                    onClick={() => router.push(`/report/${post.id}`)}
+                    className="w-full flex items-center justify-center space-x-2 py-2 px-4 text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                  >
+                    <span className="material-icons text-lg">flag</span>
+                    <span className="font-medium">Signaler l&apos;annonce</span>
+                  </button>
+                </div>
               </div>
             )}
             

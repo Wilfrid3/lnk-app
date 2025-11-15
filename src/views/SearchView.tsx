@@ -384,23 +384,16 @@ export default function SearchView() {
                 </div>
                 <input
                   type="search"
-                  className="block w-full p-3 pl-10 pr-10 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-primary-500 text-gray-900 dark:text-white"
+                  className="block w-full p-3 pl-10 pr-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-primary-500 text-gray-900 dark:text-white"
                   placeholder="Rechercher des services..."
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                 />
-                <button
-                  type="button"
-                  className="absolute inset-y-0 right-0 flex items-center pr-3"
-                  onClick={() => setShowFilters(true)}
-                >
-                  <span className="material-icons text-gray-400 dark:text-gray-500 hover:text-primary-500 dark:hover:text-primary-400">tune</span>
-                </button>
               </div>
             </div>
           </form>
 
-          {/* Location selector */}
+          {/* Location selector and Filter button */}
           <div className="flex items-center mb-4 space-x-2 overflow-x-auto pb-1 hide-scrollbar">
             <div className="relative flex-shrink-0">
               <select 
@@ -444,6 +437,18 @@ export default function SearchView() {
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
                 <span className="material-icons text-gray-400 text-sm">expand_more</span>
               </div>
+            </div>
+
+            {/* Filter Button - aligned to the right */}
+            <div className="ml-auto flex-shrink-0">
+              <button
+                type="button"
+                className="flex items-center justify-center space-x-2 py-2 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors whitespace-nowrap text-sm"
+                onClick={() => setShowFilters(true)}
+              >
+                <span className="material-icons text-sm">tune</span>
+                <span className="font-medium">Filtrer par</span>
+              </button>
             </div>
           </div>
           

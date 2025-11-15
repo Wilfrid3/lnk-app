@@ -21,7 +21,7 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             <button onClick={openDrawer} className="flex items-center text-gray-900 dark:text-gray-100">
               <div className="flex items-center">
-                <span className="material-icons text-2xl sm:text-3xl">explore</span>
+                <span className="material-icons text-2xl sm:text-3xl text-primary-500">menu</span>
                 <span className="hidden sm:inline text-lg sm:text-2xl ml-1 sm:ml-2">
                   Explorer
                 </span>
@@ -33,17 +33,16 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             <Link href="/">
             {/* <img src={"/images/full_logo.png"} style={""} alt="Le Yamo Logo" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full mr-2" /> */}
-            <Image 
-              src="/images/Vector.png"
+            <Image
+              src="/images/vector.png"
               alt="Le Yamo Logo"
-              width={40}
-              height={60}
-              style={{ width:'160px', height: '40px' }}
+              width={140}
+              height={28}
               priority
               unoptimized
               quality={100}
               loading="eager"
-              className="mr-2"
+              className="mr-2 object-contain"
             />
               {/* <div className="text-xl sm:text-3xl font-semibold flex items-center text-gray-900 dark:text-white">
                 <span className="bg-primary-500 text-white px-2 sm:px-3 py-0.5 sm:py-1 mx-1">
