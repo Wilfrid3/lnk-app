@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
-import { useChatHandler } from '@/utils/chatUtils'
+// import { useChatHandler } from '@/utils/chatUtils'
 import VideoPlayer from '@/components/VideoPlayer'
 import CommentsModal from '@/components/CommentsModal'
 import apiClient from '@/lib/axios'
@@ -41,7 +41,7 @@ const SingleVideoPage: React.FC = () => {
   const videoId = Array.isArray(params.id) ? params.id[0] : params.id
   
   // Chat handler
-  const { handleChat } = useChatHandler(router, user)
+  // const { handleChat } = useChatHandler(router, user)
   const [videos, setVideos] = useState<Video[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [loading, setLoading] = useState(true)
@@ -307,9 +307,9 @@ const SingleVideoPage: React.FC = () => {
     }
   }
 
-  const handleMessage = (userId: string) => {
-    handleChat(userId)
-  }
+  // const handleMessage = (userId: string) => {
+  //   handleChat(userId)
+  // }
 
   const handleVideoEnd = () => {
     if (currentIndex < videos.length - 1) {
@@ -392,7 +392,7 @@ const SingleVideoPage: React.FC = () => {
                 onLike={handleLike}
                 onComment={handleComment}
                 onShare={handleShare}
-                onMessage={handleMessage}
+                // onMessage={handleMessage}
                 onVideoEnd={handleVideoEnd}
               />
             </div>
