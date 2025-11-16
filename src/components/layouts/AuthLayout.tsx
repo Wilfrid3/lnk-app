@@ -32,7 +32,7 @@ export default function AuthLayout({
         <div className="flex items-center justify-center">
           <div className="text-xl sm:text-3xl font-semibold flex items-center text-gray-900 dark:text-white">
             <Image
-              src="/images/Vector.png"
+              src="/images/logof.png"
               alt="Le Yamo Logo"
               width={40}
               height={60}
