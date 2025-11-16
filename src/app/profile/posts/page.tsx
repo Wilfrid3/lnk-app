@@ -12,7 +12,7 @@ import { useUserContentStore } from '@/store/useUserContentStore'
 export default function UserPostsPage() {
   const router = useRouter()
   const { user } = useAuth()
-  const [videoViewMode, setVideoViewMode] = useState<'list' | 'grid'>('grid')
+  const [videoViewMode, setVideoViewMode] = useState<'list' | 'grid'>('list')
   const {
     posts,
     videos,

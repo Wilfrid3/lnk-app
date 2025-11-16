@@ -497,7 +497,7 @@ const UserDetailView: React.FC<UserDetailProps> = ({ userId }) => {
                     </div>
                     
                     <span className="text-sm text-gray-500">(certifié)</span>
-                    <span className="text-sm text-pink-500">(Rang: {userStats.rank})</span>
+                    <span className="text-sm text-primary-500">(Rang: {userStats.rank})</span>
                   </div>
                   
                   {/* Rating */}
@@ -510,7 +510,7 @@ const UserDetailView: React.FC<UserDetailProps> = ({ userId }) => {
                         <span 
                           key={star}
                           className={`material-icons text-sm ${
-                            star <= Math.round(user.averageRating ?? 0) ? 'text-pink-500' : 'text-gray-300'
+                            star <= Math.round(user.averageRating ?? 0) ? 'text-primary-500' : 'text-gray-300'
                           }`}
                         >
                           star
@@ -621,7 +621,7 @@ const UserDetailView: React.FC<UserDetailProps> = ({ userId }) => {
                   onClick={() => handleTabChange(tab.key as typeof activeTab)}
                   className={`flex-shrink-0 py-3 px-4 text-center font-medium transition-colors ${
                     activeTab === tab.key
-                      ? 'text-pink-500 border-b-2 border-pink-500'
+                      ? 'text-primary-500 border-b-2 border-primary-500'
                       : 'text-gray-500 dark:text-gray-400'
                   }`}
                 >
@@ -662,7 +662,7 @@ const UserDetailView: React.FC<UserDetailProps> = ({ userId }) => {
                     getServiceIcon={getServiceIcon}
                     viewOnly={true}
                     actionButton={
-                      <button className="flex items-center gap-2 px-4 py-2 bg-pink-500 text-white rounded-lg text-sm">
+                      <button className="flex items-center gap-2 px-4 py-2 bg-primary-500 text-white rounded-lg text-sm">
                         <span className="material-icons text-sm">event</span>
                         <span>Réserver</span>
                       </button>
@@ -960,8 +960,8 @@ const UserDetailView: React.FC<UserDetailProps> = ({ userId }) => {
                   
                   {user.userType && (
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-pink-50 dark:bg-pink-900/20 rounded-full flex items-center justify-center">
-                        <span className="material-icons text-pink-500 text-sm">
+                      <div className="w-8 h-8 bg-primary-50 dark:bg-primary-900/20 rounded-full flex items-center justify-center">
+                        <span className="material-icons text-primary-500 text-sm">
                           {getUserTypeIcon(user.userType)}
                         </span>
                       </div>
@@ -1129,8 +1129,8 @@ const UserDetailView: React.FC<UserDetailProps> = ({ userId }) => {
                     
                     {user.offerings && user.offerings.length > 0 && (
                       <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 bg-pink-50 dark:bg-pink-900/20 rounded-full flex items-center justify-center">
-                          <span className="material-icons text-pink-500 text-sm">local_offer</span>
+                        <div className="w-8 h-8 bg-primary-50 dark:bg-primary-900/20 rounded-full flex items-center justify-center">
+                          <span className="material-icons text-primary-500 text-sm">local_offer</span>
                         </div>
                         <div className="flex-1">
                           <span className="text-sm text-gray-500 dark:text-gray-400">Services proposés</span>
@@ -1138,8 +1138,8 @@ const UserDetailView: React.FC<UserDetailProps> = ({ userId }) => {
                             {user.offerings.map((o) => {
                               const offering = offeringOptions.find(opt => opt.id === o);
                               return (
-                              <div key={o} className="flex items-center px-2 py-1 bg-pink-100 text-pink-800 dark:bg-pink-900/20 dark:text-pink-400 rounded-full text-xs font-medium">
-                                <span className="material-icons text-pink-500 text-sm">{offering? offering.icon: o}</span>
+                              <div key={o} className="flex items-center px-2 py-1 bg-primary-100 text-primary-800 dark:bg-primary-900/20 dark:text-primary-400 rounded-full text-xs font-medium">
+                                <span className="material-icons text-primary-500 text-sm">{offering? offering.icon: o}</span>
                                 {offering? offering.label : o}
                               </div>
                             )})}
@@ -1292,9 +1292,9 @@ const UserDetailView: React.FC<UserDetailProps> = ({ userId }) => {
                     return (
                       <div
                         key={offeringId}
-                        className="px-3 py-2 bg-pink-100 dark:bg-pink-900 text-pink-700 dark:text-pink-200 rounded-lg text-sm font-medium flex items-center gap-2"
+                        className="px-3 py-2 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-200 rounded-lg text-sm font-medium flex items-center gap-2"
                       >
-                        <span className="material-icons text-base text-pink-400 dark:text-pink-200">{offering?.icon}</span>
+                        <span className="material-icons text-base text-primary-400 dark:text-primary-200">{offering?.icon}</span>
                         {offering ? offering.label : offeringId}
                       </div>
                     );

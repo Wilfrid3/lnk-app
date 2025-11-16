@@ -173,7 +173,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose }) => {
                 <span className="text-lg">Vidéos</span>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link 
                 href="/trending" 
                 className="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-gray-900 dark:text-white"
@@ -202,7 +202,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose }) => {
                 <span className="material-icons mr-3 text-primary-500">favorite</span>
                 <span className="text-lg">Favoris</span>
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link 
                 href="/messages" 
@@ -230,9 +230,9 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose }) => {
         </nav>        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 dark:border-gray-700">
           <div className="flex flex-col space-y-2">
             <Link 
-              href="/settings" 
+              href="/profile" 
               className="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
-              onClick={() => handleNavigation('settings')}
+              // onClick={() => handleNavigation('/profile')}
             >
               <span className="material-icons mr-3 text-gray-600 dark:text-gray-400">settings</span>
               <span className="text-lg text-gray-900 dark:text-white">Paramètres</span>

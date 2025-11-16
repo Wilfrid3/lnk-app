@@ -128,6 +128,11 @@ export default function ProfileView() {
           href: "/privacy-policy" 
         },
         { 
+          icon: "notifications", 
+          label: "Notifications", 
+          href: "/settings/notifications" 
+        },
+        { 
           icon: "mail", 
           label: "Nous contacter", 
           href: "/contact" 

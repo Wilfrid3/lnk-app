@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
-import { useChatHandler } from '@/utils/chatUtils'
+// import { useChatHandler } from '@/utils/chatUtils'
 import VideoPlayer from '@/components/VideoPlayer'
 import CommentsModal from '@/components/CommentsModal'
 import DefaultLayout from '@/components/layouts/DefaultLayout'
@@ -40,7 +40,7 @@ const VideosView: React.FC = () => {
   const { user } = useAuth()
   
   // Chat handler
-  const { handleChat } = useChatHandler(router, user)
+  // const { handleChat } = useChatHandler(router, user)
   const [videos, setVideos] = useState<Video[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [loading, setLoading] = useState(false)
@@ -307,9 +307,9 @@ const VideosView: React.FC = () => {
     }
   }
 
-  const handleMessage = (userId: string) => {
-    handleChat(userId)
-  }
+  // const handleMessage = (userId: string) => {
+  //   handleChat(userId)
+  // }
 
   const handleVideoEnd = () => {
     // Auto-advance to next video when current one ends
@@ -399,7 +399,7 @@ const VideosView: React.FC = () => {
                 onLike={handleLike}
                 onComment={handleComment}
                 onShare={handleShare}
-                onMessage={handleMessage}
+                // onMessage={handleMessage}
                 onVideoEnd={handleVideoEnd}
               />
             </div>

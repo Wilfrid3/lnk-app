@@ -305,9 +305,9 @@ const ProfilePostCard: React.FC<ProfilePostCardProps> = ({
               )}
             </div>
             
-            <span className="text-xs">
-              {formatTimeAgo(createdAt)}
-            </span>
+            <div className="absolute bottom-4 right-4 text-xs text-gray-500 dark:text-gray-400">
+            {formatTimeAgo(createdAt)}
+          </div>
           </div>
         </div>
       </div>

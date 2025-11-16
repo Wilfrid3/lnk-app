@@ -97,17 +97,17 @@ const UserCard: React.FC<UserCardProps> = ({
             </div>
             
             {/* Subscribers count */}
-            <div className="mb-1">
+            {/* <div className="mb-1">
               <p className="text-white text-xs font-semibold drop-shadow">
                 123.5k abonnés
               </p>
-            </div>
+            </div> */}
             
             {/* Stats */}
-            <div className="flex justify-center items-center space-x-2 text-white text-xs drop-shadow">
+            {/* <div className="flex justify-center items-center space-x-2 text-white text-xs drop-shadow">
               <span>Rang: 7ème</span>
               <span>Vues: 405k</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

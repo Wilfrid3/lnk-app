@@ -11,6 +11,8 @@ interface VideoFormData {
   title: string
   description: string
   videoFile: File | null
+  phoneNumber: string
+  whatsappNumber: string
   thumbnailFile: File | null
 }
 
@@ -21,13 +23,15 @@ export default function PublishVideoView() {
     title: '',
     description: '',
     videoFile: null,
+    phoneNumber: '',
+    whatsappNumber: '',
     thumbnailFile: null
   })
   const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [videoPreview, setVideoPreview] = useState<string | null>(null)
   const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(null)
-  
+
   const videoInputRef = useRef<HTMLInputElement>(null)
   const thumbnailInputRef = useRef<HTMLInputElement>(null)
 
@@ -39,13 +43,13 @@ export default function PublishVideoView() {
         setErrorMessage('Veuillez sélectionner un fichier vidéo valide')
         return
       }
-      
+
       // Validate file size (max 100MB)
       if (file.size > 100 * 1024 * 1024) {
         setErrorMessage('La vidéo ne peut pas dépasser 100MB')
         return
       }
-      
+
       setFormData(prev => ({ ...prev, videoFile: file }))
       setVideoPreview(URL.createObjectURL(file))
       setErrorMessage(null)
@@ -60,13 +64,13 @@ export default function PublishVideoView() {
         setErrorMessage('Veuillez sélectionner une image valide pour la vignette')
         return
       }
-      
+
       // Validate file size (max 10MB)
       if (file.size > 10 * 1024 * 1024) {
         setErrorMessage('La vignette ne peut pas dépasser 10MB')
         return
       }
-      
+
       setFormData(prev => ({ ...prev, thumbnailFile: file }))
       setThumbnailPreview(URL.createObjectURL(file))
       setErrorMessage(null)
@@ -75,7 +79,7 @@ export default function PublishVideoView() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!user) {
       router.push('/auth/signin')
       return
@@ -86,17 +90,27 @@ export default function PublishVideoView() {
       setErrorMessage('Le titre est requis')
       return
     }
-    
+
+    if (!formData.phoneNumber.trim()) {
+      setErrorMessage('Veuillez renseigner un numéro de téléphone')
+      return
+    }
+
+    if (!formData.whatsappNumber.trim()) {
+      setErrorMessage('Veuillez renseigner un numéro de téléphone WhatsApp')
+      return
+    }
+
     if (!formData.description.trim()) {
       setErrorMessage('La description est requise')
       return
     }
-    
+
     if (!formData.videoFile) {
       setErrorMessage('Veuillez sélectionner une vidéo')
       return
     }
-    
+
     // Thumbnail is optional - API can work without it
     // if (!formData.thumbnailFile) {
     //   setErrorMessage('Veuillez sélectionner une vignette')
@@ -109,15 +123,17 @@ export default function PublishVideoView() {
     try {
       // Create FormData for file upload to match API expectations
       const formDataToSend = new FormData()
-      
+
       // Video metadata as JSON string (as expected by API)
       const videoData = {
         title: formData.title.trim(),
+        phone: formData.phoneNumber.trim(),
+        whatsapp: formData.whatsappNumber.trim(),
         description: formData.description.trim(),
         tags: [], // Could add tags input later
         privacy: 'public' as const
       }
-      
+
       formDataToSend.append('videoData', JSON.stringify(videoData))
       formDataToSend.append('videoFile', formData.videoFile)
       if (formData.thumbnailFile) {
@@ -142,10 +158,10 @@ export default function PublishVideoView() {
     }
   }
 
-  const isFormValid = formData.title.trim() && 
-                    formData.description.trim() && 
-                    formData.videoFile
-                    // thumbnailFile is now optional
+  const isFormValid = formData.title.trim() &&
+    formData.description.trim() &&
+    formData.videoFile
+  // thumbnailFile is now optional
 
   return (
     <DefaultLayout>
@@ -282,7 +298,7 @@ export default function PublishVideoView() {
               {/* Title */}
               <div>
                 <label htmlFor="title-input" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Titre *
+                  Titre <span className="text-primary-500">*</span>
                 </label>
                 <input
                   id="title-input"
@@ -298,10 +314,39 @@ export default function PublishVideoView() {
                 </p>
               </div>
 
+              <div>
+                <label htmlFor="phone" className="block text-lg font-medium mb-2">
+                  Numéro de téléphone (appel) <span className="text-primary-500">*</span>
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  value={formData.phoneNumber}
+                  onChange={(e) => setFormData(prev => ({ ...prev, phoneNumber: e.target.value }))}
+                  placeholder="Saisissez le numéro d'appel"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                />
+              </div>
+
+              {/* WhatsApp Number */}
+              <div>
+                <label htmlFor="whatsapp" className="block text-lg font-medium mb-2">
+                  Numéro de téléphone (WhatsApp) <span className="text-primary-500">*</span>
+                </label>
+                <input
+                  id="whatsapp"
+                  type="tel"
+                  value={formData.whatsappNumber}
+                  onChange={(e) => setFormData(prev => ({ ...prev, whatsappNumber: e.target.value }))}
+                  placeholder="Saisissez le numéro WhatsApp"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                />
+              </div>
+
               {/* Description */}
               <div>
                 <label htmlFor="description-input" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Description *
+                  Description <span className="text-primary-500">*</span>
                 </label>
                 <textarea
                   id="description-input"
@@ -329,11 +374,10 @@ export default function PublishVideoView() {
                 <button
                   type="submit"
                   disabled={!isFormValid || isLoading}
-                  className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${
-                    isFormValid && !isLoading
+                  className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${isFormValid && !isLoading
                       ? 'bg-primary-500 text-white hover:bg-primary-600'
                       : 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'
-                  }`}
+                    }`}
                 >
                   {isLoading ? (
                     <span className="flex items-center justify-center">

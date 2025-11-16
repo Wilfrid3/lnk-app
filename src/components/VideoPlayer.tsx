@@ -10,6 +10,8 @@ import Link from 'next/link'
 interface Video {
   id: string
   title: string
+  phone?: string
+  whatsapp?: string
   description: string
   videoUrl: string
   thumbnailUrl?: string
@@ -36,7 +38,7 @@ interface VideoPlayerProps {
   onLike: (videoId: string) => void
   onComment: (videoId: string) => void
   onShare: (videoId: string) => void
-  onMessage: (userId: string) => void
+  // onMessage: (userId: string) => void
   onVideoEnd: () => void
 }
 
@@ -46,7 +48,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   onLike,
   onComment,
   onShare,
-  onMessage,
   onVideoEnd
 }) => {
   const router = useRouter()
@@ -108,7 +109,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         videoRef.current.play()
       }
       setIsPlaying(!isPlaying)
-      
+
       // Show play/pause icon feedback
       setShowPlayPauseIcon(true)
       setTimeout(() => setShowPlayPauseIcon(false), 500)
@@ -124,12 +125,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
   const handleSeek = (e: React.MouseEvent<HTMLElement>) => {
     if (!videoRef.current || !duration) return
-    
+
     const rect = e.currentTarget.getBoundingClientRect()
     const clickX = e.clientX - rect.left
     const seekPercentage = clickX / rect.width
     const seekTime = seekPercentage * duration
-    
+
     videoRef.current.currentTime = seekTime
     setCurrentTime(seekTime)
     setProgress(seekPercentage * 100)
@@ -159,13 +160,38 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     onComment(video.id)
   }
 
-  const handleMessage = () => {
+  const handleWhatsapp = () => {
+    // Check if user is authenticated
     if (!user) {
-      router.push('/auth/signin')
+      router.push(`/auth/signin?callbackUrl=${encodeURIComponent(window.location.pathname)}`)
       return
     }
-    onMessage(video.user.id)
+    console.log('Handling WhatsApp contact for video:', video)
+    if (video?.whatsapp) {
+      let whatsappNumber = video.whatsapp.startsWith('+')
+        ? video.whatsapp.substring(1)
+        : video.whatsapp
+      const message = `Salut 😊. Je viens de voir votre annonce sur https://yamohub.com et je suis intéressé par vos services`
+      whatsappNumber = whatsappNumber.replace(/\s+/g, '') // Remove spaces if any
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank')
+    } else if (video?.phone) {
+      // Use phone number as fallback
+      let phoneNumber = video.phone.startsWith('+')
+        ? video.phone.substring(1)
+        : video.phone
+      const message = `Salut 😊. Je viens de voir votre annonce sur www.yamohub.com et je suis intéressé par vos services`
+      phoneNumber = phoneNumber.replace(/\s+/g, '') // Remove spaces if any
+      window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank')
+    }
   }
+
+  // const handleMessage = () => {
+  //   if (!user) {
+  //     router.push('/auth/signin')
+  //     return
+  //   }
+  //   onMessage(video.user.id)
+  // }
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60)
@@ -231,12 +257,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       </div>
       <div className="absolute -bottom-1.5 left-0 right-0 z-40">
         {/* Progress bar */}
-        <button 
+        <button
           className="w-full bg-gray-800/60 h-1 hover:h-2 transition-all duration-200 border-none outline-none focus:h-2 focus:outline-primary-500"
           onClick={handleSeek}
           aria-label="Seek video"
         >
-          <div 
+          <div
             className="bg-primary-500 h-full transition-all duration-100 pointer-events-none"
             style={{ width: `${progress}%` }}
           />
@@ -273,11 +299,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             </div>
           </div>
         </Link>
-        
+
         {video.description && (
           <p className="text-sm mb-2 line-clamp-2 drop-shadow-lg">{video.description}</p>
         )}
-        
+
         <div className="flex items-center text-xs text-gray-300 drop-shadow-lg">
           <span className="mr-4">{formatCount(video.stats.views)} vues</span>
           <span>{new Date(video.createdAt).toLocaleDateString()}</span>
@@ -290,11 +316,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         <button
           onClick={handleLike}
           disabled={isLiking}
-          className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${
-            video.isLiked
+          className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${video.isLiked
               ? 'bg-primary-500 text-white shadow-lg'
               : 'bg-black/60 text-white hover:bg-primary-500/80'
-          } ${isLiking ? 'opacity-50' : ''}`}
+            } ${isLiking ? 'opacity-50' : ''}`}
         >
           <span className="material-icons">
             {video.isLiked ? 'favorite' : 'favorite_border'}
@@ -322,20 +347,25 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
         {/* Message Button */}
         <button
-          onClick={handleMessage}
+          onClick={handleWhatsapp}
           className="w-12 h-12 rounded-full bg-black/60 text-white hover:bg-primary-500/80 flex items-center justify-center transition-all"
         >
-          <span className="material-icons">message</span>
+          <Image
+            src="/icons/whatsapp.png"
+            alt="WhatsApp"
+            width={24}
+            height={24}
+            className="object-contain"
+          />
         </button>
 
         {/* Sound Button */}
         <button
           onClick={toggleMute}
-          className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${
-            !isMuted
+          className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${!isMuted
               ? 'bg-primary-500 text-white shadow-lg'
               : 'bg-black/60 text-white hover:bg-primary-500/80'
-          }`}
+            }`}
         >
           <span className="material-icons">
             {isMuted ? 'volume_off' : 'volume_up'}

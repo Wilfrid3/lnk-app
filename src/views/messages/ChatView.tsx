@@ -640,7 +640,7 @@ export default function ChatView({ userId, conversationId, user, initialMessages
         </div>
 
         {/* Quick Actions Bar - Mobile optimized */}
-        <div className="px-3 sm:px-4 py-2 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+        {/* <div className="px-3 sm:px-4 py-2 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
           <div className="flex space-x-2 overflow-x-auto pb-1 scrollbar-hide">
             <button 
               onClick={handleReservation}
@@ -671,7 +671,7 @@ export default function ChatView({ userId, conversationId, user, initialMessages
               <span>Contact</span>
             </button>
           </div>
-        </div>
+        </div> */}
 
         {/* Message Input - Mobile optimized */}
         <div className="flex items-center p-3 sm:p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">

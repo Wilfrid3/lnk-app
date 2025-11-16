@@ -32,7 +32,7 @@ const ProfileVideoCard: React.FC<ProfileVideoCardProps> = ({
   isActive,
   privacy,
   createdAt,
-  onEdit,
+  // onEdit,
   onDelete,
   onToggleStatus,
 }) => {
@@ -112,7 +112,7 @@ const ProfileVideoCard: React.FC<ProfileVideoCardProps> = ({
   };
 
   return (
-    <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-visible border border-gray-100 dark:border-gray-700 transition-all duration-200 relative ring-1 ring-pink-200 hover:ring-pink-300 ${!isActive ? 'opacity-60' : ''}`}>
+    <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-visible border border-gray-100 dark:border-gray-700 transition-all duration-200 relative ring-1 ring-primary-200 hover:ring-primary-300 ${!isActive ? 'opacity-60' : ''}`}>
       
       {/* Status Badge */}
       {!isActive && (
@@ -151,7 +151,7 @@ const ProfileVideoCard: React.FC<ProfileVideoCardProps> = ({
               <span className="material-icons text-sm mr-2">play_circle</span>
               Voir la vidéo
             </Link>
-            {onEdit && (
+            {/* {onEdit && (
               <button
                 onClick={onEdit}
                 className="w-full flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600"
@@ -159,7 +159,7 @@ const ProfileVideoCard: React.FC<ProfileVideoCardProps> = ({
                 <span className="material-icons text-sm mr-2">edit</span>
                 Modifier
               </button>
-            )}
+            )} */}
             {onToggleStatus && (
               <button
                 onClick={onToggleStatus}
@@ -290,15 +290,16 @@ const ProfileVideoCard: React.FC<ProfileVideoCardProps> = ({
                 <span className="material-icons text-xs">favorite</span>
                 <span>{likes}</span>
               </div>
-              <div className="flex items-center gap-1 text-pink-500">
+              <div className="flex items-center gap-1 text-primary-500">
                 <span className="material-icons text-xs">videocam</span>
-                <span className="font-medium">{formatDuration(duration)}</span>
+                <span className="font-medium">{formatDuration(duration)} </span>
               </div>
             </div>
-            
-            <span className="text-xs">
-              {formatTimeAgo(createdAt)}
-            </span>
+          </div>
+
+          {/* Time ago - displayed at the bottom right */}
+          <div className="absolute bottom-4 right-4 text-xs text-gray-500 dark:text-gray-400">
+            {formatTimeAgo(createdAt)}
           </div>
         </div>
       </div>
