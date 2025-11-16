@@ -346,21 +346,21 @@ export default function ChatView({ userId, conversationId, user, initialMessages
   }
 
   // Quick action handlers
-  const handleReservation = () => {
-    setShowBookingModal(true)
-  }
+  // const handleReservation = () => {
+  //   setShowBookingModal(true)
+  // }
 
-  const handleLocation = () => {
-    setShowLocationModal(true)
-  }
+  // const handleLocation = () => {
+  //   setShowLocationModal(true)
+  // }
 
-  const handleServices = () => {
-    setShowServicesModal(true)
-  }
+  // const handleServices = () => {
+  //   setShowServicesModal(true)
+  // }
 
-  const handleContact = () => {
-    setShowContactModal(true)
-  }
+  // const handleContact = () => {
+  //   setShowContactModal(true)
+  // }
 
   const handleAttachment = async () => {
     // TODO: Implement file upload
