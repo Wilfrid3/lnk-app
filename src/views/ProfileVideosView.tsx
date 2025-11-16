@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
-import { useChatHandler } from '@/utils/chatUtils'
+// import { useChatHandler } from '@/utils/chatUtils'
 import VideoPlayer from '@/components/VideoPlayer'
 import CommentsModal from '@/components/CommentsModal'
 import apiClient from '@/lib/axios'
@@ -51,7 +51,7 @@ const ProfileVideosView: React.FC<ProfileVideosViewProps> = ({
   const { user } = useAuth()
   
   // Chat handler
-  const { handleChat } = useChatHandler(router, user)
+  // const { handleChat } = useChatHandler(router, user)
   const [videos, setVideos] = useState<Video[]>(initialVideos)
   const [currentIndex, setCurrentIndex] = useState(initialVideoIndex)
   const [loading, setLoading] = useState(false)
@@ -315,9 +315,9 @@ const ProfileVideosView: React.FC<ProfileVideosViewProps> = ({
     }
   }
 
-  const handleMessage = (userId: string) => {
-    handleChat(userId)
-  }
+  // const handleMessage = (userId: string) => {
+  //   handleChat(userId)
+  // }
 
   const handleVideoEnd = () => {
     if (currentIndex < videos.length - 1) {
@@ -410,7 +410,7 @@ const ProfileVideosView: React.FC<ProfileVideosViewProps> = ({
                 onLike={handleLike}
                 onComment={handleComment}
                 onShare={handleShare}
-                onMessage={handleMessage}
+                // onMessage={handleMessage}
                 onVideoEnd={handleVideoEnd}
               />
             </div>
