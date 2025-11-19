@@ -55,12 +55,12 @@ const InfiniteFeaturedUsers: React.FC<InfiniteFeaturedUsersProps> = ({ className
           <div 
             key={user._id} 
             ref={index === users.length - 1 ? lastUserElementRef : undefined}
-            className="w-[140px] sm:w-[160px]"
+            className="w-[140px] sm:w-[160px] "
           >
             <Link href={`/users/${user.id}`}>
               <FeaturedUserCard 
                 user={user} 
-                className="h-[180px] cursor-pointer hover:scale-[1.02] transition-transform"
+                className="h-[120px] cursor-pointer hover:scale-[1.02] transition-transform"
               />
             </Link>
           </div>

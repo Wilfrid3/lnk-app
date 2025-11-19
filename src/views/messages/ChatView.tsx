@@ -51,7 +51,7 @@ export default function ChatView({ userId, conversationId, user, initialMessages
     getTypingUsersInConversation,
     isUserOnline: isUserOnlineSocket,
     autoMarkConversationAsRead,
-    markAllMessagesAsRead,
+    // markAllMessagesAsRead,
     setCurrentConversation
   } = useMessagingStore()
 
@@ -390,18 +390,18 @@ export default function ChatView({ userId, conversationId, user, initialMessages
   }
 
   // Handle manual mark all as read
-  const handleMarkAllAsRead = async () => {
-    if (actualConversationId) {
-      try {
-        const result = await markAllMessagesAsRead(actualConversationId)
-        if (result.success && result.markedCount > 0) {
-          // Messages marked as read successfully
-        }
-      } catch {
-        // Error marking messages as read
-      }
-    }
-  }
+  // const handleMarkAllAsRead = async () => {
+  //   if (actualConversationId) {
+  //     try {
+  //       const result = await markAllMessagesAsRead(actualConversationId)
+  //       if (result.success && result.markedCount > 0) {
+  //         // Messages marked as read successfully
+  //       }
+  //     } catch {
+  //       // Error marking messages as read
+  //     }
+  //   }
+  // }
 
   // Stop typing when user stops typing for a while
   useEffect(() => {
@@ -594,7 +594,7 @@ export default function ChatView({ userId, conversationId, user, initialMessages
             </div>
           </div>
           
-          <div className="flex space-x-1 sm:space-x-2 flex-shrink-0">
+          {/* <div className="flex space-x-1 sm:space-x-2 flex-shrink-0">
             <button className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full">
               <span className="material-icons text-lg sm:text-xl">call</span>
             </button>
@@ -611,7 +611,7 @@ export default function ChatView({ userId, conversationId, user, initialMessages
             <button className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full">
               <span className="material-icons text-lg sm:text-xl">more_vert</span>
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Messages Area - Mobile optimized */}

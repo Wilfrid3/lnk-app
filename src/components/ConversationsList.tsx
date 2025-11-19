@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useMessagingStore, type Conversation } from '@/store/useMessagingStore'
 import { useAuth } from '@/contexts/AuthContext'
 import { getAuthToken } from '@/utils/cookies'
+import { getFullImageUrl } from '@/utils/imageUtils'
 
 interface ConversationsListProps {
   readonly className?: string
@@ -137,7 +138,7 @@ export default function ConversationsList({ className = '' }: ConversationsListP
           <div className="relative flex-shrink-0">
             <div className="w-12 h-12 rounded-full overflow-hidden">
               <Image
-                src={otherParticipant.avatar || '/images/avatars/avatar.png'}
+                src={getFullImageUrl(otherParticipant.avatar) || '/images/avatars/avatar.png'}
                 alt={otherParticipant.name}
                 width={48}
                 height={48}

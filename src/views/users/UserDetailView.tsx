@@ -607,7 +607,7 @@ const UserDetailView: React.FC<UserDetailProps> = ({ userId }) => {
             <div className="flex overflow-x-auto hide-scrollbar">
               {[
                 { key: 'info', label: 'Informations' },
-                { key: 'description', label: 'Description' },
+                // { key: 'description', label: 'Description' },
                 { key: 'posts', label: `Annonces (${postCount})` },
                 { key: 'rates', label: 'Mes Tarifs' },
                 { key: 'stats', label: 'Statistiques' },

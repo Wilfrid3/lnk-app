@@ -84,7 +84,7 @@ const PostCard: React.FC<Post> = ({
                         currentTarget.src = '/images/ads/feature_1.png'
                       }}
                     />
-                    
+
                     {/* Video Indicator Badge for posts with feature image */}
                     {hasVideos && (
                       <div className="absolute inset-0 overflow-hidden">
@@ -105,17 +105,17 @@ const PostCard: React.FC<Post> = ({
                           /* Fallback gradient for posts without video URL */
                           <div className="absolute inset-0 bg-gradient-to-br from-pink-400/30 via-purple-500/30 to-pink-600/40"></div>
                         )}
-                        
+
                         {/* Enhanced gradient overlay for better contrast */}
                         <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40"></div>
-                        
+
                         {/* Premium glassmorphism play button */}
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="bg-white/25 backdrop-blur-lg rounded-full w-12 h-12 flex items-center justify-center shadow-2xl border border-white/40 hover:bg-white/35 hover:scale-110 transition-all duration-300 group">
                             <span className="material-icons text-white text-2xl drop-shadow-lg group-hover:animate-pulse">play_arrow</span>
                           </div>
                         </div>
-                        
+
                         {/* Subtle animation overlay */}
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse opacity-50"></div>
                       </div>
@@ -137,30 +137,30 @@ const PostCard: React.FC<Post> = ({
                       >
                         <source src={firstVideoUrl} type="video/mp4" />
                       </video>
-                      
+
                       {/* Enhanced gradient overlay for better contrast */}
                       <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40"></div>
-                      
+
                       {/* Premium glassmorphism play button */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="bg-white/25 backdrop-blur-lg rounded-full w-12 h-12 flex items-center justify-center shadow-2xl border border-white/40 hover:bg-white/35 hover:scale-110 transition-all duration-300 group">
                           <span className="material-icons text-white text-2xl drop-shadow-lg group-hover:animate-pulse">play_arrow</span>
                         </div>
                       </div>
-                      
+
                       {/* Subtle animation overlay */}
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse opacity-50"></div>
                     </div>
                   )
                 )}
-                
+
                 {/* Video Count Badge */}
                 {hasVideos && videoCount > 0 && (
                   <div className="absolute bottom-1 right-1 bg-pink-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold shadow-md z-10">
                     {videoCount} vidéo{videoCount > 1 ? 's' : ''}
                   </div>
                 )}
-                
+
                 {/* Gradient overlay for better text readability */}
                 {hasVideos && (
                   <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-black/40 to-transparent"></div>
@@ -178,7 +178,7 @@ const PostCard: React.FC<Post> = ({
               <div className="flex items-center">
                 {/* Avatar */}
                 <div className="relative">
-                  <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-200 dark:border-gray-700">                    
+                  <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-200 dark:border-gray-700">
                     <Image
                       src={src}
                       alt={name || 'User Avatar'}
@@ -227,39 +227,44 @@ const PostCard: React.FC<Post> = ({
               {lookingFor}
             </p>
             {/* Description - reduced height */}
-            <p className="text-gray-700 dark:text-gray-300 text-xs mb-2 line-clamp-1">
+            <p className="text-gray-700 font-bold dark:text-gray-300 text-xs mb-2 line-clamp-1">
               {description}
             </p>
 
             {/* Footer with Location and Stats */}
-            <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+            <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 w-full">
               <div className="flex items-center">
                 <span className="material-icons text-xs mr-1">location_on</span>
                 <span className="truncate">{location}</span>
               </div>
-              
+
               {/* Views and Likes */}
               {(views !== undefined || likes !== undefined || hasVideos) && (
-                <div className="flex items-center gap-3">
-                  {/* Video indicator for posts without any media preview */}
+                <div className="flex items-center gap-3 w-full">
+
+                  {/* Vidéo indicator */}
                   {hasVideos && !featureImage && !firstVideoUrl && (
                     <div className="flex items-center gap-1 text-pink-500">
                       <span className="material-icons text-xs animate-pulse">videocam</span>
                       <span className="text-xs font-medium">{videoCount || 'Vidéo'}</span>
                     </div>
                   )}
-                  {views !== undefined && (
-                    <div className="flex items-center gap-1">
-                      <span className="material-icons text-xs">visibility</span>
-                      <span>{views}</span>
-                    </div>
-                  )}
-                  {likes !== undefined && (
-                    <div className="flex items-center gap-1">
-                      <span className="material-icons text-xs">favorite</span>
-                      <span>{likes}</span>
-                    </div>
-                  )}
+
+                  {/* RIGHT SIDE: Views + Likes */}
+                  <div className="flex items-center gap-3 ml-auto">
+                    {views !== undefined && (
+                      <div className="flex items-center gap-1">
+                        <span className="material-icons text-xs">visibility</span>
+                        <span>{views}</span>
+                      </div>
+                    )}
+                    {likes !== undefined && (
+                      <div className="flex items-center gap-1">
+                        <span className="material-icons text-xs">favorite</span>
+                        <span>{likes}</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
             </div>

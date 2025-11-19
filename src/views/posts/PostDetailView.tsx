@@ -60,10 +60,23 @@ interface PostDetail {
   likesCount?: number
 }
 
+interface UserStats {
+  posts: number
+  views: number
+  likes: number
+  followers: number
+  rank: number
+  rankHistory: {
+    week: number
+    month: number
+    year: number
+  }
+}
+
 const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
   const router = useRouter()
   const { user } = useAuth()
-  
+
   // Chat handler
   const { handleChat: handleChatNavigation } = useChatHandler(router, user)
   const [post, setPost] = useState<PostDetail | null>(null)
@@ -71,13 +84,15 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
   const [error, setError] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState('photos')
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
-  const [allMedia, setAllMedia] = useState<{url: string, type: 'photo' | 'video', videoData?: {
-    originalName: string
-    mimeType: string
-    size: number
-    duration: number
-    id: string
-  }}[]>([])
+  const [allMedia, setAllMedia] = useState<{
+    url: string, type: 'photo' | 'video', videoData?: {
+      originalName: string
+      mimeType: string
+      size: number
+      duration: number
+      id: string
+    }
+  }[]>([])
   const tabsRef = useRef<HTMLDivElement>(null)
   const [showLeftScroll, setShowLeftScroll] = useState(false)
   const [showRightScroll, setShowRightScroll] = useState(true)
@@ -88,12 +103,50 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
   // Image preview modal state
   const [showImagePreview, setShowImagePreview] = useState(false)
   const [previewImageIndex, setPreviewImageIndex] = useState(0)
+  const [loadingEngagement, setLoadingEngagement] = useState(false)
+  const [isFollowing, setIsFollowing] = useState(false)
+  const [userStats, setUserStats] = useState<UserStats>({
+    posts: 0,
+    views: 0,
+    likes: 0,
+    followers: 0,
+    rank: 0,
+    rankHistory: { week: 0, month: 0, year: 0 }
+  })
+
+  console.log('User Stats:', userStats);
 
   // Calculate age from appearance string, if available
   const extractAge = (appearance?: string): number => {
     if (!appearance) return 0
     const ageMatch = appearance.match(/\b(\d+)\s*(an|ans)\b/i)
     return ageMatch ? parseInt(ageMatch[1]) : 0
+  }
+
+  const redirectUnauthenticated = () => {
+    router.push(`/auth/signin?callbackUrl=${encodeURIComponent(window.location.pathname)}`)
+  }
+
+  const handleFollow = async () => {
+    if (!user) {
+      redirectUnauthenticated()
+      return
+    }
+    try {
+      setLoadingEngagement(true)
+      if (isFollowing) {
+        await apiClient.delete(`/users/${user?._id}/follow`)
+        setUserStats(prev => ({ ...prev, followers: prev.followers - 1 }))
+      } else {
+        await apiClient.post(`/users/${user?._id}/follow`)
+        setUserStats(prev => ({ ...prev, followers: prev.followers + 1 }))
+      }
+      setIsFollowing(!isFollowing)
+    } catch (error) {
+      console.error('Error following/unfollowing user:', error)
+    } finally {
+      setLoadingEngagement(false)
+    }
   }
 
   useEffect(() => {
@@ -104,6 +157,16 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
         const post = response.data as PostDetail;
         setPost(post)
         setLikeCount(post.likesCount || 0)
+
+        if (user) {
+          try {
+            const followResponse = await apiClient.get(`/users/${user?._id}/follow-status`)
+            const followData = followResponse.data as { isFollowing?: boolean }
+            setIsFollowing(followData.isFollowing ?? false)
+          } catch (followError) {
+            console.warn('Error checking follow status:', followError)
+          }
+        }
       } catch (err) {
         console.error('Error fetching post details:', err)
         setError('Impossible de charger les détails de l\'annonce')
@@ -134,42 +197,44 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
   useEffect(() => {
     // Combine main photo, additional photos, and videos into one array for navigation
     if (post?.mainPhoto || (post?.additionalPhotos && post?.additionalPhotos.length > 0) || (post?.videos && post?.videos.length > 0)) {
-      const media: {url: string, type: 'photo' | 'video', videoData?: {
-        originalName: string
-        mimeType: string
-        size: number
-        duration: number
-        id: string
-      }}[] = []
-      
+      const media: {
+        url: string, type: 'photo' | 'video', videoData?: {
+          originalName: string
+          mimeType: string
+          size: number
+          duration: number
+          id: string
+        }
+      }[] = []
+
       if (post?.mainPhoto) {
-        media.push({url: post.mainPhoto.url, type: 'photo'})
+        media.push({ url: post.mainPhoto.url, type: 'photo' })
       }
       if (post?.additionalPhotos) {
         post.additionalPhotos.forEach(photo => {
-          media.push({url: photo.url, type: 'photo'})
+          media.push({ url: photo.url, type: 'photo' })
         })
       }
       if (post?.videos) {
         post.videos.forEach(video => {
-          media.push({url: video.url, type: 'video', videoData: video})
+          media.push({ url: video.url, type: 'video', videoData: video })
         })
       }
-      
+
       setAllMedia(media)
     }
   }, [post])
 
   useEffect(() => {
     checkScrollIndicators()
-    
+
     // Add scroll event listener
     const tabsContainer = tabsRef.current
     if (tabsContainer) {
       tabsContainer.addEventListener('scroll', checkScrollIndicators)
       window.addEventListener('resize', checkScrollIndicators)
     }
-    
+
     return () => {
       if (tabsContainer) {
         tabsContainer.removeEventListener('scroll', checkScrollIndicators)
@@ -221,8 +286,8 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
     }
 
     if (post?.whatsappNumber) {
-      let whatsappNumber = post.whatsappNumber.startsWith('+') 
-        ? post.whatsappNumber.substring(1) 
+      let whatsappNumber = post.whatsappNumber.startsWith('+')
+        ? post.whatsappNumber.substring(1)
         : post.whatsappNumber
       const message = `Salut 😊. Je viens de voir votre annonce sur https://yamohub.com et je suis intéressé par vos services`
       whatsappNumber = whatsappNumber.replace(/\s+/g, '') // Remove spaces if any
@@ -277,7 +342,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
 
   const navigatePhoto = (direction: 'prev' | 'next') => {
     if (allMedia.length === 0) return
-    
+
     if (direction === 'next') {
       setCurrentPhotoIndex((currentPhotoIndex + 1) % allMedia.length)
     } else {
@@ -307,9 +372,9 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
     const photoIndices = allMedia
       .map((media, index) => media.type === 'photo' ? index : -1)
       .filter(index => index !== -1)
-    
+
     const currentPhotoPosition = photoIndices.indexOf(previewImageIndex)
-    
+
     if (direction === 'next') {
       const nextPosition = (currentPhotoPosition + 1) % photoIndices.length
       setPreviewImageIndex(photoIndices[nextPosition])
@@ -322,7 +387,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
   useEffect(() => {
     // Check on mount and whenever tab changes
     checkScrollIndicators();
-    
+
     // Add resize observer to check indicators when element size changes
     if (tabsRef.current) {
       const currentTabsRef = tabsRef.current; // Store ref in a variable for cleanup
@@ -330,7 +395,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
         checkScrollIndicators();
       });
       resizeObserver.observe(currentTabsRef);
-      
+
       // Clean up
       return () => {
         resizeObserver.unobserve(currentTabsRef);
@@ -373,7 +438,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
       router.push('/auth/signin')
       return
     }
-    
+
     if (likeLoading) return
     setLikeLoading(true)
     try {
@@ -411,8 +476,8 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
           <div className="text-xl text-gray-600 dark:text-gray-300 mb-4">
             {error || "Annonce non trouvée"}
           </div>
-          <button 
-            onClick={() => router.back()} 
+          <button
+            onClick={() => router.back()}
             className="flex items-center text-primary-500 hover:underline"
           >
             <span className="material-icons mr-1">arrow_back_ios</span>
@@ -430,7 +495,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
     const postDate = new Date(timestamp)
     const now = new Date()
     const diffInMinutes = Math.floor((now.getTime() - postDate.getTime()) / (1000 * 60))
-    
+
     if (diffInMinutes < 60) {
       return `${diffInMinutes} min`
     } else if (diffInMinutes < 24 * 60) {
@@ -455,13 +520,13 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                   arrow_back_ios
                 </span>
               </button>
-              
+
               {/* User Info in Header */}
               <Link href={`/users/${post.user.id}`} className="flex items-center ml-4 flex-1">
                 <div className="relative flex-shrink-0">
                   <div className="h-12 w-12 rounded-full overflow-hidden border border-gray-200 dark:border-gray-700">
                     <Image
-                      src={post.user.avatar ? (getFullImageUrl(post.user.avatar) ?? `/images/avatars/default_${post.clientType}.png`): `/images/avatars/default_${post.clientType}.png`}
+                      src={post.user.avatar ? (getFullImageUrl(post.user.avatar) ?? `/images/avatars/default_${post.clientType}.png`) : `/images/avatars/default_${post.clientType}.png`}
                       alt={post.user.name}
                       fill
                       className="object-cover rounded-full"
@@ -475,7 +540,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                     </div>
                   )}
                 </div>
-                
+
                 <div className="ml-3 flex-1 min-w-0">
                   <div className="flex items-center gap-1">
                     <h2 className="text-sm font-bold text-gray-900 dark:text-white truncate">
@@ -494,14 +559,23 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                   </div>
                 </div>
               </Link>
-              
+
               {/* Subscribe Button */}
-              <button 
-                onClick={() => handleChatNavigation(post.user.id)}
-                className="ml-4 flex-shrink-0 px-4 py-1.5 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium rounded-full transition-colors"
-              >
-                S&apos;abonner
-              </button>
+              {loadingEngagement ? (
+                <div className="flex justify-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
+                </div>
+              ) : (
+                user && user._id !== post.user.id && (
+                  <button
+                    onClick={handleFollow}
+                    className="ml-4 flex-shrink-0 px-4 py-1.5 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium rounded-full transition-colors"
+                  >
+                    {isFollowing ? 'Abonné' : "S'abonner"}
+                  </button>
+                )
+              )}
+
             </div>
           </div>
         </header>
@@ -513,7 +587,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
             <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
               {post.title || post.description}
             </h1>
-            
+
             {/* Location and Details */}
             <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
               <span className="material-icons text-gray-500 mr-1 text-base">
@@ -525,13 +599,13 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
             </div>
           </div>
         </section>
-        
+
         {/* Tab Navigation - Updated with horizontal scroll indicators */}
         <nav className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 relative">
           <div className="max-w-4xl mx-auto relative">
             {/* Left Scroll Indicator - Only shows when scrolled */}
             {showLeftScroll && (
-              <button 
+              <button
                 onClick={() => scrollTabs('left')}
                 className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 w-6 h-6 flex items-center justify-center bg-white/80 dark:bg-gray-800/80 rounded-full shadow-md"
                 aria-label="Scroll left"
@@ -539,57 +613,53 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                 <span className="material-icons text-xs text-gray-600 dark:text-gray-300">chevron_left</span>
               </button>
             )}
-            
-            <div 
-              ref={tabsRef} 
-              className="flex overflow-x-auto hide-scrollbar py-1" 
+
+            <div
+              ref={tabsRef}
+              className="flex overflow-x-auto hide-scrollbar py-1"
               onScroll={checkScrollIndicators}
             >
-              <button 
-                className={`py-3 px-4 font-medium whitespace-nowrap border-b-2 ${
-                  activeTab === 'photos' 
-                    ? 'text-primary-500 border-primary-500' 
-                    : 'text-gray-600 dark:text-gray-300 border-transparent'
-                }`}
+              <button
+                className={`py-3 px-4 font-medium whitespace-nowrap border-b-2 ${activeTab === 'photos'
+                  ? 'text-primary-500 border-primary-500'
+                  : 'text-gray-600 dark:text-gray-300 border-transparent'
+                  }`}
                 onClick={() => setActiveTab('photos')}
               >
                 {post?.videos && post.videos.length > 0 ? 'Mes Photos & Vidéos' : 'Mes Photos'}
               </button>
-              <button 
-                className={`py-3 px-4 font-medium whitespace-nowrap border-b-2 ${
-                  activeTab === 'description' 
-                    ? 'text-primary-500 border-primary-500' 
-                    : 'text-gray-600 dark:text-gray-300 border-transparent'
-                }`}
+              <button
+                className={`py-3 px-4 font-medium whitespace-nowrap border-b-2 ${activeTab === 'description'
+                  ? 'text-primary-500 border-primary-500'
+                  : 'text-gray-600 dark:text-gray-300 border-transparent'
+                  }`}
                 onClick={() => setActiveTab('description')}
               >
                 Description
               </button>
-              <button 
-                className={`py-3 px-4 font-medium whitespace-nowrap border-b-2 ${
-                  activeTab === 'tarifs' 
-                    ? 'text-primary-500 border-primary-500' 
-                    : 'text-gray-600 dark:text-gray-300 border-transparent'
-                }`}
+              <button
+                className={`py-3 px-4 font-medium whitespace-nowrap border-b-2 ${activeTab === 'tarifs'
+                  ? 'text-primary-500 border-primary-500'
+                  : 'text-gray-600 dark:text-gray-300 border-transparent'
+                  }`}
                 onClick={() => setActiveTab('tarifs')}
               >
                 Mes Tarifs
               </button>
-              <button 
-                className={`py-3 px-4 font-medium whitespace-nowrap border-b-2 ${
-                  activeTab === 'delires' 
-                    ? 'text-primary-500 border-primary-500' 
-                    : 'text-gray-600 dark:text-gray-300 border-transparent'
-                }`}
+              <button
+                className={`py-3 px-4 font-medium whitespace-nowrap border-b-2 ${activeTab === 'delires'
+                  ? 'text-primary-500 border-primary-500'
+                  : 'text-gray-600 dark:text-gray-300 border-transparent'
+                  }`}
                 onClick={() => setActiveTab('delires')}
               >
                 Mes délires
               </button>
             </div>
-            
+
             {/* Right Scroll Indicator - Always visible initially */}
             {showRightScroll && (
-              <button 
+              <button
                 onClick={() => scrollTabs('right')}
                 className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 w-6 h-6 flex items-center justify-center bg-white/80 dark:bg-gray-800/80 rounded-full shadow-md"
                 aria-label="Scroll right"
@@ -599,7 +669,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
             )}
           </div>
         </nav>
-        
+
         {/* Tab Content */}
         <div className="bg-white dark:bg-gray-800 px-4 py-4">
           <div className="max-w-4xl mx-auto">
@@ -610,7 +680,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                 {allMedia.length > 0 ? (
                   <div className="relative w-full h-[400px] rounded-lg overflow-hidden mb-4">
                     {allMedia[currentPhotoIndex].type === 'photo' ? (
-                      <div 
+                      <div
                         className="relative w-full h-full cursor-pointer"
                         onClick={() => openImagePreview(currentPhotoIndex)}
                       >
@@ -639,10 +709,10 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                         Votre navigateur ne supporte pas la lecture vidéo.
                       </video>
                     )}
-                    
+
                     {/* Left arrow navigation */}
                     {allMedia.length > 1 && (
-                      <button 
+                      <button
                         onClick={() => navigatePhoto('prev')}
                         className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center z-10"
                         aria-label="Previous media"
@@ -650,10 +720,10 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                         <span className="material-icons">chevron_left</span>
                       </button>
                     )}
-                    
+
                     {/* Right arrow navigation */}
                     {allMedia.length > 1 && (
-                      <button 
+                      <button
                         onClick={() => navigatePhoto('next')}
                         className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center z-10"
                         aria-label="Next media"
@@ -661,19 +731,18 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                         <span className="material-icons">chevron_right</span>
                       </button>
                     )}
-                    
+
                     {/* Media indicator dots */}
                     {allMedia.length > 1 && (
                       <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5">
                         {allMedia.map((_, index) => (
-                          <button 
+                          <button
                             key={index}
                             onClick={() => setCurrentPhotoIndex(index)}
-                            className={`w-2 h-2 rounded-full ${
-                              index === currentPhotoIndex 
-                                ? 'bg-primary-500' 
-                                : 'bg-primary-100 hover:bg-white/70'
-                            }`}
+                            className={`w-2 h-2 rounded-full ${index === currentPhotoIndex
+                              ? 'bg-primary-500'
+                              : 'bg-primary-100 hover:bg-white/70'
+                              }`}
                             aria-label={`Go to media ${index + 1}`}
                           />
                         ))}
@@ -681,14 +750,14 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                     )}
                   </div>
                 ) : null}
-                
+
                 {/* Media gallery - horizontally scrollable */}
                 {((post?.additionalPhotos && post.additionalPhotos.length > 0) || (post?.videos && post.videos.length > 0)) && (
                   <div className="overflow-x-auto pb-4 hide-scrollbar">
                     <div className="flex gap-2" style={{ minWidth: 'min-content' }}>
                       {/* Show main photo in gallery */}
                       {post?.mainPhoto && (
-                        <div 
+                        <div
                           className="relative min-w-[100px] w-[100px] aspect-square rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 cursor-pointer"
                           onClick={() => {
                             setCurrentPhotoIndex(0)
@@ -706,13 +775,13 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                           )}
                         </div>
                       )}
-                      
+
                       {/* Additional photos */}
                       {post.additionalPhotos?.map((photo, index) => {
                         const galleryIndex = post.mainPhoto ? index + 1 : index;
                         return (
-                          <div 
-                            key={`photo-${index}`} 
+                          <div
+                            key={`photo-${index}`}
                             className="relative min-w-[100px] w-[100px] aspect-square rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 cursor-pointer"
                             onClick={() => {
                               setCurrentPhotoIndex(galleryIndex)
@@ -731,13 +800,13 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                           </div>
                         );
                       })}
-                      
+
                       {/* Videos */}
                       {post.videos?.map((video, index) => {
                         const galleryIndex = (post.mainPhoto ? 1 : 0) + (post.additionalPhotos?.length || 0) + index;
                         return (
-                          <div 
-                            key={`video-${index}`} 
+                          <div
+                            key={`video-${index}`}
                             className="relative min-w-[100px] w-[100px] aspect-square rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 cursor-pointer"
                             onClick={() => setCurrentPhotoIndex(galleryIndex)}
                           >
@@ -765,16 +834,16 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                     </div>
                   </div>
                 )}
-                
+
                 {allMedia.length === 0 && (
                   <div className="text-center text-gray-500 dark:text-gray-400 py-10">
                     Aucune photo ou vidéo disponible
                   </div>
                 )}
-                
+
                 {/* Report Button */}
                 <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <button 
+                  <button
                     onClick={() => router.push(`/report/${post.id}`)}
                     className="w-full flex items-center justify-center space-x-2 py-2 px-4 text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
                   >
@@ -784,7 +853,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                 </div>
               </div>
             )}
-            
+
             {/* Description Tab - now showing the full description */}
             {activeTab === 'description' && (
               <div className="py-2">
@@ -793,7 +862,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                 </p>
               </div>
             )}
-            
+
             {/* Services/Tarifs Tab */}
             {activeTab === 'tarifs' && (
               <div className="space-y-2 py-2">
@@ -801,7 +870,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                   <div className="font-medium text-lg">Services</div>
                   <div className="font-medium text-lg">Prix</div>
                 </div>
-                
+
                 {post.services && post.services.length > 0 ? (
                   post.services.map((service, index) => (
                     <div key={index} className="flex justify-between items-center border border-gray-200 dark:border-gray-700 rounded-lg p-4">
@@ -820,7 +889,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                 )}
               </div>
             )}
-            
+
             {/* Offerings/Délires Tab */}
             {activeTab === 'delires' && (
               <div className="py-2 grid grid-cols-2 gap-4">
@@ -849,7 +918,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
             )}
           </div>
         </div>
-        
+
         {/* Stats Bar - Updated to match design */}
         <div className="bg-primary-100 dark:bg-primary-500 py-3 px-4 fixed bottom-17 left-0 right-0 border-t border-pink-100 dark:border-pink-900/30">
           <div className="max-w-4xl mx-auto flex items-center justify-between">
@@ -865,13 +934,13 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
               </span>
               <span className="font-semibold">{likeCount}</span>
             </button>
-            
+
             <div className="flex items-center text-gray-600 dark:text-white">
               <span className="material-icons mr-1">visibility</span>
               <span className="font-semibold">{post?.views?.toLocaleString() || '0'}{" Vues"}</span>
             </div>
-            
-            <button 
+
+            <button
               onClick={handleShare}
               className="flex items-center text-gray-600 dark:text-white"
             >
@@ -880,7 +949,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
             </button>
           </div>
         </div>
-        
+
         {/* Bottom Action Bar */}
         <BottomActionBar
           onCall={handleCall}
@@ -909,8 +978,8 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
 
             {/* Image counter */}
             <div className="absolute top-4 left-4 text-white bg-black/50 px-3 py-1 rounded-full text-sm z-10">
-              {allMedia.filter(m => m.type === 'photo').findIndex((_) => 
-                allMedia.findIndex(media => media.url === allMedia[previewImageIndex].url) === 
+              {allMedia.filter(m => m.type === 'photo').findIndex((_) =>
+                allMedia.findIndex(media => media.url === allMedia[previewImageIndex].url) ===
                 allMedia.findIndex(media => media.type === 'photo' && media.url === _.url)
               ) + 1} / {allMedia.filter(m => m.type === 'photo').length}
             </div>
@@ -950,7 +1019,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
             )}
 
             {/* Tap to close (mobile) */}
-            <div 
+            <div
               className="absolute inset-0 z-0"
               onClick={closeImagePreview}
               aria-label="Fermer en touchant"
