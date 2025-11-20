@@ -6,7 +6,7 @@ import BottomSheet from '@/components/BottomSheet'
 import ServiceCategoryCard from '@/components/ServiceCategoryCard'
 import PostCard from '@/components/PostCard'
 import UserCard, { UserCardProps } from '@/components/UserCard'
-import { countries, citiesByCountryCode, appearanceFilters, userTypeFilters, partnerTypes, lgbtqOptions, physicalAttributes, chestSizes, bodyTypes, ageGroups } from '@/utils/constants'
+import { countries, citiesByCountryCode, appearanceFilters, userTypeFilters, ageGroups } from '@/utils/constants'
 import { User } from '@/services/usersService'
 import { mapApiPostToCardProps } from '@/utils/postMappers'
 import { ApiPost } from '@/services/postsService'
@@ -47,11 +47,11 @@ export default function SearchView() {
   // Additional filter states from design
   const [selectedAppearance, setSelectedAppearance] = useState<string[]>([]);
   const [selectedUserTypes, setSelectedUserTypes] = useState<string[]>([]);
-  const [selectedPartners, setSelectedPartners] = useState<string[]>([]);
-  const [selectedLgbtq, setSelectedLgbtq] = useState<string[]>([]);
+  // const [selectedPartners, setSelectedPartners] = useState<string[]>([]);
+  // const [selectedLgbtq, setSelectedLgbtq] = useState<string[]>([]);
   const [selectedAttributes, setSelectedAttributes] = useState<string[]>([]);
-  const [selectedChestSize, setSelectedChestSize] = useState<string[]>([]);
-  const [selectedBodyType, setSelectedBodyType] = useState<string[]>([]);
+  // const [selectedChestSize, setSelectedChestSize] = useState<string[]>([]);
+  // const [selectedBodyType, setSelectedBodyType] = useState<string[]>([]);
   const [selectedAgeGroups, setSelectedAgeGroups] = useState<string[]>([]);
   const [verifiedOnly, setVerifiedOnly] = useState(false);
   const [premiumOnly, setPremiumOnly] = useState(false);
@@ -205,11 +205,11 @@ export default function SearchView() {
     setSelectedCity('');
     setSelectedAppearance([]);
     setSelectedUserTypes([]);
-    setSelectedPartners([]);
-    setSelectedLgbtq([]);
+    // setSelectedPartners([]);
+    // setSelectedLgbtq([]);
     setSelectedAttributes([]);
-    setSelectedChestSize([]);
-    setSelectedBodyType([]);
+    // setSelectedChestSize([]);
+    // setSelectedBodyType([]);
     setSelectedAgeGroups([]);
     setVerifiedOnly(false);
     setPremiumOnly(false);
@@ -780,54 +780,54 @@ export default function SearchView() {
               )}
               
               {/* Partner Types */}
-              {renderFilterSection(
+              {/* {renderFilterSection(
                 "Partenaires", 
                 partnerTypes, 
                 selectedPartners, 
                 setSelectedPartners
-              )}
+              )} */}
               
               {/* LGBTQ Options */}
-              {renderFilterSection(
+              {/* {renderFilterSection(
                 "LGBTQ", 
                 lgbtqOptions, 
                 selectedLgbtq, 
                 setSelectedLgbtq
-              )}
+              )} */}
               
               {/* Intimate Attributes */}
-              {renderFilterSection(
+              {/* {renderFilterSection(
                 "Partie intime", 
                 physicalAttributes, 
                 selectedAttributes, 
                 setSelectedAttributes, 
                 "intime"
-              )}
+              )} */}
               
               {/* Délires (Preferences) */}
-              {renderFilterSection(
+              {/* {renderFilterSection(
                 "Délires", 
                 physicalAttributes, 
                 selectedAttributes, 
                 setSelectedAttributes, 
                 "delires"
-              )}
+              )} */}
               
               {/* Chest Size */}
-              {renderFilterSection(
+              {/* {renderFilterSection(
                 "Poitrine", 
                 chestSizes, 
                 selectedChestSize, 
                 setSelectedChestSize
-              )}
+              )} */}
               
               {/* Body Type */}
-              {renderFilterSection(
+              {/* {renderFilterSection(
                 "Corpulence", 
                 bodyTypes, 
                 selectedBodyType, 
                 setSelectedBodyType
-              )}
+              )} */}
               
               {/* Age Groups */}
               {renderFilterSection(
