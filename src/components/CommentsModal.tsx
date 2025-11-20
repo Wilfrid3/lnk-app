@@ -84,6 +84,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({
 
   const fetchComments = useCallback(async (page = 1, append = false) => {
     setLoading(true)
+    console.log('Fetching comments for videoId:', videoId, 'page:', page);
     try {
       const response = await apiClient.get(`/videos/${videoId}/comments?page=${page}&limit=20`)
       const data = response.data as CommentsResponse
@@ -100,6 +101,8 @@ const CommentsModal: React.FC<CommentsModalProps> = ({
       } else {
         setComments(processedComments)
       }
+
+      console.log('Fetched comments:', comments);
       
       setPagination({
         page: data.pagination.page,
@@ -165,7 +168,9 @@ const CommentsModal: React.FC<CommentsModalProps> = ({
       const newCommentData = response.data as Comment
       setComments(prev => [newCommentData, ...prev])
       setNewComment('')
+      console.log(comments)
       
+      // fetchComments(1, false)
       // Notify parent component that a comment was added
       if (onCommentAdded) {
         onCommentAdded(videoId)

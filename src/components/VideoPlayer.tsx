@@ -157,6 +157,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       router.push('/auth/signin')
       return
     }
+    togglePlayPause()
     onComment(video.id)
   }
 

@@ -1,23 +1,39 @@
 // src/components/FooterNav.tsx
 'use client'
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { useMessagingStore } from '@/store/useMessagingStore';
 import { useAuth } from '@/contexts/AuthContext';
+import { getAuthToken } from '@/utils/cookies';
 
 const FooterNav: React.FC = () => {
   const pathname = usePathname();
   const { user: currentUser } = useAuth();
-  const { conversations } = useMessagingStore();
+  // Get auth token (this should come from your auth context)
+  const token = getAuthToken();
+  const {
+    conversations: rawConversations,
+    fetchConversations
+  } = useMessagingStore()
+
+  // Ensure conversations is always an array
+  const conversations = rawConversations || []
+
+  useEffect(() => {
+    if (token) {
+      fetchConversations()
+        .finally(() => console.log('Conversations fetched'));
+    }
+  }, [token, fetchConversations])
 
   // Calculate total unread messages
   const totalUnread = useMemo(() => {
     if (!conversations || !currentUser) return 0;
-    
+
     const currentUserId = (currentUser as { id?: string; _id?: string })?.id || (currentUser as { id?: string; _id?: string })?._id;
-    
+
     return conversations.reduce((total, conversation) => {
       const unreadCount = conversation.unreadCounts?.[currentUserId || ''] || 0;
       return total + unreadCount;

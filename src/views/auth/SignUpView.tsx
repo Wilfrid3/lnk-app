@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import AuthLayout from '@/components/layouts/AuthLayout'
-import GoogleSignInButton from '@/components/auth/GoogleSignInButton'
+// import GoogleSignInButton from '@/components/auth/GoogleSignInButton'
 import { useAuth } from '@/contexts/AuthContext'
 import apiClient from '@/lib/axios'
 
@@ -235,20 +235,20 @@ const SignUpView: React.FC = () => {
     }
 
     // Handle successful Google sign in with invite code
-    const handleSignInSuccess = () => {
-        console.log('Google sign-in initiated, setting up redirect...')
-        setIsGoogleSignInInProgress(true)
+    // const handleSignInSuccess = () => {
+    //     console.log('Google sign-in initiated, setting up redirect...')
+    //     setIsGoogleSignInInProgress(true)
         
-        // Include invite code in Google OAuth flow if present
-        if (formData.inviteCode) {
-            // Store invite code in cookies for Google OAuth callback
-            document.cookie = `pendingInviteCode=${encodeURIComponent(formData.inviteCode)}; path=/; max-age=600`
-        }
-    }
+    //     // Include invite code in Google OAuth flow if present
+    //     if (formData.inviteCode) {
+    //         // Store invite code in cookies for Google OAuth callback
+    //         document.cookie = `pendingInviteCode=${encodeURIComponent(formData.inviteCode)}; path=/; max-age=600`
+    //     }
+    // }
 
-    const handleSignInError = (error: unknown) => {
-        console.error('Sign in error:', error)
-    }
+    // const handleSignInError = (error: unknown) => {
+    //     console.error('Sign in error:', error)
+    // }
 
     return (
         <AuthLayout
@@ -265,21 +265,21 @@ const SignUpView: React.FC = () => {
                 </div>
             )}
 
-            <GoogleSignInButton
+            {/* <GoogleSignInButton
                 onSuccess={handleSignInSuccess}
                 onError={handleSignInError}
                 className="mb-6"
                 inviteCode={formData.inviteCode} // Pass invite code to Google button
-            />
+            /> */}
 
-            <div className="relative my-6">
+            {/* <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-gray-300"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
                     <span className="px-2 bg-white text-gray-500">ou</span>
                 </div>
-            </div>
+            </div> */}
 
             <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Show form-wide errors if any */}
@@ -458,7 +458,7 @@ const SignUpView: React.FC = () => {
                 </div>
 
                 {/* Email */}
-                <div>
+                {/* <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                         Email <span className="text-gray-400">(facultatif)</span>
                     </label>
@@ -475,7 +475,7 @@ const SignUpView: React.FC = () => {
                         💡 Si vous ajoutez votre email, vous recevrez le code de vérification par email au lieu de SMS
                     </p>
                     {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email}</p>}
-                </div>
+                </div> */}
 
                 {/* Password */}
                 <div>

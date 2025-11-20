@@ -8,6 +8,7 @@ import ChatLayout from '@/components/layouts/ChatLayout'
 import { useMessagingStore, type Message, type ChatUser } from '@/store/useMessagingStore'
 import { useAuth } from '@/contexts/AuthContext'
 import { getAuthToken } from '@/utils/cookies'
+import { getFullImageUrl } from '@/utils/imageUtils'
 
 interface ChatViewProps {
   readonly userId: string
@@ -465,7 +466,7 @@ export default function ChatView({ userId, conversationId, user, initialMessages
         {!isMe && (
           <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden mr-2 mt-1 flex-shrink-0">
             <Image
-              src={finalChatUser.avatar || '/images/avatars/avatar.png'}
+              src={getFullImageUrl(finalChatUser.avatar) || '/images/avatars/avatar.png'}
               alt={finalChatUser.name}
               width={32}
               height={32}
@@ -563,7 +564,7 @@ export default function ChatView({ userId, conversationId, user, initialMessages
             <div className="relative flex-shrink-0">
               <div className="w-10 h-10 rounded-full overflow-hidden">
                 <Image
-                  src={finalChatUser.avatar || '/images/avatars/avatar.png'}
+                  src={getFullImageUrl(finalChatUser.avatar) || '/images/avatars/avatar.png'}
                   alt={finalChatUser.name}
                   width={40}
                   height={40}
@@ -621,7 +622,7 @@ export default function ChatView({ userId, conversationId, user, initialMessages
           {isTyping && (
             <div className="flex justify-start mb-6 pb-2">
               <Image
-                src={finalChatUser.avatar || '/images/avatars/avatar.png'}
+                src={getFullImageUrl(finalChatUser.avatar) || '/images/avatars/avatar.png'}
                 alt={finalChatUser.name}
                 width={32}
                 height={32}
