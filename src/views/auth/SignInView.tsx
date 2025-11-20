@@ -33,7 +33,7 @@ export default function SignInView() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { setUser, setTokens, user } = useAuth()
-  const [signInMethod, setSignInMethod] = useState<'phone' | 'email'>('phone')
+  const [signInMethod] = useState<'phone' | 'email'>('phone')
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     phoneNumber: '',
