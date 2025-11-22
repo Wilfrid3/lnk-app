@@ -135,10 +135,10 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
     try {
       setLoadingEngagement(true)
       if (isFollowing) {
-        await apiClient.delete(`/users/${user?._id}/follow`)
+        await apiClient.delete(`/users/${post?.user?.id}/follow`)
         setUserStats(prev => ({ ...prev, followers: prev.followers - 1 }))
       } else {
-        await apiClient.post(`/users/${user?._id}/follow`)
+        await apiClient.post(`/users/${post?.user?.id}/follow`)
         setUserStats(prev => ({ ...prev, followers: prev.followers + 1 }))
       }
       setIsFollowing(!isFollowing)
@@ -160,7 +160,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
 
         if (user) {
           try {
-            const followResponse = await apiClient.get(`/users/${user?._id}/follow-status`)
+            const followResponse = await apiClient.get(`/users/${post?.user?.id}/follow-status`)
             const followData = followResponse.data as { isFollowing?: boolean }
             setIsFollowing(followData.isFollowing ?? false)
           } catch (followError) {

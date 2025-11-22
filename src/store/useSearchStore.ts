@@ -8,6 +8,7 @@ interface SearchStoreState {
   setSelectedCountry: (country: string) => void;
   setSearchQuery: (query: string) => void;
   resetSearch: () => void;
+  setSearchLocation: (city: string, country: string) => void;
 }
 
 export const useSearchStore = create<SearchStoreState>((set) => ({
@@ -22,4 +23,8 @@ export const useSearchStore = create<SearchStoreState>((set) => ({
     selectedCountry: null, 
     searchQuery: null 
   }),
+  setSearchLocation: (city: string, country: string) => set({
+  selectedCity: city,
+  selectedCountry: country
+})
 }));

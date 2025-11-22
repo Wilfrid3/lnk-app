@@ -14,14 +14,10 @@ interface LocationListProps {
 
 const LocationList: React.FC<LocationListProps> = ({ items }) => {
   const router = useRouter();
-  const { setSelectedCity, setSelectedCountry } = useSearchStore();
+  const { setSearchLocation } = useSearchStore();
 
   const handleLocationClick = (locationName: string) => {
-    // Set the selected city in the store
-    setSelectedCity(locationName);
-    // Set country to Cameroon (default for these locations)
-    setSelectedCountry('+237');
-    // Navigate to search page
+    setSearchLocation(locationName, '+237');
     router.push('/search');
   };
 

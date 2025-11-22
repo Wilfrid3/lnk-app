@@ -6,7 +6,7 @@ import Link from 'next/link'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import apiClient from '@/lib/axios'
 import { useAuth } from '@/contexts/AuthContext'
-// import GoogleSignInButton from '@/components/auth/GoogleSignInButton'
+import GoogleSignInButton from '@/components/auth/GoogleSignInButton'
 import type { User } from '@/types/User'
 
 interface LoginResponse {
@@ -33,7 +33,7 @@ export default function SignInView() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { setUser, setTokens, user } = useAuth()
-  const [signInMethod] = useState<'phone' | 'email'>('phone')
+  const [signInMethod, setSignInMethod] = useState<'phone' | 'email'>('phone')
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     phoneNumber: '',
@@ -91,11 +91,12 @@ export default function SignInView() {
       })
     }
   }
+
   // Reset errors when switching sign-in methods
-  // const handleSignInMethodChange = (method: 'phone' | 'email') => {
-  //   setSignInMethod(method)
-  //   setErrors({})
-  // }
+  const handleSignInMethodChange = (method: 'phone' | 'email') => {
+    setSignInMethod(method)
+    setErrors({})
+  }
 
   // Handle country code selection
   const handleCountryCodeChange = (code: string) => {
@@ -206,17 +207,17 @@ export default function SignInView() {
   }
 
   // Handle successful sign in
-  // const handleSignInSuccess = () => {
-  //   console.log('Google sign-in success callback triggered')
-  //   setIsGoogleSignInInProgress(true)
-  //   // The redirect will be handled by the useEffect that watches for user state
-  // }
+  const handleSignInSuccess = () => {
+    console.log('Google sign-in success callback triggered')
+    setIsGoogleSignInInProgress(true)
+    // The redirect will be handled by the useEffect that watches for user state
+  }
 
   // Handle sign in errors
-  // const handleSignInError = (error: unknown) => {
-  //   console.error('Sign in error:', error)
-  //   // Add any error handling logic here
-  // }
+  const handleSignInError = (error: unknown) => {
+    console.error('Sign in error:', error)
+    // Add any error handling logic here
+  }
 
   return (
     <AuthLayout
@@ -224,22 +225,22 @@ export default function SignInView() {
       subtitle="Accédez à votre compte"
       showBackButton={true}
     >
-      {/* <GoogleSignInButton
+      <GoogleSignInButton
                 onSuccess={handleSignInSuccess}
                 onError={handleSignInError}
                 className="mb-6"
-            /> */}
+            />
 
-      {/* <div className="relative my-6">
+      <div className="relative my-6">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-gray-300"></div>
         </div>
         <div className="relative flex justify-center text-sm">
           <span className="px-2 bg-white text-gray-500">ou</span>
         </div>
-      </div> */}
+      </div>
       {/* Sign In Method Toggle */}
-      {/* <div className="mb-6 flex bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+      <div className="mb-6 flex bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
         <button
           type="button"
           onClick={() => handleSignInMethodChange('phone')}
@@ -267,7 +268,7 @@ export default function SignInView() {
             Email
           </div>
         </button>
-      </div> */}
+      </div>
 
       {/* Success Message */}
       {successMessage && (
