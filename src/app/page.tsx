@@ -9,7 +9,7 @@ export const metadata: Metadata = generateSEOMetadata({
   description: 'Découvrez yamohub, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité à Yaoundé, Douala et dans tout le pays.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com',
   type: 'website',
-  image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/images/full_logo.png`,
+  image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/images/logof.png`,
 })
 
 export default function HomePage() {

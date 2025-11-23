@@ -35,7 +35,7 @@ export default function SEOHead({
   // Default values
   const seoTitle = title || 'yamohub - Services d\'Accompagnement Premium au Cameroun'
   const seoDescription = description || 'Découvrez yamohub, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité.'
-  const seoImage = image || `${baseUrl}/images/full_logo.png`
+  const seoImage = image || `${baseUrl}/images/logof.png`
   const seoImageAlt = imageAlt || 'yamohub - Plateforme Premium'
 
   return (
@@ -105,7 +105,7 @@ export default function SEOHead({
       <link rel="apple-touch-icon" href="/favicon.png" />
       
       {/* Preload critical resources */}
-      <link rel="preload" href="/images/full_logo.png" as="image" />
+      <link rel="preload" href="/images/logof.png" as="image" />
       <link rel="dns-prefetch" href="//fonts.googleapis.com" />
       <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     </Head>

@@ -20,7 +20,7 @@ export interface SEOData {
 export const DEFAULT_SEO: SEOData = {
   title: 'yamohub - Plateforme de Services d\'Accompagnement Premium au Cameroun',
   description: 'Découvrez yamohub, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité à Yaoundé, Douala et dans tout le pays.',
-  image: '/images/full_logo.png',
+  image: '/images/logof.png',
   type: 'website',
   siteName: 'yamohub',
   locale: 'fr_FR',
@@ -32,7 +32,7 @@ export function generateMetadata(seoData: Partial<SEOData> = {}): Metadata {
   
   // Generate dynamic Open Graph image if no specific image provided
   let ogImage = data.image
-  if (!ogImage || ogImage === '/images/full_logo.png') {
+  if (!ogImage || ogImage === '/images/logof.png') {
     const ogParams = new URLSearchParams({
       title: data.title,
       description: data.description,
@@ -146,7 +146,7 @@ export function generateStructuredData(
         name: 'yamohub',
         description: 'Plateforme de services d\'accompagnement premium au Cameroun',
         url: baseUrl,
-        logo: `${baseUrl}/images/full_logo.png`,
+        logo: `${baseUrl}/images/logof.png`,
         sameAs: [
           // Add social media profiles if available
         ],
@@ -217,7 +217,7 @@ export function generateStructuredData(
           name: 'yamohub',
           logo: {
             '@type': 'ImageObject',
-            url: `${baseUrl}/images/full_logo.png`,
+            url: `${baseUrl}/images/logof.png`,
           },
         },
         mainEntityOfPage: {

@@ -101,7 +101,7 @@ export const metadata: Metadata = {
     description: 'Découvrez yamohub, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité.',
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/images/full_logo.png`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/images/logof.png`,
         width: 1200,
         height: 630,
         alt: 'yamohub - Plateforme Premium',
@@ -112,7 +112,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'yamohub - Services Premium au Cameroun',
     description: 'Plateforme leader de services d\'accompagnement premium. Profils vérifiés, qualité garantie.',
-    images: [`${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/images/full_logo.png`],
+    images: [`${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/images/logof.png`],
   },
   verification: {
     // Add verification codes if you have them
@@ -141,7 +141,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     name: 'yamohub',
     description: 'Plateforme de services d\'accompagnement premium au Cameroun',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com',
-    logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/images/full_logo.png`,
+    logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/images/logof.png`,
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
