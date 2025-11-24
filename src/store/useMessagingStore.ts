@@ -223,7 +223,7 @@ export const useMessagingStore = create<MessagingState>()(
     
     initializeSocket: () => {
       const token = getAuthToken()
-      const websocketUrl = process.env.NEXT_PUBLIC_WEBSOCKET_URL || 'http://localhost:3044'
+      const websocketUrl = process.env.NEXT_PUBLIC_WEBSOCKET_URL
       
       if (!token || !websocketUrl) return
 
