@@ -33,7 +33,7 @@ export default function SignInView() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { setUser, setTokens, user } = useAuth()
-  const [signInMethod, setSignInMethod] = useState<'phone' | 'email'>('phone')
+  const [signInMethod, setSignInMethod] = useState<'phone' | 'email'>('email')
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     phoneNumber: '',
@@ -413,8 +413,16 @@ export default function SignInView() {
 
         <div className="text-center mt-4">
           <p className="text-gray-600 dark:text-gray-400">
-            Pas encore de compte? <Link href="/auth/signup" className="text-primary-500 hover:underline">S&apos;inscrire</Link>
+            Pas encore de compte?
           </p>
+        </div>
+        <div>
+          <button
+            onClick={()=> router.push('/auth/signup')}
+            className="w-full py-3 px-4 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            {"S'inscrire"}
+          </button>
         </div>
       </form>
     </AuthLayout>

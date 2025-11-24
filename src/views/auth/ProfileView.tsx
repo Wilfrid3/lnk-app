@@ -234,7 +234,7 @@ export default function ProfileView() {
         ))}
 
         {/* Purchase options */}
-        <div className="mt-10 space-y-4">
+        {/*<div className="mt-10 space-y-4">
           <h3 className="text-lg font-medium text-gray-900 dark:text-white">Achetez du crédit</h3>
           <div className="flex space-x-2">
             <Link 
@@ -264,7 +264,7 @@ export default function ProfileView() {
               <span>VIP</span>
             </Link>
           </div>
-        </div>
+        </div>*/}
       </div>
     </DefaultLayout>
   );

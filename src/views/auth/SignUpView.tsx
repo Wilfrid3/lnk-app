@@ -10,23 +10,23 @@ import apiClient from '@/lib/axios'
 
 // Country codes with flags for phone number input
 const countryCodes = [
-  { code: '+237', country: 'CM', flag: '🇨🇲', name: 'Cameroun' },
-  { code: '+33', country: 'FR', flag: '🇫🇷', name: 'France' },
-  { code: '+225', country: 'CI', flag: '🇨🇮', name: 'Côte d\'Ivoire' },
-  { code: '+221', country: 'SN', flag: '🇸🇳', name: 'Sénégal' },
-  { code: '+226', country: 'BF', flag: '🇧🇫', name: 'Burkina Faso' },
-  { code: '+241', country: 'GA', flag: '🇬🇦', name: 'Gabon' },
-  { code: '+242', country: 'CG', flag: '🇨🇬', name: 'Congo' },
-  { code: '+243', country: 'CD', flag: '🇨🇩', name: 'RD Congo' },
-  { code: '+229', country: 'BJ', flag: '🇧🇯', name: 'Bénin' },
-  { code: '+235', country: 'TD', flag: '🇹🇩', name: 'Tchad' },
+    { code: '+237', country: 'CM', flag: '🇨🇲', name: 'Cameroun' },
+    { code: '+33', country: 'FR', flag: '🇫🇷', name: 'France' },
+    { code: '+225', country: 'CI', flag: '🇨🇮', name: 'Côte d\'Ivoire' },
+    { code: '+221', country: 'SN', flag: '🇸🇳', name: 'Sénégal' },
+    { code: '+226', country: 'BF', flag: '🇧🇫', name: 'Burkina Faso' },
+    { code: '+241', country: 'GA', flag: '🇬🇦', name: 'Gabon' },
+    { code: '+242', country: 'CG', flag: '🇨🇬', name: 'Congo' },
+    { code: '+243', country: 'CD', flag: '🇨🇩', name: 'RD Congo' },
+    { code: '+229', country: 'BJ', flag: '🇧🇯', name: 'Bénin' },
+    { code: '+235', country: 'TD', flag: '🇹🇩', name: 'Tchad' },
 ]
 
 const SignUpView: React.FC = () => {
     const router = useRouter()
     const searchParams = useSearchParams()
     const { user } = useAuth()
-    
+
     const [formData, setFormData] = useState({
         userType: '',
         name: '',
@@ -38,10 +38,10 @@ const SignUpView: React.FC = () => {
         acceptTerms: false,
         inviteCode: '' // Add invite code field
     })
-    
+
     const [showCountryDropdown, setShowCountryDropdown] = useState(false)
     const [showInviteCode, setShowInviteCode] = useState(false)
-    const [errors, setErrors] = useState<{[key: string]: string}>({})
+    const [errors, setErrors] = useState<{ [key: string]: string }>({})
     const [isLoading, setIsLoading] = useState(false)
     const [isGoogleSignInInProgress, setIsGoogleSignInInProgress] = useState(false)
 
@@ -79,7 +79,7 @@ const SignUpView: React.FC = () => {
             })
         }
     }
-    
+
     const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, checked } = e.target
         setFormData({
@@ -104,7 +104,7 @@ const SignUpView: React.FC = () => {
     }
 
     const validateForm = () => {
-        const newErrors: {[key: string]: string} = {}
+        const newErrors: { [key: string]: string } = {}
 
         // Validate user type
         if (!formData.userType) {
@@ -124,14 +124,14 @@ const SignUpView: React.FC = () => {
         }
 
         // Validate phone number
-        if (!formData.phoneNumber.trim()) {
-            newErrors.phoneNumber = 'Le numéro de téléphone est requis'
-        } else if (!/^\d{9,}$/.test(formData.phoneNumber.replace(/\s/g, ''))) {
+        if (formData.phoneNumber && !/^\d{9,}$/.test(formData.phoneNumber.replace(/\s/g, ''))) {
             newErrors.phoneNumber = 'Numéro de téléphone invalide'
         }
 
         // Validate email (optional)
-        if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        if (!formData.email.trim()) {
+            newErrors.email = "L'email est requis"
+        } else if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
             newErrors.email = 'Email invalide'
         }
 
@@ -164,8 +164,8 @@ const SignUpView: React.FC = () => {
             countryCode: selectedCountryCode,
             phoneNumber: `${selectedCountryCode}${formData.phoneNumber}`,
             // Include invite code if provided
-            ...(formData.inviteCode && formData.inviteCode !== ''  && { inviteCode: formData.inviteCode }),
-            ...(email && email !== ''  && { email: email })
+            ...(formData.inviteCode && formData.inviteCode !== '' && { inviteCode: formData.inviteCode }),
+            ...(email && email !== '' && { email: email })
         }
     }
 
@@ -182,7 +182,7 @@ const SignUpView: React.FC = () => {
     const handleRegistrationError = async (error: unknown) => {
         console.error('Error creating account:', error)
         const apiError = error as { response?: { data?: { message?: string } } }
-        
+
         // Don't let invite code errors block registration
         if (apiError.response?.data?.message?.includes('invite')) {
             try {
@@ -194,7 +194,7 @@ const SignUpView: React.FC = () => {
                     phoneNumber: `${selectedCountryCode}${formData.phoneNumber}`
                 }
                 await apiClient.post('/auth/register', dataWithoutInvite)
-                
+
                 redirectAfterRegistration()
                 return
             } catch (retryError) {
@@ -202,7 +202,7 @@ const SignUpView: React.FC = () => {
                 console.error('Retry registration failed:', retryError)
             }
         }
-        
+
         if (apiError.response?.data?.message) {
             setErrors({ ...errors, form: apiError.response.data.message })
         } else {
@@ -221,7 +221,7 @@ const SignUpView: React.FC = () => {
         try {
             // Prepare data with properly formatted values
             const dataToSubmit = prepareSubmissionData()
-            
+
             // Include invite code as query parameter if present
             const queryParams = formData.inviteCode ? `?ref=${formData.inviteCode}` : ''
             await apiClient.post(`/auth/register${queryParams}`, dataToSubmit)
@@ -238,7 +238,7 @@ const SignUpView: React.FC = () => {
     const handleSignInSuccess = () => {
         console.log('Google sign-in initiated, setting up redirect...')
         setIsGoogleSignInInProgress(true)
-        
+
         // Include invite code in Google OAuth flow if present
         if (formData.inviteCode) {
             // Store invite code in cookies for Google OAuth callback
@@ -288,82 +288,78 @@ const SignUpView: React.FC = () => {
                         {errors.form}
                     </div>
                 )}
-                
+
                 {/* User Type */}
                 <div>
                     <fieldset>
                         <legend className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                             Vous êtes: <span className="text-primary-500">*</span>
                         </legend>
-                    <div className="grid grid-cols-2 gap-4">
-                        <label className={`flex items-center justify-center border rounded-lg p-3 cursor-pointer transition-colors ${
-                            formData.userType === 'homme'
-                                ? 'bg-primary-500 text-white border-primary-500'
-                                : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100'
-                        }`}>
-                            <input
-                                type="radio"
-                                name="userType"
-                                value="homme"
-                                className="sr-only"
-                                checked={formData.userType === 'homme'}
-                                onChange={handleChange}
-                            />
-                            <span>Homme</span>
-                        </label>
+                        <div className="grid grid-cols-2 gap-4">
+                            <label className={`flex items-center justify-center border rounded-lg p-3 cursor-pointer transition-colors ${formData.userType === 'homme'
+                                    ? 'bg-primary-500 text-white border-primary-500'
+                                    : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100'
+                                }`}>
+                                <input
+                                    type="radio"
+                                    name="userType"
+                                    value="homme"
+                                    className="sr-only"
+                                    checked={formData.userType === 'homme'}
+                                    onChange={handleChange}
+                                />
+                                <span>Homme</span>
+                            </label>
 
-                        <label className={`flex items-center justify-center border rounded-lg p-3 cursor-pointer transition-colors ${
-                            formData.userType === 'femme'
-                                ? 'bg-primary-500 text-white border-primary-500'
-                                : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100'
-                        }`}>
-                            <input
-                                type="radio"
-                                name="userType"
-                                value="femme"
-                                className="sr-only"
-                                checked={formData.userType === 'femme'}
-                                onChange={handleChange}
-                            />
-                            <span>Femme</span>
-                        </label>
-                    </div>
+                            <label className={`flex items-center justify-center border rounded-lg p-3 cursor-pointer transition-colors ${formData.userType === 'femme'
+                                    ? 'bg-primary-500 text-white border-primary-500'
+                                    : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100'
+                                }`}>
+                                <input
+                                    type="radio"
+                                    name="userType"
+                                    value="femme"
+                                    className="sr-only"
+                                    checked={formData.userType === 'femme'}
+                                    onChange={handleChange}
+                                />
+                                <span>Femme</span>
+                            </label>
+                        </div>
 
-                    <div className="grid grid-cols-2 gap-4 mt-3">
-                        <label className={`flex items-center justify-center border rounded-lg p-3 cursor-pointer transition-colors ${
-                            formData.userType === 'couple'
-                                ? 'bg-primary-500 text-white border-primary-500'
-                                : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100'
-                        }`}>
-                            <input
-                                type="radio"
-                                name="userType"
-                                value="couple"
-                                className="sr-only"
-                                checked={formData.userType === 'couple'}
-                                onChange={handleChange}
-                            />
-                            <span>Couple</span>
-                        </label>
+                        <div className="grid grid-cols-2 gap-4 mt-3">
+                            <label className={`flex items-center justify-center border rounded-lg p-3 cursor-pointer transition-colors ${formData.userType === 'couple'
+                                    ? 'bg-primary-500 text-white border-primary-500'
+                                    : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100'
+                                }`}>
+                                <input
+                                    type="radio"
+                                    name="userType"
+                                    value="couple"
+                                    className="sr-only"
+                                    checked={formData.userType === 'couple'}
+                                    onChange={handleChange}
+                                />
+                                <span>Couple</span>
+                            </label>
 
-                        <label className={`flex items-center justify-center border rounded-lg p-3 cursor-pointer transition-colors ${
-                            formData.userType === 'autres'
-                                ? 'bg-primary-500 text-white border-primary-500'
-                                : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100'
-                        }`}>
-                            <input
-                                type="radio"
-                                name="userType"
-                                value="autres"
-                                className="sr-only"
-                                checked={formData.userType === 'autres'}
-                                onChange={handleChange}
-                            />
-                            <span>Autres</span>
-                        </label>
-                    </div>
+                            <label className={`flex items-center justify-center border rounded-lg p-3 cursor-pointer transition-colors ${formData.userType === 'autres'
+                                    ? 'bg-primary-500 text-white border-primary-500'
+                                    : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100'
+                                }`}>
+                                <input
+                                    type="radio"
+                                    name="userType"
+                                    value="autres"
+                                    className="sr-only"
+                                    checked={formData.userType === 'autres'}
+                                    onChange={handleChange}
+                                />
+                                <span>Autres</span>
+                            </label>
+                        </div>
 
-                    {errors.userType && <p className="text-sm text-red-600 mt-1">{errors.userType}</p>}
+                        {errors.userType && <p className="text-sm text-red-600 mt-1">{errors.userType}</p>}
                     </fieldset>
                 </div>
 
@@ -405,7 +401,7 @@ const SignUpView: React.FC = () => {
                 </div>                {/* Phone Number */}
                 <div>
                     <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        Numéro de téléphone <span className="text-primary-500">*</span>
+                        Numéro de téléphone <span className="text-gray-400">(facultatif)</span>
                     </label>
                     <div className="flex">
                         {/* Country Code Dropdown */}
@@ -421,7 +417,7 @@ const SignUpView: React.FC = () => {
                                 <span>{formData.selectedCountryCode}</span>
                                 <span className="ml-1">▼</span>
                             </button>
-                            
+
                             {/* Dropdown Menu */}
                             {showCountryDropdown && (
                                 <div className="absolute z-10 mt-1 w-60 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black/5 max-h-60 overflow-y-auto">
@@ -442,7 +438,7 @@ const SignUpView: React.FC = () => {
                                 </div>
                             )}
                         </div>
-                        
+
                         {/* Phone Input */}
                         <input
                             id="phoneNumber"
@@ -454,13 +450,17 @@ const SignUpView: React.FC = () => {
                             placeholder="Entrez votre numéro"
                         />
                     </div>
+
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        💡 Si vous ajoutez votre numéro de téléphone, vous recevrez le code de vérification par SMS
+                    </p>
                     {errors.phoneNumber && <p className="text-sm text-red-600 mt-1">{errors.phoneNumber}</p>}
                 </div>
 
                 {/* Email */}
                 <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        Email <span className="text-gray-400">(facultatif)</span>
+                        Email <span className="text-primary-500">*</span>
                     </label>
                     <input
                         id="email"
@@ -471,9 +471,7 @@ const SignUpView: React.FC = () => {
                         className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                         placeholder="Entrez votre email"
                     />
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        💡 Si vous ajoutez votre email, vous recevrez le code de vérification par email au lieu de SMS
-                    </p>
+
                     {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email}</p>}
                 </div>
 

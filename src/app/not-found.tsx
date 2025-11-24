@@ -9,9 +9,9 @@ function NotFoundContent() {
       <div className="text-center">
         <div className="flex justify-center mb-4">
           <div className="text-3xl sm:text-5xl font-semibold flex items-center text-gray-900 dark:text-white">
-            Le{' '}
+            Yamo
             <span className="bg-primary-500 text-white px-2 sm:px-3 py-0.5 sm:py-1 mx-1">
-              Yamo
+              Hub
             </span>
           </div>
         </div>
@@ -50,7 +50,7 @@ function NotFoundContent() {
         </div>
         
         <p className="mt-8 text-sm text-gray-500 dark:text-gray-400">
-          © {new Date().getFullYear()} Le Yamo. Tous droits réservés.
+          © {new Date().getFullYear()} YamoHub. Tous droits réservés.
         </p>
       </div>
     </div>
