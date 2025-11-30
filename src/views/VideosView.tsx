@@ -8,6 +8,8 @@ import VideoPlayer from '@/components/VideoPlayer'
 import CommentsModal from '@/components/CommentsModal'
 import DefaultLayout from '@/components/layouts/DefaultLayout'
 import apiClient from '@/lib/axios'
+import Link from 'next/link'
+import Image from 'next/image'
 
 interface Video {
   id: string
@@ -38,7 +40,7 @@ interface Video {
 const VideosView: React.FC = () => {
   const router = useRouter()
   const { user } = useAuth()
-  
+
   // Chat handler
   // const { handleChat } = useChatHandler(router, user)
   const [videos, setVideos] = useState<Video[]>([])
@@ -58,44 +60,44 @@ const VideosView: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const loadMockVideos = useCallback(async (pageNum: number) => {
     try {
-        // Fallback to mock API using fetch
-        const mockApiUrl = `/api/videos?page=${pageNum}&limit=10`
-        const mockResponse = await fetch(mockApiUrl)
-        
-        if (!mockResponse.ok) {
-          throw new Error(`Mock API responded with status: ${mockResponse.status}`)
-        }
-        
-        const mockData = await mockResponse.json() as { videos: Video[], hasMore: boolean }
-        
-        if (pageNum === 1) {
-          setVideos(mockData.videos)
-        } else {
-          setVideos(prev => [...prev, ...mockData.videos])
-        }
-        
-        setHasMore(mockData.hasMore)
-        setPage(pageNum)
-      } catch (mockError) {
-        console.error('Both real and mock APIs failed:', { error, mockError })
-        setError('Failed to load videos. Please try again.')
-        setHasMore(false)
+      // Fallback to mock API using fetch
+      const mockApiUrl = `/api/videos?page=${pageNum}&limit=10`
+      const mockResponse = await fetch(mockApiUrl)
+
+      if (!mockResponse.ok) {
+        throw new Error(`Mock API responded with status: ${mockResponse.status}`)
       }
+
+      const mockData = await mockResponse.json() as { videos: Video[], hasMore: boolean }
+
+      if (pageNum === 1) {
+        setVideos(mockData.videos)
+      } else {
+        setVideos(prev => [...prev, ...mockData.videos])
+      }
+
+      setHasMore(mockData.hasMore)
+      setPage(pageNum)
+    } catch (mockError) {
+      console.error('Both real and mock APIs failed:', { error, mockError })
+      setError('Failed to load videos. Please try again.')
+      setHasMore(false)
+    }
   }, [error])
 
   // Load videos function
   const loadVideos = useCallback(async (pageNum: number) => {
     if (loadingRef.current) return
-    
+
     loadingRef.current = true
     setLoading(true)
     setError(null)
-    
+
     try {
       // First try the real API using apiClient
       const response = await apiClient.get(`/videos?page=${pageNum}&limit=10`)
       const data = response.data as { videos: Video[], hasMore: boolean }
-      
+
       if (pageNum === 1) {
         setVideos(data.videos)
       } else {
@@ -103,7 +105,7 @@ const VideosView: React.FC = () => {
       }
 
       console.log('Loaded videos:', data.videos)
-      
+
       setHasMore(data.hasMore)
       setPage(pageNum)
       // if (data.videos.length === 0) {
@@ -148,7 +150,7 @@ const VideosView: React.FC = () => {
     if ('touches' in e) {
       e.preventDefault()
     }
-    
+
     const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY
     startY.current = clientY
     currentY.current = clientY
@@ -157,17 +159,17 @@ const VideosView: React.FC = () => {
 
   const handleTouchMove = useCallback((e: React.TouchEvent | React.MouseEvent) => {
     if (!startY.current) return
-    
+
     const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY
     currentY.current = clientY
-    
+
     const deltaY = currentY.current - startY.current
-    
+
     // Always prevent default for vertical swipes to avoid pull-to-refresh
     if ('touches' in e && Math.abs(deltaY) > 5) {
       e.preventDefault()
     }
-    
+
     if (Math.abs(deltaY) > 20) { // Increased threshold to avoid interfering with taps
       isScrolling.current = true
     }
@@ -189,7 +191,7 @@ const VideosView: React.FC = () => {
       // Prevent the touch event from bubbling to underlying elements
       e.preventDefault()
       e.stopPropagation()
-      
+
       if (deltaY > 0) {
         // Swipe down - previous video
         goToPreviousVideo()
@@ -234,16 +236,16 @@ const VideosView: React.FC = () => {
       // API uses POST to toggle like/unlike
       await apiClient.post(`/videos/${videoId}/like`)
 
-      setVideos(prev => prev.map(v => 
-        v.id === videoId 
+      setVideos(prev => prev.map(v =>
+        v.id === videoId
           ? {
-              ...v,
-              isLiked: !v.isLiked,
-              stats: {
-                ...v.stats,
-                likes: v.isLiked ? v.stats.likes - 1 : v.stats.likes + 1
-              }
+            ...v,
+            isLiked: !v.isLiked,
+            stats: {
+              ...v.stats,
+              likes: v.isLiked ? v.stats.likes - 1 : v.stats.likes + 1
             }
+          }
           : v
       ))
     } catch (error) {
@@ -258,8 +260,8 @@ const VideosView: React.FC = () => {
 
   const handleCommentAdded = (videoId: string) => {
     // Update comment count when a new comment is added
-    setVideos(prev => prev.map(v => 
-      v.id === videoId 
+    setVideos(prev => prev.map(v =>
+      v.id === videoId
         ? { ...v, stats: { ...v.stats, comments: v.stats.comments + 1 } }
         : v
     ))
@@ -279,12 +281,12 @@ const VideosView: React.FC = () => {
           text: shareText,
           url: shareUrl
         })
-        
+
         // Track share
         await apiClient.post(`/videos/${videoId}/share`)
-        
-        setVideos(prev => prev.map(v => 
-          v.id === videoId 
+
+        setVideos(prev => prev.map(v =>
+          v.id === videoId
             ? { ...v, stats: { ...v.stats, shares: v.stats.shares + 1 } }
             : v
         ))
@@ -296,10 +298,10 @@ const VideosView: React.FC = () => {
       try {
         await navigator.clipboard.writeText(shareUrl)
         alert('Lien copié dans le presse-papier')
-        
+
         await apiClient.post(`/videos/${videoId}/share`)
-        setVideos(prev => prev.map(v => 
-          v.id === videoId 
+        setVideos(prev => prev.map(v =>
+          v.id === videoId
             ? { ...v, stats: { ...v.stats, shares: v.stats.shares + 1 } }
             : v
         ))
@@ -411,7 +413,26 @@ const VideosView: React.FC = () => {
         {/* Navigation Hints */}
         <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-30">
           <div className="bg-primary-500/80 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm">
-            {currentIndex + 1} / {videos.length}
+            <Link href="/">
+              {/* <img src={"/images/logof.png"} style={""} alt="Le Yamo Logo" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full mr-2" /> */}
+              <Image
+                src="/images/logof.png"
+                alt="Le Yamo Logo"
+                width={140}
+                height={28}
+                priority
+                unoptimized
+                quality={100}
+                loading="eager"
+                className="mr-2 object-contain"
+              />
+              {/* <div className="text-xl sm:text-3xl font-semibold flex items-center text-gray-900 dark:text-white">
+                <span className="bg-primary-500 text-white px-2 sm:px-3 py-0.5 sm:py-1 mx-1">
+                  Yamo
+                </span>
+                {'Zone'}
+              </div> */}
+            </Link>
           </div>
         </div>
 
