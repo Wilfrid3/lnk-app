@@ -118,11 +118,11 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
   console.log('User Stats:', userStats);
 
   // Calculate age from appearance string, if available
-  const extractAge = (appearance?: string): number => {
-    if (!appearance) return 0
-    const ageMatch = appearance.match(/\b(\d+)\s*(an|ans)\b/i)
-    return ageMatch ? parseInt(ageMatch[1]) : 0
-  }
+  // const extractAge = (appearance?: string): number => {
+  //   if (!appearance) return 0
+  //   const ageMatch = appearance.match(/\b(\d+)\s*(an|ans)\b/i)
+  //   return ageMatch ? parseInt(ageMatch[1]) : 0
+  // }
 
   const redirectUnauthenticated = () => {
     router.push(`/auth/signin?callbackUrl=${encodeURIComponent(window.location.pathname)}`)
@@ -489,7 +489,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
   }
 
   // Get user age
-  const age = extractAge(post.appearance) || 25 // Default to 25 if not found
+  // const age = extractAge(post.appearance) || 25 // Default to 25 if not found
 
   // Convert timestamp to relative time
   const getRelativeTime = (timestamp: string) => {
