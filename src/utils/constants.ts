@@ -319,7 +319,7 @@ export const citiesByISOCode: Record<string, string[]> = {
  */
 export const neighborhoodsByCity: Record<string, string[]> = {
   // Cameroon cities
-  "Yaounde": [
+  "Yaoundé": [
     "Afanoya 1",
     "Afanoya 2",
     "Afanoya 3",
