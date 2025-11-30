@@ -34,7 +34,6 @@ const PostCard: React.FC<Post> = ({
   premium = false, // Add this if not already present
   when,
   location,
-  description,
   title,
   lookingFor,
   verified = false,
