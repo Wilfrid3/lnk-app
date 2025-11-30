@@ -14,6 +14,7 @@ interface Video {
   whatsapp?: string
   description: string
   videoUrl: string
+  location?: string
   thumbnailUrl?: string
   user: {
     id: string
@@ -307,7 +308,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
         <div className="flex items-center text-xs text-gray-300 drop-shadow-lg">
           <span className="mr-4">{formatCount(video.stats.views)} vues</span>
-          <span>{new Date(video.createdAt).toLocaleDateString()}</span>
+          <span className="mr-4">{new Date(video.createdAt).toLocaleDateString()}</span>
+          {/* <span className="material-icons text-xs mr-1">location_on</span><span>{video.location}</span> */}
         </div>
       </div>
 

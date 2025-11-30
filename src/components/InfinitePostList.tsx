@@ -11,7 +11,7 @@ const InfinitePostList: React.FC<InfinitePostListProps> = ({ userId }) => {
   const { posts, loading, error, hasMore, loadMore } = useInfiniteScroll({ userId });
   const observer = useRef<IntersectionObserver | null>(null);
   const loadMoreRef = useRef<HTMLDivElement>(null);
-
+  console.log('Rendering InfinitePostList with posts:', posts);
   // Set up the intersection observer to detect when user scrolls to the bottom
   const lastPostElementRef = useCallback((node: HTMLDivElement) => {
     if (loading) return;

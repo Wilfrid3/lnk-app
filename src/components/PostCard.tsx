@@ -13,6 +13,7 @@ export type Post = {
   when: string;
   location: string;
   description: string;
+  title: string;
   lookingFor: string;
   verified?: boolean;
   isAd?: boolean;
@@ -34,6 +35,7 @@ const PostCard: React.FC<Post> = ({
   when,
   location,
   description,
+  title,
   lookingFor,
   verified = false,
   isAd = false,
@@ -211,7 +213,7 @@ const PostCard: React.FC<Post> = ({
                     </span>
                   )}
                   <span className="ml-1 text-gray-700 dark:text-gray-300 text-xs">
-                    {age}
+                    {age}ans
                   </span>
                   {verified && (
                     <span className="material-icons text-blue-500 text-xs ml-1">
@@ -228,7 +230,7 @@ const PostCard: React.FC<Post> = ({
             </p>
             {/* Description - reduced height */}
             <p className="text-gray-700 font-bold dark:text-gray-300 text-xs mb-2 line-clamp-1">
-              {description}
+              {title}
             </p>
 
             {/* Footer with Location and Stats */}

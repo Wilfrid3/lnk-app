@@ -25,6 +25,7 @@ interface PostDetail {
     name: string
     avatar: string | null
     isVerified: boolean
+    age?: number
     email?: string // Added email field
   }
   mainPhoto: {
@@ -553,7 +554,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
                     )}
                   </div>
                   <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-300">
-                    <span>{age} ans</span>
+                    <span>{post.user.age} ans</span>
                     <span className="text-gray-400">•</span>
                     <span>{getRelativeTime(post.createdAt)}</span>
                   </div>

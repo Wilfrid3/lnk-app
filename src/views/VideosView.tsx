@@ -101,6 +101,8 @@ const VideosView: React.FC = () => {
       } else {
         setVideos(prev => [...prev, ...data.videos])
       }
+
+      console.log('Loaded videos:', data.videos)
       
       setHasMore(data.hasMore)
       setPage(pageNum)

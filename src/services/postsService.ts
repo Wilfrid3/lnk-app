@@ -21,6 +21,7 @@ export interface PostUser {
   id: string;
   email: string;
   name: string;
+  age: number;
   avatar: string;
   phoneNumber: string;
   isPhoneVerified: boolean;

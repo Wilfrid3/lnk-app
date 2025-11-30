@@ -18,32 +18,48 @@ const Header: React.FC = () => {
       <header className="bg-white dark:bg-gray-800 py-2 sm:py-3 px-2 sm:px-4 shadow-sm fixed top-0 left-0 right-0 z-50 border-b border-gray-200 dark:border-gray-700">
         <div className="flex justify-between items-center max-w-4xl mx-auto">
           {/* Explorer Button */}
-          <div className="flex items-center">
-            <button onClick={openDrawer} className="flex items-center text-gray-900 dark:text-gray-100">
+          <div className="flex items-center space-x-3">
+            {/* Drawer Button */}
+            <button
+              onClick={openDrawer}
+              className="flex items-center text-gray-900 dark:text-gray-100"
+            >
               <div className="flex items-center">
                 <span className="material-icons text-2xl sm:text-3xl text-primary-500">menu</span>
-                <span className="hidden sm:inline text-lg sm:text-2xl ml-1 sm:ml-2">
-                  Explorer
-                </span>
               </div>
             </button>
+
+            {/* Telegram Button */}
+            <a
+              href="https://t.me/yamohub"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#229ED9] rounded-full flex items-center justify-center 
+                shadow-md neon-pulse mr-2"
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+                alt="Telegram"
+                className="w-8 h-8"
+              />
+            </a>
           </div>
 
           {/* Le Yamo */}
           <div className="flex items-center">
             <Link href="/">
-            {/* <img src={"/images/logof.png"} style={""} alt="Le Yamo Logo" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full mr-2" /> */}
-            <Image
-              src="/images/logof.png"
-              alt="Le Yamo Logo"
-              width={140}
-              height={28}
-              priority
-              unoptimized
-              quality={100}
-              loading="eager"
-              className="mr-2 object-contain"
-            />
+              {/* <img src={"/images/logof.png"} style={""} alt="Le Yamo Logo" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full mr-2" /> */}
+              <Image
+                src="/images/logof.png"
+                alt="Le Yamo Logo"
+                width={140}
+                height={28}
+                priority
+                unoptimized
+                quality={100}
+                loading="eager"
+                className="mr-2 object-contain"
+              />
               {/* <div className="text-xl sm:text-3xl font-semibold flex items-center text-gray-900 dark:text-white">
                 <span className="bg-primary-500 text-white px-2 sm:px-3 py-0.5 sm:py-1 mx-1">
                   Yamo

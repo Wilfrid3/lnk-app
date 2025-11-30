@@ -31,7 +31,7 @@ export const adultServices = [
   { id: "caresses", label: "Caresses", category: "base", icon: "touch_app" },
   { id: "baisers", label: "Baisers", category: "base", icon: "kiss" },
   { id: "preliminaires", label: "Préliminaires", category: "base", icon: "favorite_border" },
-  
+
   // Services oraux
   { id: "fellation", label: "Fellation", category: "oral", icon: "circle" },
   { id: "fellation_avec_deglutition", label: "Fellation avec déglutition", category: "oral", icon: "circle" },
@@ -39,12 +39,12 @@ export const adultServices = [
   { id: "cunnilingus", label: "Cunnilingus", category: "oral", icon: "favorite" },
   { id: "annulingus", label: "Annulingus", category: "oral", icon: "favorite" },
   { id: "69", label: "69", category: "oral", icon: "favorite" },
-  
+
   // Services anaux
   { id: "sodomie", label: "Sodomie", category: "anal", icon: "circle" },
   { id: "penetration_anale", label: "Pénétration anale", category: "anal", icon: "circle" },
   { id: "jeux_anaux", label: "Jeux anaux", category: "anal", icon: "circle" },
-  
+
   // Massages
   { id: "massage_erotique", label: "Massage érotique", category: "massage", icon: "spa" },
   { id: "massage_tantrique", label: "Massage tantrique", category: "massage", icon: "spa" },
@@ -53,7 +53,7 @@ export const adultServices = [
   { id: "massage_yoni", label: "Massage yoni", category: "massage", icon: "spa" },
   { id: "massage_prostatique", label: "Massage prostatique", category: "massage", icon: "spa" },
   { id: "massage_corps_a_corps", label: "Massage corps à corps", category: "massage", icon: "spa" },
-  
+
   // Positions et pratiques
   { id: "toutes_positions", label: "Toutes positions", category: "positions", icon: "fitness_center" },
   { id: "amazone", label: "Amazone", category: "positions", icon: "fitness_center" },
@@ -61,7 +61,7 @@ export const adultServices = [
   { id: "missionnaire", label: "Missionnaire", category: "positions", icon: "fitness_center" },
   { id: "cuillere", label: "Cuillère", category: "positions", icon: "fitness_center" },
   { id: "andromaque", label: "Andromaque", category: "positions", icon: "fitness_center" },
-  
+
   // Services multiples
   { id: "plan_a_trois", label: "Plan à trois", category: "multiple", icon: "group" },
   { id: "partouze", label: "Partouze", category: "multiple", icon: "group" },
@@ -69,7 +69,7 @@ export const adultServices = [
   { id: "orgie", label: "Orgie", category: "multiple", icon: "group" },
   { id: "echangisme", label: "Échangisme", category: "multiple", icon: "group" },
   { id: "melangisme", label: "Mélangisme", category: "multiple", icon: "group" },
-  
+
   // Jeux et accessoires
   { id: "gode", label: "Utilisation de gode", category: "accessoires", icon: "fitness_center" },
   { id: "sextoys", label: "Sex-toys", category: "accessoires", icon: "fitness_center" },
@@ -77,7 +77,7 @@ export const adultServices = [
   { id: "plug_anal", label: "Plug anal", category: "accessoires", icon: "fitness_center" },
   { id: "menottes", label: "Menottes", category: "accessoires", icon: "lock" },
   { id: "fouet", label: "Fouet", category: "accessoires", icon: "sports_martial_arts" },
-  
+
   // BDSM et domination
   { id: "domination", label: "Domination", category: "bdsm", icon: "sports_martial_arts" },
   { id: "soumission", label: "Soumission", category: "bdsm", icon: "sports_martial_arts" },
@@ -85,41 +85,41 @@ export const adultServices = [
   { id: "spanking", label: "Spanking", category: "bdsm", icon: "sports_martial_arts" },
   { id: "cire_chaude", label: "Cire chaude", category: "bdsm", icon: "local_fire_department" },
   { id: "jeux_de_role", label: "Jeux de rôle", category: "bdsm", icon: "theater_comedy" },
-  
+
   // Spécialités
   { id: "strip_tease", label: "Strip-tease", category: "specialites", icon: "whatshot" },
   { id: "lap_dance", label: "Lap dance", category: "specialites", icon: "music_note" },
   { id: "show_prive", label: "Show privé", category: "specialites", icon: "visibility" },
   { id: "danse_sensuelle", label: "Danse sensuelle", category: "specialites", icon: "music_note" },
   { id: "jeux_de_seduction", label: "Jeux de séduction", category: "specialites", icon: "favorite" },
-  
+
   // Services virtuels
   { id: "sexcam", label: "Sexcam", category: "virtuel", icon: "videocam" },
   { id: "video_call", label: "Appel vidéo", category: "virtuel", icon: "video_call" },
   { id: "chat_erotique", label: "Chat érotique", category: "virtuel", icon: "chat" },
   { id: "photos_personnalisees", label: "Photos personnalisées", category: "virtuel", icon: "photo_camera" },
   { id: "videos_personnalisees", label: "Vidéos personnalisées", category: "virtuel", icon: "videocam" },
-  
+
   // Services particuliers
   { id: "fetichisme_pieds", label: "Fétichisme des pieds", category: "fetichisme", icon: "directions_walk" },
   { id: "fetichisme_lingerie", label: "Fétichisme lingerie", category: "fetichisme", icon: "checkroom" },
   { id: "urophilie", label: "Urophilie", category: "fetichisme", icon: "water_drop" },
   { id: "exhibitionnisme", label: "Exhibitionnisme", category: "fetichisme", icon: "visibility" },
   { id: "voyeurisme", label: "Voyeurisme", category: "fetichisme", icon: "remove_red_eye" },
-  
+
   // Services extérieurs
   { id: "sexe_dehors", label: "Sexe en extérieur", category: "exterieur", icon: "park" },
   { id: "voiture", label: "Dans la voiture", category: "exterieur", icon: "directions_car" },
   { id: "plage", label: "À la plage", category: "exterieur", icon: "beach_access" },
   { id: "foret", label: "En forêt", category: "exterieur", icon: "park" },
-  
+
   // Accompagnement
   { id: "gfe", label: "Girlfriend Experience", category: "accompagnement", icon: "favorite" },
   { id: "diner_aux_chandelles", label: "Dîner aux chandelles", category: "accompagnement", icon: "restaurant" },
   { id: "soiree_accompagnement", label: "Soirée d'accompagnement", category: "accompagnement", icon: "event" },
   { id: "week_end_complet", label: "Week-end complet", category: "accompagnement", icon: "weekend" },
   { id: "voyage_accompagnement", label: "Voyage d'accompagnement", category: "accompagnement", icon: "flight" },
-  
+
   // Services de luxe
   { id: "service_vip", label: "Service VIP", category: "luxe", icon: "star" },
   { id: "champagne_service", label: "Service champagne", category: "luxe", icon: "wine_bar" },
@@ -165,7 +165,7 @@ export const appearances = ["Noir", "Brun", "Métis", "Blanc", "Ébène"];
 export const appearanceLabels = {
   homme: {
     "Noir": "Noir",
-    "Brun": "Brun", 
+    "Brun": "Brun",
     "Métis": "Métis",
     "Blanc": "Blanc",
     "Ébène": "Ébène"
@@ -173,7 +173,7 @@ export const appearanceLabels = {
   femme: {
     "Noir": "Noire",
     "Brun": "Brune",
-    "Métis": "Métisse", 
+    "Métis": "Métisse",
     "Blanc": "Blanche",
     "Ébène": "Ébène"
   },
@@ -181,7 +181,7 @@ export const appearanceLabels = {
     "Noir": "Noir/Noire",
     "Brun": "Brun/Brune",
     "Métis": "Métis/Métisse",
-    "Blanc": "Blanc/Blanche", 
+    "Blanc": "Blanc/Blanche",
     "Ébène": "Ébène"
   },
   autres: {
@@ -212,7 +212,7 @@ export const getAppearanceDisplayLabel = (appearance: string, userType?: string)
   if (!userType || !appearanceLabels[userType as keyof typeof appearanceLabels]) {
     return appearance;
   }
-  
+
   const labels = appearanceLabels[userType as keyof typeof appearanceLabels];
   return labels[appearance as keyof typeof labels] || appearance;
 };
@@ -239,7 +239,7 @@ export const countries = [
 export const citiesByCountryCode: Record<string, string[]> = {
   // Cameroon
   '+237': [
-    "Yaoundé", "Douala", "Bafoussam", "Garoua", "Bamenda", "Maroua", "Ngaoundéré", 
+    "Yaoundé", "Douala", "Bafoussam", "Garoua", "Bamenda", "Maroua", "Ngaoundéré",
     "Bertoua", "Loum", "Kumba", "Edéa", "Kumbo", "Foumban", "Nkongsamba", "Limbe",
     "Kribi", "Ebolowa", "Sangmélima", "Mbalmayo", "Mfou", "Dschang", "Bafang",
     "Bandjoun", "Mbouda", "Batouri", "Yokadouma", "Kousséri", "Mora", "Kousseri",
@@ -247,7 +247,7 @@ export const citiesByCountryCode: Record<string, string[]> = {
   ],
   // France
   '+33': [
-    "Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Strasbourg", 
+    "Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Strasbourg",
     "Montpellier", "Bordeaux", "Lille", "Rennes", "Reims", "Saint-Étienne", "Toulon",
     "Le Havre", "Grenoble", "Dijon", "Angers", "Nîmes", "Villeurbanne", "Saint-Denis",
     "Le Mans", "Aix-en-Provence", "Clermont-Ferrand", "Brest", "Limoges", "Tours",
@@ -319,43 +319,452 @@ export const citiesByISOCode: Record<string, string[]> = {
  */
 export const neighborhoodsByCity: Record<string, string[]> = {
   // Cameroon cities
-  "Yaoundé": ["Bastos", "Centre ville", "Biyem-Assi", "Mvog-Betsi", "Mvan", "Essos", "Mimboman", "Nsimeyong", "Ekounou", "Nkol-Eton", "Messassi", "Emombo", "Mendong", "Oyom-Abang"],
-  "Douala": ["Akwa", "Bonanjo", "Bonapriso", "Bonamoussadi", "New Bell", "Ndokotti", "Bepanda", "Deido", "Makepe", "Bonaberi", "Logbaba", "Village", "PK8", "Cité SIC"],
-  "Bafoussam": ["Centre ville", "Banengo", "Kamkop", "Tamdja", "Bafoussam 3", "Baleng", "Bapi", "Tyo", "Famla"],
-  "Bamenda": ["Up Station", "Down Town", "Old Town", "Nkwen", "Bambili", "Mile 2", "Mile 4", "Mile 6", "Small Mankon"],
-  "Garoua": ["Centre ville", "Marouaré", "Roumdé Adjia", "Bibémiré", "Lopéré", "Foulbéré"],
-  "Maroua": ["Domayo", "Dougoï", "Palar", "Missinguileo", "Kakataré", "Zokok", "Djarengol"],
-  
+  "Yaounde": [
+    "Afanoya 1",
+    "Afanoya 2",
+    "Afanoya 3",
+    "Afanoya 4",
+    "Ahala 1",
+    "Ahala 2",
+    "Awae",
+    "Bastos",
+    "Biteng",
+    "Centre commercial",
+    "Cité Verte",
+    "Dakar",
+    "Efoulan",
+    "Ekoudou",
+    "Ekoumdoum",
+    "Ekounou",
+    "Elig-Edzoa",
+    "Elig-Essono",
+    "Emana",
+    "Etam-Bafia",
+    "Etoudi",
+    "Etoa-Meki 1",
+    "Etoa-Meki 2",
+    "Febe",
+    "Grand Messa",
+    "Kondengui 1",
+    "Madagascar",
+    "Mballa 1",
+    "Mballa 2",
+    "Mballa 3",
+    "Mebandan",
+    "Melen 2",
+    "Messa Carrière",
+    "Messame-Ndongo",
+    "Messassi",
+    "Mekoumbou 1",
+    "Mekoumbou 2",
+    "Mimboman",
+    "Mvan-Nord",
+    "Mvog-Mbi",
+    "Ndamvout",
+    "Ngoa-Ekele 1",
+    "Ngoa-Ekele 2",
+    "Nkol-Ndongo 2",
+    "Nkolmesseng 1",
+    "Nkolondom",
+    "Nkom-Kana",
+    "Nkomo",
+    "Nkoleton",
+    "Nkolfon",
+    "Nlong Mvolye",
+    "Nlongkak",
+    "Nsam",
+    "Nsimeyong 1",
+    "Nsimeyong 2",
+    "Nsimeyong 3",
+    "Ntouessong",
+    "Ntoungou",
+    "Nyom",
+    "Obili",
+    "Obobogo",
+    "Odza",
+    "Okolo",
+    "Olembe",
+    "Olezoa",
+    "Oliga",
+    "Tongolo",
+    "Tsinga",
+    "Manguier"
+  ],
+  "Douala": [
+    "Akwa",
+    "Akwa Nord",
+    "Bali",
+    "Bépanda",
+    "Bependa",
+    "Bependa Omnisport",
+    "Bessengue",
+    "Bonabéri",
+    "Bonapriso",
+    "Bonanjo",
+    "Bonamoussadi",
+    "Bonamoussadi Cité",
+    "Denver",
+    "Santa Barbara",
+    "Kotto",
+    "New Bell",
+    "New-Bell Congo",
+    "New-Bell Bandjoun",
+    "Bassa (Zone Bassa)",
+    "Logbaba",
+    "Logbessou",
+    "Logpom",
+    "Makepe",
+    "Japoma",
+    "Deïdo",
+    "New Deido",
+    "Bonateki",
+    "Bonatone",
+    "Grand Moulin",
+    "Bonamuti",
+    "Cité des Palmiers",
+    "Cité SIC",
+    "Ndogbong",
+    "Ndogbati",
+    "Ndogsimbi",
+    "Ndogpassi",
+    "Ndokoti",
+    "Nyalla",
+    "Ngangue",
+    "Mboppi",
+    "Youpwé",
+    "Dibamba-Bonaloka",
+    "New Town Aéroport",
+    "New Town",
+    "Bonaloka",
+    "Entrée de Billes",
+    "Bobongo",
+    "Boko",
+    "Ndobo",
+    "Ngwélé",
+    "Mambanda",
+    "Grand Hangar",
+    "Besseke",
+    "Nkombo",
+    "Socaver",
+    "Sic Cacao",
+    "Quartier CCC",
+    "Tractafric",
+    "PK8",
+    "PK9",
+    "PK10",
+    "PK13",
+    "PK14",
+    "PK21",
+    "PK27",
+    "Yassa",
+    "Village",
+    "Koumassi",
+    "Essengue",
+    "Cité des Douaniers"
+  ],
+  "Bafoussam": [
+    "Bamendzi",
+    "Banengo",
+    "Djeleng I",
+    "Djeleng II",
+    "Famla (« Akwa »)",
+    "Kamkop",
+    "Quartier Évêché",
+    "Quartier Haoussa",
+    "Tamdja",
+    "Gouache / Ngouache",
+    "Toket",
+    "Nylon",
+    "Tyo",
+    "Tyo-Ville",
+    "Tyo-Village",
+    "Ndianbou",
+    "Ndiandam",
+    "Ndianso",
+    "Metto",
+    "Mewehe",
+    "Lemgwo",
+    "Kena",
+    "Keuleu",
+    "Kouogouo",
+    "Sachié",
+    "Tougang",
+    "Touhenyé",
+    "Touhekououp",
+    "Banefo",
+    "Baye",
+    "Badeng",
+    "Bapi",
+    "Djassa",
+    "Djietcha",
+    "Konti",
+    "Yanmbah"
+  ],
+  "Bamenda": [
+    "Azire",
+    "Ntamulung",
+    "Ntarikon",
+    "Bayele",
+    "Nitop",
+    "New Layout",
+    "Meta Quarter",
+    "Small Mankon",
+    "Big Mankon",
+    "Old Town",
+    "Mulang",
+    "Musang",
+    "Ntarinkon",
+    "Alakuma",
+    "Nitop 1",
+    "Nitop 2",
+    "Nitop 3",
+    "Azire B",
+    "Clerk’s Quarter",
+    "Federal Quarters",
+    "Government Residential",
+    "Ntambeng",
+    "Mende-Nkwe",
+    "Mankon",
+    "Nkwen",
+    "Bamendakwe"
+  ],
+  "Garoua": [
+    "Roumdé Adjia",
+    "Garoua Plateau",
+    "Plateau",
+    "Bibémiré I",
+    "Bibémiré II",
+    "Bibémiré III",
+    "Djamboutou",
+    "Djamboutou Manga",
+    "Djamboutou Plateau",
+    "Djamboutou Petel",
+    "Camp Chinois",
+    "Yelwa",
+    "Foulbéré",
+    "Marouaré",
+    "Nassarao",
+    "Haoussaré",
+    "Ngalbidje",
+    "Takasko",
+    "Ouro-Labbo",
+    "Ouara-Talaka",
+    "Kanadi",
+    "Doualaré",
+    "Nigériaré"
+  ],
+  "Dschang": [
+    "Asseitsa",
+    "Athoumeto",
+    "Aza’a",
+    "Aza’a Foreke-Dschang",
+    "Azuenla",
+    "Canne à Sucre",
+    "Centre Commercial",
+    "Dounga",
+    "Famla",
+    "Femteu",
+    "Fiala (Foto) II",
+    "Fiankop",
+    "Fiankop I",
+    "Fiankop II",
+    "Génie Rural",
+    "Haoussa et Mosquée",
+    "Keuleng",
+    "Leufock",
+    "Makemtsa",
+    "Makemtsa-Madagascar",
+    "Mechieu",
+    "Meka’a I",
+    "Melang",
+    "Minghong et Zemba",
+    "Mingmeto",
+    "Mingou",
+    "Mosquée",
+    "Ngui",
+    "Nylon",
+    "Tapalé",
+    "Tchoualé I",
+    "Tchoualé II",
+    "Tsenfem",
+    "Tsinbing",
+    "Tsinkop",
+    "Zemda"
+  ],
+  "Kribi": [
+    "Massaka",
+    "Ngoyè administratif",
+    "Afan-Mabé",
+    "New Town I",
+    "New Town II",
+    "Petit-Paris",
+    "Mpalla",
+    "Nziou",
+    "Bibolo",
+    "Dombe",
+    "Mpolongwé I",
+    "Mpolongwé II",
+    "Londji I",
+    "Londji II",
+    "Elabé",
+    "Bebambwe I",
+    "Bebambwe II",
+    "Ngoye-Wamie",
+    "Ngoye-Réserve",
+    "Ebome",
+    "Eboundja I",
+    "Eboundja II",
+    "Bwambé",
+    "Lolabé",
+    "Louma / Grand Batanga I",
+    "Grand Batanga II",
+    "Lende-Dibé",
+    "Mboamanga",
+    "Mpangou",
+    "Zaïre",
+    "Loobé",
+    "Port autonome de Kribi",
+    "Mokolo (Kribi)"
+  ],
+  "Limbe": [
+    "Down Beach",
+    "New Town East",
+    "New Town West",
+    "Gardens",
+    "Church Street",
+    "Town Beach",
+    "Cassava Farm (Middle Cassava Farms / Upper Cassava Farms)",
+    "Motowoh (Lower / Middle / Upper Motowoh)",
+    "Lumpsum",
+    "GRA",
+    "New Layout GRA",
+    "Mbende",
+    "Mbende West",
+    "Unity Quarter",
+    "Unity Quarter Annex",
+    "Mabeta Road Layout",
+    "Coconut Island",
+    "Half Mile",
+    "Mile One",
+    "Mile Two",
+    "Mile Four (Mile 4 / Bonadikombo)",
+    "Mokunda",
+    "Botaland / Bota Land",
+    "Limbola",
+    "Wovia",
+    "Mokindi / Isokolo",
+    "Ngeme",
+    "Bobende",
+    "Mokundange",
+    "Batoke",
+    "Lower Bosumbu",
+    "Meveo me Mbenge",
+    "Animal Farm",
+    "Clerks Quarter",
+    "Federal Quarter",
+    "Custom Quarter"
+  ],
+  "Buea": [
+    "Buea Town (Bokwaongo)", "Buea Station", "Great Soppo", "Small Soppo", "Molyko", "Muea", "Mile 16 (Bolifamba)", "Mile 17 (gare routière)",
+    "Clerks Quarter", "Federal Quarter", "GRA (Government Residential Area)", "Bonduma", "Bomaka", "Bokwango", "Tole (Tole Tea Estate)",
+    "Dibanda", "Bova", "Bojongo", "Likoko-Membea", "Bokova", "Bonakanda", "Small Soppo New Layout", "Molyko New Layout", "Bulu Camp (zone de Buea)",
+    "Sandpit"
+  ],
+  "Ebolowa": [
+    "Angalé", "Nko’ovos 1", "Nko’ovos 2", "New-Bell 1", "New-Bell 3", "New-Bell 4", "New-Bell 5",
+    "Centre administratif / centre-ville", "Ekombité (zone de l’hôpital provincial)", "Abang", "Adjap-Biyeng",
+    "Afanengong-Evele", "Akak-Essatolo", "Amvam-Yévol", "Eves", "Foulassi-Yembong", "Koungoulou-Biyeng", "Lo’o",
+    "Ngalan", "Mekalat", "Mekalat-Yévol", "Mekalat-Biyen", "Essakoe", "Quartier Haoussa (quartier haoussa d’Ebolowa)",
+    "Samba (zone du marché Samba)"
+  ],
+  "Mbalmayo": [
+    "Centre ville",
+    "Obeck",
+    "Nkong Assi",
+    "Mbockoulou",
+    "Nseng Nlong I",
+    "Nseng Nlong II",
+    "Nseng Nlong III",
+    "Nseng Nlong IV",
+    "Oyack I",
+    "Oyack II",
+    "Ngallan",
+    "Akomnyada I",
+    "Akomnyada II",
+    "Assanzoa",
+    "Zamakoe",
+    "Memiam",
+    "Mekomo",
+    "Nkolnyama",
+    "Ngat Bane / Ngat Plantation",
+    "Ekombité",
+    "Nkolngock I",
+    "Nkolngock II",
+    "Nkoumadjap",
+    "Avebe",
+    "Mbedoumou"
+  ],
+  "Maroua": [
+    "Domayo",
+    "Hardé",
+    "Pitoaré",
+    "Founangue",
+    "Kongola Djiddéo",
+    "Djarengol",
+    "Kodek",
+    "Kodek Djarengol",
+    "Palar",
+    "Zokok",
+    "Diguirwo",
+    "Djoulgouf",
+    "Ziling",
+    "Barmaré",
+    "Maoundiwo",
+    "Louggeo",
+    "Douggoï",
+    "Doursoungo",
+    "Sararé",
+    "Ouro Lopé",
+    "Ouro Bikordi",
+    "Makabaye",
+    "Meskine",
+    "Koutbao",
+    "Salak",
+    "Pont Vert",
+    "Ouro-Dolé"
+  ],
+
+
   // France cities
   "Paris": ["Montmartre", "Le Marais", "Saint-Germain-des-Prés", "Champs-Élysées", "Belleville", "Bastille", "La Défense", "Montparnasse", "République", "Batignolles", "Opéra", "Latin Quarter"],
   "Marseille": ["Le Panier", "Vieux-Port", "La Canebière", "Noailles", "Endoume", "Castellane", "Belsunce", "Le Canet", "La Plaine", "Saint-Victor"],
   "Lyon": ["Vieux Lyon", "La Croix-Rousse", "Bellecour", "La Part-Dieu", "Confluence", "Guillotière", "Terreaux", "Perrache", "Fourvière", "Vaise"],
   "Toulouse": ["Capitole", "Saint-Cyprien", "Carmes", "Saint-Michel", "Minimes", "Rangueil", "Esquirol", "Saint-Aubin", "Compans-Caffarelli"],
   "Nice": ["Promenade des Anglais", "Vieux Nice", "Jean-Médecin", "Cimiez", "Port", "Gambetta", "Libération", "Riquier", "Arenas", "Saint-Roch"],
-  
+
   // Côte d'Ivoire cities
   "Abidjan": ["Plateau", "Cocody", "Marcory", "Treichville", "Yopougon", "Abobo", "Adjamé", "Attécoubé", "Koumassi", "Port-Bouët", "Bingerville", "Anyama"],
   "Bouaké": ["Commerce", "Air France", "Belleville", "Koko", "Nimbo", "Sokoura", "Dar-es-Salam"],
   "Yamoussoukro": ["Centre ville", "Habitat", "Dioulakro", "Assabou", "220 Logements", "Millionnaire", "Morofé"],
   "Daloa": ["Commerce", "Tazibouo", "Gbokora", "Labia", "Kirmann", "Lobia", "Orly"],
-  
+
   // Sénégal cities
   "Dakar": ["Plateau", "Médina", "Almadies", "Fann", "Mermoz", "Ouakam", "Yoff", "Sacré-Cœur", "Grand-Dakar", "Ngor", "Point E", "Liberté", "Pikine"],
   "Thiès": ["Centre ville", "Cité Lamy", "Sampathé", "Nguinth", "Mbour 1", "Mbour 2", "Mbour 3", "Hersent", "Thialy"],
   "Saint-Louis": ["Île Saint-Louis", "Sor", "Langue de Barbarie", "Guet Ndar", "Ndioloffène", "Léona", "Balacoss", "Diamaguene"],
-  
+
   // Burkina Faso cities
   "Ouagadougou": ["Centre-ville", "Dapoya", "Paspanga", "Gounghin", "Zogona", "Tampouy", "Pissy", "Somgandé", "Tanghin", "Wemtenga"],
   "Bobo-Dioulasso": ["Centre-ville", "Sarfalao", "Accart-Ville", "Colma", "Bindougousso", "Kuinima", "Colsama", "Diarradougou"],
-  
+
   // Gabon cities
   "Libreville": ["Centre-ville", "Louis", "Mont-Bouët", "Glass", "Lalala", "Nkembo", "Oloumi", "Awendjé", "Batterie IV", "Akébé", "Sotega"],
   "Port-Gentil": ["Centre-ville", "Grand Village", "Balise", "Matiti", "Ntchengué", "Sogara"],
-  
+
   // Congo cities
   "Brazzaville": ["Centre-ville", "Bacongo", "Poto-Poto", "Moungali", "Ouenzé", "Talangaï", "Mfilou", "Madibou", "Djiri"],
   "Pointe-Noire": ["Centre-ville", "Lumumba", "Mahouata", "Tié-Tié", "Loandjili", "Mongo-Poukou", "Ngoyo", "Mbota"],
-  
+
   // Democratic Republic of Congo cities
   "Kinshasa": ["Gombe", "Lingwala", "Barumbu", "Kinshasa", "Kintambo", "Ngaliema", "Mont Ngafula", "Lemba", "Limete", "Matete", "Ndjili", "Masina"],
   "Lubumbashi": ["Centre-ville", "Kenya", "Ruashi", "Katuba", "Kamalondo", "Kampemba", "Annexe"]
@@ -418,7 +827,7 @@ export const physicalAttributes = [
   // Intimate attributes
   { id: 'rasee', label: 'Rasée', category: 'intime', icon: 'content_cut' },
   { id: 'poilue', label: 'Poilue', category: 'intime', icon: 'spa' },
-  
+
   // Délires with added icons
   { id: "sexcam", label: "Sexcam", category: 'delires', icon: "videocam" },
   { id: "plan_a_3", label: "Plan à 3", category: 'delires', icon: "group" },

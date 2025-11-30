@@ -55,12 +55,12 @@ export const mapApiPostToCardProps = (post: ApiPost): PostCardProps => {
     : post.city;
   
   // Extract the user's age from the appearance field if possible
-  let age = 0;
-  const ageRegex = /\b(\d+)\s*(an|ans)\b/i;
-  const ageMatch = ageRegex.exec(post.appearance ?? '');
-  if (ageMatch) {
-    age = parseInt(ageMatch[1]);
-  }  // We're now using the imported getFullImageUrl function from imageUtils.ts
+  // let age = 0;
+  // const ageRegex = /\b(\d+)\s*(an|ans)\b/i;
+  // const ageMatch = ageRegex.exec(post.appearance ?? '');
+  // if (ageMatch) {
+  //   age = parseInt(ageMatch[1]);
+  // }  // We're now using the imported getFullImageUrl function from imageUtils.ts
   
   // Get offering labels using the helper function
   const offeringLabels = getOfferingLabels(post.offerings);
@@ -72,11 +72,12 @@ export const mapApiPostToCardProps = (post: ApiPost): PostCardProps => {
     name: post.user.name,
     avatar: getFullImageUrl(post.user.avatar) ?? `/images/avatars/default_${post.clientType}.png`, // Fallback avatar
     featureImage: getFullImageUrl(post.mainPhoto?.url),
-    age: age || 25, // Default to 25 if no age found
+    age: post.user.age, // Default to 25 if no age found
     vip: post.user.isVip,
     when,
     location,
     description: post.description,
+    title: post.title,
     lookingFor: `Délires: ${offeringLabels.join(', ')}`,
     verified: post.user.isVerified,
     isAd: post.isAd,
