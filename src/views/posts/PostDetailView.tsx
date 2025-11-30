@@ -269,7 +269,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
       navigator.share({
         title: post?.title || 'Annonce sur yamohub',
         text: post?.description?.substring(0, 100) || 'Découvrez cette annonce sur yamohub',
-        url: window.location.href
+        url: process.env.NEXT_PUBLIC_SITE_URL ? `${process.env.NEXT_PUBLIC_SITE_URL}/posts/${postId}` : `https://yamohub.com/posts/${postId}`,
       })
     } else {
       // Fallback - copy to clipboard
@@ -290,7 +290,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
       let whatsappNumber = post.whatsappNumber.startsWith('+')
         ? post.whatsappNumber.substring(1)
         : post.whatsappNumber
-      const message = `Salut 😊. Je viens de voir votre annonce sur https://yamohub.com et je suis intéressé par vos services`
+      const message = `Salut 😊. Je viens de voir votre annonce sur ${process.env.NEXT_PUBLIC_SITE_URL ? `${process.env.NEXT_PUBLIC_SITE_URL}/posts/${postId}` : `https://yamohub.com/posts/${postId}`} et je suis intéressé par vos services`
       whatsappNumber = whatsappNumber.replace(/\s+/g, '') // Remove spaces if any
       window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank')
     } else if (post?.phoneNumber) {
@@ -298,7 +298,7 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
       let phoneNumber = post.phoneNumber.startsWith('+')
         ? post.phoneNumber.substring(1)
         : post.phoneNumber
-      const message = `Salut 😊. Je viens de voir votre annonce sur www.yamohub.com et je suis intéressé par vos services`
+      const message = `Salut 😊. Je viens de voir votre annonce sur ${process.env.NEXT_PUBLIC_SITE_URL ? `${process.env.NEXT_PUBLIC_SITE_URL}/posts/${postId}` : `https://yamohub.com/posts/${postId}`} et je suis intéressé par vos services`
       phoneNumber = phoneNumber.replace(/\s+/g, '') // Remove spaces if any
       window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank')
     }

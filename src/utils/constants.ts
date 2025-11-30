@@ -231,7 +231,6 @@ export const countries = [
   { code: '+242', countryCode: 'cg', name: 'Congo' },
   { code: '+243', countryCode: 'cd', name: 'République démocratique du Congo' }
 ];
-
 /**
  * Cities organized by phone code
  * Used in LocationStep and SearchView components
