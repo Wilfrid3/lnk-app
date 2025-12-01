@@ -16,6 +16,20 @@ interface VideoFormData {
   thumbnailFile: File | null
 }
 
+// Country codes with flags for phone number input
+const countryCodes = [
+  { code: '+237', country: 'CM', flag: '🇨🇲', name: 'Cameroun' },
+  { code: '+33', country: 'FR', flag: '🇫🇷', name: 'France' },
+  { code: '+225', country: 'CI', flag: '🇨🇮', name: 'Côte d\'Ivoire' },
+  { code: '+221', country: 'SN', flag: '🇸🇳', name: 'Sénégal' },
+  { code: '+226', country: 'BF', flag: '🇧🇫', name: 'Burkina Faso' },
+  { code: '+241', country: 'GA', flag: '🇬🇦', name: 'Gabon' },
+  { code: '+242', country: 'CG', flag: '🇨🇬', name: 'Congo' },
+  { code: '+243', country: 'CD', flag: '🇨🇩', name: 'RD Congo' },
+  { code: '+229', country: 'BJ', flag: '🇧🇯', name: 'Bénin' },
+  { code: '+235', country: 'TD', flag: '🇹🇩', name: 'Tchad' },
+]
+
 export default function PublishVideoView() {
   const router = useRouter()
   const { user } = useAuth()
@@ -28,6 +42,8 @@ export default function PublishVideoView() {
     thumbnailFile: null
   })
   const [isLoading, setIsLoading] = useState(false)
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false)
+  const [countryCode, setSelectCountryCode] = useState("")
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [videoPreview, setVideoPreview] = useState<string | null>(null)
   const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(null)
@@ -54,6 +70,15 @@ export default function PublishVideoView() {
       setVideoPreview(URL.createObjectURL(file))
       setErrorMessage(null)
     }
+  }
+
+  const handleCountryCodeChange = (code: string) => {
+    setSelectCountryCode(code);
+    setFormData(prev => ({
+      ...prev,
+      whatsappNumber: code + prev.whatsappNumber.replace(/^\+\d+/, '')
+    }));
+    setShowCountryDropdown(false)
   }
 
   const handleThumbnailSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -333,14 +358,54 @@ export default function PublishVideoView() {
                 <label htmlFor="whatsapp" className="block text-lg font-medium mb-2">
                   Numéro de téléphone (WhatsApp) <span className="text-primary-500">*</span>
                 </label>
-                <input
-                  id="whatsapp"
-                  type="tel"
-                  value={formData.whatsappNumber}
-                  onChange={(e) => setFormData(prev => ({ ...prev, whatsappNumber: e.target.value }))}
-                  placeholder="Saisissez le numéro WhatsApp"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
-                />
+                <div className="flex">
+                  {/* Country Code Dropdown */}
+                  <div className="relative">
+                    <button
+                      type="button"
+                      onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+                      className="flex items-center h-full px-3 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-l-lg text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-primary-500"
+                    >
+                      <span className="mr-1">
+                        {countryCodes.find(c => c.code === countryCode)?.flag}
+                      </span>
+                      <span>{countryCode}</span>
+                      <span className="ml-1">▼</span>
+                    </button>
+
+                    {/* Dropdown Menu */}
+                    {showCountryDropdown && (
+                      <div className="absolute z-10 mt-1 w-60 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black/5 max-h-60 overflow-y-auto">
+                        <div className="py-1">
+                          {countryCodes.map((country) => (
+                            <button
+                              key={country.code}
+                              type="button"
+                              onClick={() => handleCountryCodeChange(country.code)}
+                              className="flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700 focus:outline-none text-left"
+                            >
+                              <span className="mr-2">{country.flag}</span>
+                              <span className="mr-2">{country.code}</span>
+                              <span>{country.name}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Phone Input */}
+
+
+                  <input
+                    id="whatsapp"
+                    type="tel"
+                    value={formData.whatsappNumber}
+                    onChange={(e) => setFormData(prev => ({ ...prev, whatsappNumber: e.target.value }))}
+                    placeholder="Saisissez le numéro WhatsApp"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                  />
+                </div>
               </div>
 
               {/* Description */}
@@ -375,8 +440,8 @@ export default function PublishVideoView() {
                   type="submit"
                   disabled={!isFormValid || isLoading}
                   className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${isFormValid && !isLoading
-                      ? 'bg-primary-500 text-white hover:bg-primary-600'
-                      : 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                    ? 'bg-primary-500 text-white hover:bg-primary-600'
+                    : 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'
                     }`}
                 >
                   {isLoading ? (

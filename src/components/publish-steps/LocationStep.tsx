@@ -15,6 +15,20 @@ interface LocationStepProps {
   onUpdateWhatsappNumber: (number: string) => void;
 }
 
+// Country codes with flags for phone number input
+const countryCodes = [
+  { code: '+237', country: 'CM', flag: '🇨🇲', name: 'Cameroun' },
+  { code: '+33', country: 'FR', flag: '🇫🇷', name: 'France' },
+  { code: '+225', country: 'CI', flag: '🇨🇮', name: 'Côte d\'Ivoire' },
+  { code: '+221', country: 'SN', flag: '🇸🇳', name: 'Sénégal' },
+  { code: '+226', country: 'BF', flag: '🇧🇫', name: 'Burkina Faso' },
+  { code: '+241', country: 'GA', flag: '🇬🇦', name: 'Gabon' },
+  { code: '+242', country: 'CG', flag: '🇨🇬', name: 'Congo' },
+  { code: '+243', country: 'CD', flag: '🇨🇩', name: 'RD Congo' },
+  { code: '+229', country: 'BJ', flag: '🇧🇯', name: 'Bénin' },
+  { code: '+235', country: 'TD', flag: '🇹🇩', name: 'Tchad' },
+]
+
 const LocationStep: React.FC<LocationStepProps> = ({
   city,
   neighborhood,
@@ -28,17 +42,19 @@ const LocationStep: React.FC<LocationStepProps> = ({
   onUpdateWhatsappNumber
 }) => {
   const { user } = useAuth();
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false)
+  const [countryCode, setSelectCountryCode] = useState("")
   const [availableCities, setAvailableCities] = useState<string[]>([]);
-  
+
   // Get neighborhoods based on selected city
-  const availableNeighborhoods = city ? 
+  const availableNeighborhoods = city ?
     neighborhoodsByCity[city] || [] : [];
-    
+
   // Determine the user's country code from their profile
   useEffect(() => {
     // Default to Cameroon if no country code is found
     let userCountryCode = '+237';
-    
+
     if (user?.countryCode) {
       // If user has countryCode directly in their profile
       userCountryCode = user.countryCode;
@@ -50,7 +66,7 @@ const LocationStep: React.FC<LocationStepProps> = ({
         userCountryCode = phoneCountryCodeMatch[1];
       }
     }
-    
+
     // Get cities for the user's country code or fall back to Cameroon
     const cities = citiesByCountryCode[userCountryCode] || citiesByCountryCode['+237'];
     setAvailableCities(cities);
@@ -62,6 +78,12 @@ const LocationStep: React.FC<LocationStepProps> = ({
     // Reset neighborhood when city changes
     onUpdateNeighborhood('');
   };
+
+  const handleCountryCodeChange = (code: string) => {
+    setSelectCountryCode(code);
+    onUpdatePhoneNumber(code + phoneNumber.replace(/^\+\d+/, ''));
+    setShowCountryDropdown(false)
+  }
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
@@ -157,14 +179,53 @@ const LocationStep: React.FC<LocationStepProps> = ({
           <label htmlFor="whatsapp" className="block text-lg font-medium mb-2">
             Numéro de téléphone (WhatsApp)
           </label>
-          <input
-            id="whatsapp"
-            type="tel"
-            value={whatsappNumber}
-            onChange={(e) => onUpdateWhatsappNumber(e.target.value)}
-            placeholder="Saisissez le numéro WhatsApp"
-            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
-          />
+          <div className="flex">
+            {/* Country Code Dropdown */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+                className="flex items-center h-full px-3 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-l-lg text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-primary-500"
+              >
+                <span className="mr-1">
+                  {countryCodes.find(c => c.code === countryCode)?.flag}
+                </span>
+                <span>{countryCode}</span>
+                <span className="ml-1">▼</span>
+              </button>
+
+              {/* Dropdown Menu */}
+              {showCountryDropdown && (
+                <div className="absolute z-10 mt-1 w-60 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black/5 max-h-60 overflow-y-auto">
+                  <div className="py-1">
+                    {countryCodes.map((country) => (
+                      <button
+                        key={country.code}
+                        type="button"
+                        onClick={() => handleCountryCodeChange(country.code)}
+                        className="flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700 focus:outline-none text-left"
+                      >
+                        <span className="mr-2">{country.flag}</span>
+                        <span className="mr-2">{country.code}</span>
+                        <span>{country.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Phone Input */}
+
+            <input
+              id="whatsapp"
+              type="tel"
+              value={whatsappNumber}
+              onChange={(e) => onUpdateWhatsappNumber(countryCode + e.target.value.replace(/^\+\d+/, ''))}
+              placeholder="Saisissez le numéro WhatsApp"
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+            />
+          </div>
         </div>
 
         <div className="text-primary-500 text-sm">
