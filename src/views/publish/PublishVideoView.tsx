@@ -43,7 +43,7 @@ export default function PublishVideoView() {
   })
   const [isLoading, setIsLoading] = useState(false)
   const [showCountryDropdown, setShowCountryDropdown] = useState(false)
-  const [countryCode, setSelectCountryCode] = useState("")
+  const [countryCode, setSelectCountryCode] = useState("+237")
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [videoPreview, setVideoPreview] = useState<string | null>(null)
   const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(null)
@@ -74,10 +74,6 @@ export default function PublishVideoView() {
 
   const handleCountryCodeChange = (code: string) => {
     setSelectCountryCode(code);
-    setFormData(prev => ({
-      ...prev,
-      whatsappNumber: code + prev.whatsappNumber.replace(/^\+\d+/, '')
-    }));
     setShowCountryDropdown(false)
   }
 
@@ -144,6 +140,12 @@ export default function PublishVideoView() {
 
     setIsLoading(true)
     setErrorMessage(null)
+
+
+    setFormData(prev => ({
+      ...prev,
+      whatsappNumber: countryCode + prev.whatsappNumber.replace(/^\+\d+/, '')
+    }));
 
     try {
       // Create FormData for file upload to match API expectations

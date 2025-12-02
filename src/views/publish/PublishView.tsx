@@ -35,6 +35,7 @@ export default function PublishView() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [countryCode, setCountryCode] = useState("+237");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     services: [{ service: '', price: '' }],
@@ -126,7 +127,7 @@ export default function PublishView() {
         neighborhood: formData.neighborhood,
         travelOption: travelOptionValue,
         phoneNumber: formData.phoneNumber,
-        whatsappNumber: formData.whatsappNumber,
+        whatsappNumber: countryCode + formData.whatsappNumber.replace(/^0+/, ''),
         isActive: true
       };
       
@@ -289,6 +290,8 @@ export default function PublishView() {
             travelOption={formData.travelOption}
             phoneNumber={formData.phoneNumber}
             whatsappNumber={formData.whatsappNumber}
+            countryCode={countryCode}
+            handleCountryCodeChange={(code) => setCountryCode(code)}
             onUpdateCity={(city) => updateFormData('city', city)}
             onUpdateNeighborhood={(n) => updateFormData('neighborhood', n)}
             onUpdateTravelOption={(opt) => updateFormData('travelOption', opt)}

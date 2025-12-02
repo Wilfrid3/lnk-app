@@ -8,6 +8,8 @@ interface LocationStepProps {
   travelOption: string;
   phoneNumber: string;
   whatsappNumber: string;
+  countryCode: string;
+  handleCountryCodeChange: (code: string) => void;
   onUpdateCity: (city: string) => void;
   onUpdateNeighborhood: (neighborhood: string) => void;
   onUpdateTravelOption: (option: string) => void;
@@ -35,6 +37,8 @@ const LocationStep: React.FC<LocationStepProps> = ({
   travelOption,
   phoneNumber,
   whatsappNumber,
+  countryCode,
+  handleCountryCodeChange,
   onUpdateCity,
   onUpdateNeighborhood,
   onUpdateTravelOption,
@@ -43,7 +47,6 @@ const LocationStep: React.FC<LocationStepProps> = ({
 }) => {
   const { user } = useAuth();
   const [showCountryDropdown, setShowCountryDropdown] = useState(false)
-  const [countryCode, setSelectCountryCode] = useState("")
   const [availableCities, setAvailableCities] = useState<string[]>([]);
 
   // Get neighborhoods based on selected city
@@ -78,12 +81,6 @@ const LocationStep: React.FC<LocationStepProps> = ({
     // Reset neighborhood when city changes
     onUpdateNeighborhood('');
   };
-
-  const handleCountryCodeChange = (code: string) => {
-    setSelectCountryCode(code);
-    onUpdatePhoneNumber(code + phoneNumber.replace(/^\+\d+/, ''));
-    setShowCountryDropdown(false)
-  }
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
@@ -221,7 +218,7 @@ const LocationStep: React.FC<LocationStepProps> = ({
               id="whatsapp"
               type="tel"
               value={whatsappNumber}
-              onChange={(e) => onUpdateWhatsappNumber(countryCode + e.target.value.replace(/^\+\d+/, ''))}
+              onChange={(e) => onUpdateWhatsappNumber(e.target.value)}
               placeholder="Saisissez le numéro WhatsApp"
               className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
             />
