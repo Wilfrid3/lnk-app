@@ -11,6 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Generate version
+        id: version
+        run: |
+          VERSION="$(git rev-parse --short HEAD)-$(date +%s)"
+          BUILD_ID="$(date +%Y%m%d%H%M%S)"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "build_id=$BUILD_ID" >> $GITHUB_OUTPUT
+          echo "Generated version: $VERSION"
+          echo "Generated build ID: $BUILD_ID"
+
       - name: Build Docker image
         run: |
           docker build \
@@ -28,6 +38,8 @@ jobs:
             --build-arg NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }} \
             --build-arg NEXT_PUBLIC_SITE_NAME=${{ secrets.NEXT_PUBLIC_SITE_NAME }} \
             --build-arg NEXT_PUBLIC_DEFAULT_LOCALE=${{ secrets.NEXT_PUBLIC_DEFAULT_LOCALE }} \
+            --build-arg NEXT_PUBLIC_APP_VERSION="${{ steps.version.outputs.version }}" \
+            --build-arg NEXT_PUBLIC_BUILD_ID="${{ steps.version.outputs.build_id }}" \
             -t ghcr.io/wilfrid3/lnk-app:latest .
 
       - name: Login to GHCR
