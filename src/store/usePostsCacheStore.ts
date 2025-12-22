@@ -38,6 +38,7 @@ export const usePostsCacheStore = create<PostsCacheStore>((set, get) => ({
   userPosts: {},
   
   setHomePosts: (posts, page, hasMore) =>
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     set((state) => ({
       homePosts: {
         posts,
