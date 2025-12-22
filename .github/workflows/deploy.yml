@@ -23,7 +23,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build \
+          docker build --no-cache \
             --build-arg NEXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }} \
             --build-arg NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }} \
             --build-arg NEXT_PUBLIC_GA_MEASUREMENT_ID=${{ secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }} \
@@ -40,7 +40,7 @@ jobs:
             --build-arg NEXT_PUBLIC_DEFAULT_LOCALE=${{ secrets.NEXT_PUBLIC_DEFAULT_LOCALE }} \
             --build-arg NEXT_PUBLIC_APP_VERSION="${{ steps.version.outputs.version }}" \
             --build-arg NEXT_PUBLIC_BUILD_ID="${{ steps.version.outputs.build_id }}" \
-            -t ghcr.io/wilfrid3/lnk-app:latest .
+            -t ghcr.io/wilfrid3/lnk-app:${{ steps.version.outputs.version }} .
 
       - name: Login to GHCR
         run: |
@@ -68,6 +68,7 @@ jobs:
           echo "NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}" >> .env.production
           echo "NEXT_PUBLIC_SITE_NAME=${{ secrets.NEXT_PUBLIC_SITE_NAME }}" >> .env.production
           echo "NEXT_PUBLIC_DEFAULT_LOCALE=${{ secrets.NEXT_PUBLIC_DEFAULT_LOCALE }}" >> .env.production
+          echo "APP_VERSION=${{ steps.version.outputs.version }}" >> .env.production
 
           # Show a small masked preview for logs (no secret values)
           echo "-> .env.production generated (length bytes): $(wc -c < .env.production)"
@@ -85,7 +86,7 @@ jobs:
           target: "/home/yamohub"
 
       - name: Push image
-        run: docker push ghcr.io/wilfrid3/lnk-app:latest
+        run: docker push ghcr.io/wilfrid3/lnk-app:${{ steps.version.outputs.version }}
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v0.1.10
@@ -96,4 +97,4 @@ jobs:
           script: |
             cd /home/yamohub
             docker-compose pull yamohub
-            docker-compose up -d yamohub
+            docker-compose up -d --force-recreate yamohub
