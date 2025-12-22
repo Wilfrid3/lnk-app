@@ -36,18 +36,27 @@ export const useServiceWorkerUpdate = () => {
     swRef.current.addEventListener('message', handleMessage)
 
     // Vérifier les mises à jour périodiquement (toutes les heures)
-    const updateCheckInterval = setInterval(() => {
+    const updateCheckInterval = setInterval(async () => {
       if (swRef.current?.controller) {
-        swRef.current.update().catch(err => {
+        try {
+          const registration = await swRef.current.getRegistration()
+          if (registration) {
+            await registration.update()
+          }
+        } catch (err) {
           console.error('Error checking for updates:', err)
-        })
+        }
       }
     }, 60 * 60 * 1000) // 1 heure
 
     // Vérification initiale au montage
     if (swRef.current?.controller) {
-      swRef.current.update().catch(err => {
-        console.error('Error during initial update check:', err)
+      swRef.current.getRegistration().then(registration => {
+        if (registration) {
+          registration.update().catch(err => {
+            console.error('Error during initial update check:', err)
+          })
+        }
       })
     }
 
