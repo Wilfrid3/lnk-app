@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 // Vous pouvez utiliser un hash du commit ou un timestamp
 const APP_VERSION = process.env.NEXT_PUBLIC_APP_VERSION || new Date().toISOString()
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GET(request: NextRequest) {
   // Désactiver le cache pour cette réponse
   const response = NextResponse.json(

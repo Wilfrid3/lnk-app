@@ -20,7 +20,7 @@ export default function UpdateNotification() {
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1">
           <h3 className="font-semibold text-sm mb-1">Mise à jour disponible</h3>
-          <p className="text-xs text-blue-100">Une nouvelle version de l'application est disponible. Mettez à jour pour accéder aux dernières fonctionnalités.</p>
+          <p className="text-xs text-blue-100">Une nouvelle version de l&apos;application est disponible. Mettez à jour pour accéder aux dernières fonctionnalités.</p>
         </div>
         <button
           onClick={() => setShow(false)}

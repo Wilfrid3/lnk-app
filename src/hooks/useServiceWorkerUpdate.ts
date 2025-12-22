@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback, useRef } from 'react'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface UpdateAvailableEvent extends ExtendableEvent {
   waitUntil(promise: Promise<void>): void
 }
@@ -37,7 +38,7 @@ export const useServiceWorkerUpdate = () => {
     // Vérifier les mises à jour périodiquement (toutes les heures)
     const updateCheckInterval = setInterval(() => {
       if (swRef.current?.controller) {
-        swRef.current.update().catch(err => {
+        swRef.current.update().catch((err: any) => {
           console.error('Error checking for updates:', err)
         })
       }
@@ -45,7 +46,7 @@ export const useServiceWorkerUpdate = () => {
 
     // Vérification initiale au montage
     if (swRef.current?.controller) {
-      swRef.current.update().catch(err => {
+      swRef.current.update().catch((err: any) => {
         console.error('Error during initial update check:', err)
       })
     }
