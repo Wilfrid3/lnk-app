@@ -38,7 +38,7 @@ export const useServiceWorkerUpdate = () => {
     // Vérifier les mises à jour périodiquement (toutes les heures)
     const updateCheckInterval = setInterval(() => {
       if (swRef.current?.controller) {
-        swRef.current.update().catch((err: any) => {
+        swRef.current.update().catch(err => {
           console.error('Error checking for updates:', err)
         })
       }
@@ -46,7 +46,7 @@ export const useServiceWorkerUpdate = () => {
 
     // Vérification initiale au montage
     if (swRef.current?.controller) {
-      swRef.current.update().catch((err: any) => {
+      swRef.current.update().catch(err => {
         console.error('Error during initial update check:', err)
       })
     }

@@ -1,11 +1,13 @@
 // Service Worker custom pour gérer les mises à jour
 // Ce fichier doit être placé dans public/ et enregistré avant le SW généré par Workbox
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CACHE_NAME = 'yamohub-v1'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const VERSION_URL = '/api/version' // À créer si nécessaire
 
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing service worker')
+  console.log('[SW] Installing service worker', event)
   self.skipWaiting() // Activate immédiatement
 })
 
@@ -50,6 +52,7 @@ async function checkForUpdates() {
 }
 
 // Envoyer un signal de mise à jour disponible aux clients
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function notifyClients(message) {
   const clients = await self.clients.matchAll()
   clients.forEach((client) => {
