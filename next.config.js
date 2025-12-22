@@ -1,8 +1,10 @@
 const withPWA = require('next-pwa')({
   dest: 'public',
   register: true,
-  skipWaiting: true,
-  disable: false, // Enable PWA in both dev and production
+  skipWaiting: true, // Activate immédiatement le nouveau SW
+  disable: false,
+  publicExcludes: ['!sw-update.js'], // Inclure notre custom SW
+  buildExcludes: ['!sw-update.js'],
 });
 
 /** @type {import('next').NextConfig} */
@@ -118,6 +120,23 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'no-store, must-revalidate',
+          },
+        ],
+      },
+      {
+        source: '/api/version',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate, public, max-age=0',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
           },
         ],
       },

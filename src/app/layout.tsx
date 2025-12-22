@@ -12,6 +12,7 @@ import OnlineStatusManager from '@/components/OnlineStatusManager'
 import ServiceWorkerMessageHandler from '@/components/ServiceWorkerMessageHandler'
 import NotificationPrompt from '@/components/NotificationPrompt'
 import SignInPrompt from '@/components/SignInPrompt'
+import UpdateNotification from '@/components/UpdateNotification'
 
 // Initialize theme script to prevent FOUC
 const themeInitScript = `
@@ -220,6 +221,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ServiceWorkerMessageHandler />
                 <NotificationPrompt />
                 <SignInPrompt />
+                <UpdateNotification />
                 <AgeVerificationModal />
                 {children}
               </AgeVerificationProvider>
