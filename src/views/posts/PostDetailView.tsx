@@ -281,10 +281,10 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
 
   const handleWhatsapp = () => {
     // Check if user is authenticated
-    if (!user) {
-      router.push(`/auth/signin?callbackUrl=${encodeURIComponent(window.location.pathname)}`)
-      return
-    }
+    // if (!user) {
+    //   router.push(`/auth/signin?callbackUrl=${encodeURIComponent(window.location.pathname)}`)
+    //   return
+    // }
 
     if (post?.whatsappNumber) {
       let whatsappNumber = post.whatsappNumber.startsWith('+')
@@ -306,10 +306,10 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
 
   const handleCall = () => {
     // Check if user is authenticated
-    if (!user) {
-      router.push(`/auth/signin?callbackUrl=${encodeURIComponent(window.location.pathname)}`)
-      return
-    }
+    // if (!user) {
+    //   router.push(`/auth/signin?callbackUrl=${encodeURIComponent(window.location.pathname)}`)
+    //   return
+    // }
 
     if (post?.phoneNumber) {
       window.location.href = `tel:${post.phoneNumber}`
@@ -325,10 +325,10 @@ const PostDetailView: React.FC<PostDetailProps> = ({ postId }) => {
 
   const handleEmail = () => {
     // Check if user is authenticated
-    if (!user) {
-      router.push(`/auth/signin?callbackUrl=${encodeURIComponent(window.location.pathname)}`)
-      return
-    }
+    // if (!user) {
+    //   router.push(`/auth/signin?callbackUrl=${encodeURIComponent(window.location.pathname)}`)
+    //   return
+    // }
 
     if (post?.user?.email) {
       // If the user has an email, open the mail app with their email address
