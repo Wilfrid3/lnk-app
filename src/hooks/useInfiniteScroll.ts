@@ -46,13 +46,13 @@ export const useInfiniteScroll = (options: UseInfiniteScrollOptions = {}): UseIn
       setHasMore(
         response?.meta?.currentPage !== undefined &&
         response?.meta?.totalPages !== undefined &&
-        response.meta.currentPage < response.meta.totalPages
+        response.meta?.currentPage < response.meta?.totalPages
       );
       
       // Mettre en cache
-      if (userId) {
+      if (userId && response.meta) {
         setUserPosts(userId, newPosts, pageNum, response.meta.currentPage < response.meta.totalPages);
-      } else {
+      } else if (response.meta) {
         setHomePosts(newPosts, pageNum, response.meta.currentPage < response.meta.totalPages);
       }
     } catch (err) {
