@@ -5,8 +5,8 @@ import { generateMetadata as generateSEOMetadata } from '@/utils/seo'
 import HomePageClient from './HomePageClient'
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'yamohub - Plateforme de Services d\'Accompagnement Premium au Cameroun',
-  description: 'Découvrez yamohub, la plateforme leader de services d\'accompagnement premium au Cameroun. Profils vérifiés, services de qualité à Yaoundé, Douala et dans tout le pays.',
+  title: 'YamoHub - Plateforme de Services d\'Accompagnement Premium au Cameroun',
+  description: "SITE N°1 D'ESCORTES, DE RENCONTRES ET DE NDOLO EN LIGNE AU CAMEROUN. CRÉEZ VOTRE ANNONCE SIMPLEMENT. FILLES CHAUDES AU CAMEROUN. NYASS ET PIMENT",
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com',
   type: 'website',
   image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yamohub.com'}/images/logof.png`,
